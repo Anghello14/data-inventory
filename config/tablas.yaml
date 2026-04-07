@@ -1,0 +1,43 @@
+# tablas.yaml
+# Definición de las tablas a procesar en el pipeline ETL.
+#
+# Campos por tabla:
+#   schema    : (opcional) esquema propietario; si se omite usa DEFAULT_SCHEMA
+#   pk        : lista de columnas que forman la clave primaria
+#   col_fecha : columna de tipo DATE/TIMESTAMP usada para filtrar por rango
+#   col_lote  : columna que identifica el lote o batch de carga
+#   activa    : si false, la tabla se ignora en la ejecución
+
+tablas:
+  - nombre: CLIENTES
+    schema: SPE
+    pk:
+      - ID_CLIENTE
+    col_fecha: FECHA_CREACION
+    col_lote: LOTE_CARGA
+    activa: true
+
+  - nombre: PRODUCTOS
+    schema: SPE
+    pk:
+      - ID_PRODUCTO
+    col_fecha: FECHA_ACTUALIZACION
+    col_lote: LOTE_CARGA
+    activa: true
+
+  - nombre: TRANSACCIONES
+    schema: SPE
+    pk:
+      - ID_TRANSACCION
+      - FECHA_TRANSACCION
+    col_fecha: FECHA_TRANSACCION
+    col_lote: LOTE_ID
+    activa: true
+
+  - nombre: INVENTARIO
+    schema: SPE
+    pk:
+      - ID_INVENTARIO
+    col_fecha: FECHA_REGISTRO
+    col_lote: LOTE_CARGA
+    activa: false
