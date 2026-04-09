@@ -1,7 +1,3 @@
-"""
-Modulo de extraccion de datos desde Oracle Database.
-Optimizado con Batch Dinamico y Alto Rendimiento (arraysize) para el esquema SPE.
-"""
 import oracledb
 import pandas as pd
 import logging
@@ -9,11 +5,6 @@ import os
 from config.settings import ORACLE_USER, ORACLE_PASS, DSN, ORACLE_CLIENT_PATH
 
 class OracleReader:
-    """
-    Clase para la extraccion masiva del esquema SPE.
-    Implementa paginacion universal (ROWNUM) y gestion de carga dinamica.
-    """
-
     def __init__(self):
         try:
             if ORACLE_CLIENT_PATH and os.path.exists(ORACLE_CLIENT_PATH):
@@ -57,10 +48,8 @@ class OracleReader:
             return 500000      
 
     def extract_table_paginated(self, esquema, tabla):
-        """
-        Extrae datos usando subconsultas de ROWNUM y Batch Dinamico.
-        Optimizado con arraysize para reducir latencia de red.
-        """
+        #Extrae datos usando subconsultas de ROWNUM y Batch Dinamico. Optimizado con arraysize para reducir latencia de red.
+
         tabla_full = f"{esquema}.{tabla}"
         total_rows = self.get_count(esquema, tabla)
 
@@ -106,7 +95,6 @@ class OracleReader:
             except Exception as e:
                 logging.error(f"Error en extraccion paginada de {tabla_full}: {str(e)}")
                 break
-            # ----------------------------------------------
 
         return pd.concat(chunks, ignore_index=True) if chunks else pd.DataFrame()
 

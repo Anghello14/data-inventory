@@ -1,26 +1,15 @@
-"""
-Modulo de perfilado y segregacion de datos (Versión Profesional).
-Responsabilidad: Auditoria tecnica, calculo de peso en disco, 
-deteccion de nulos/duplicados e inferencia de tipos para destino.
-"""
 import pandas as pd
-import numpy as np
 import logging
 
 class DataProfiler:
     def __init__(self, df, nombre_tabla, config_tabla):
-        """
-        Inicializa el profiler con los datos crudos y la configuracion del YAML.
-        """
         self.df = df
         self.nombre_tabla = nombre_tabla
         self.config = config_tabla
         self.total_registros = len(df)
         
     def _inferir_tipos_destino(self, serie):
-        """
-        Analiza el tipo de dato de Pandas y sugiere el equivalente en motores destino.
-        """
+        #Analiza el tipo de dato de Pandas y sugiere el equivalente en motores destino.
         dtype = str(serie.dtype).lower()
         
         if "int" in dtype:
@@ -36,9 +25,8 @@ class DataProfiler:
             return "MIXED / String", "VARCHAR"
 
     def analizar(self):
-        """
-        Ejecuta el perfilado completo: Segregacion, Calidad y Dimensionamiento.
-        """
+        #Ejecuta el perfilado completo: Segregacion, Calidad y Dimensionamiento.
+
         if self.df.empty:
             logging.warning(f"[{self.nombre_tabla}] DataFrame vacio. Saltando perfilado.")
             return None, None, None, None

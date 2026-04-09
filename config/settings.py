@@ -9,7 +9,7 @@ load_dotenv()
 # RUTAS DEL PROYECTO
 # ----------------------------------------------------------------
 # Si este archivo está en config/settings.py, subimos dos niveles para llegar a la raíz
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATA_OUTPUT_DIR = BASE_DIR / "data_output"
 LOGS_DIR = BASE_DIR / "logs"
