@@ -88,7 +88,7 @@ class OracleReader:
             try:
                 with self.conn.cursor() as cur:
                     # CONFIGURACION DE RED: Trae 10,000 registros por cada 'ida' al servidor
-                    cur.arraysize = 10000 
+                    cur.arraysize = 20000 
                     
                     cur.execute(query)
                     cols = [desc[0] for desc in cur.description]
