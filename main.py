@@ -1,15 +1,20 @@
+"""
+Orquestador Principal - Proyecto SPE
+Maneja separadores visuales tanto en consola (print) como en archivo (logging).
+"""
 import yaml
 import logging
 import time
 import os
 from datetime import datetime
+from pathlib import Path
 
 from extract.oracle_reader import OracleReader
 from transform.profiler import DataProfiler
 from load.excel_writer import generar_excel_inventario
 from config.settings import DATA_OUTPUT_DIR
 
-# --- CONFIGURACIÓN DE LOGS DINÁMICOS ---
+# --- CONFIGURACIÓN DE LOGS ---
 timestamp_run = datetime.now().strftime("%Y%m%d_%H%M%S")
 log_filename = f"logs/pipeline_{timestamp_run}.log"
 os.makedirs("logs", exist_ok=True)
@@ -25,7 +30,11 @@ logging.basicConfig(
 
 def ejecutar_inventario_completo():
     inicio_proceso = time.time()
-    logging.info(f"=== INICIANDO PIPELINE (ID: {timestamp_run}) ===")
+    
+    # Separador de inicio de sesión
+    logging.info("="*60)
+    logging.info(f" INICIO DE EJECUCIÓN - ID: {timestamp_run}")
+    logging.info("="*60)
     
     reader = OracleReader()
     
@@ -38,22 +47,26 @@ def ejecutar_inventario_completo():
         total = len(tablas_dict)
 
         for i, (nombre_tabla, config_tabla) in enumerate(tablas_dict.items(), 1):
-            ruta_excel = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
-
-            # --- LÓGICA DE IDEMPOTENCIA ---
-            if ruta_excel.exists():
-                logging.info(f"[{i}/{total}] SKIP: {nombre_tabla} ya existe (Idempotencia activa).")
-                continue
             
-            logging.info(f"[{i}/{total}] PROCESANDO: {nombre_tabla}")
+            # SEPARADOR VISUAL: Ahora usamos logging para que quede en el archivo .log
+            # Esto ayuda a identificar bloques de datos al abrir el TXT
+            logging.info(f"{'-'*70}")
+            logging.info(f" TABLA {i}/{total}: {nombre_tabla}")
+            logging.info(f"{'-'*70}")
+
+            check_excel = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
+            check_masivo = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}_DATOS_MASIVOS.xlsx"
+
+            if check_excel.exists() or check_masivo.exists():
+                logging.info(f"STATUS: SKIP (Ya procesada)")
+                continue
             
             try:
                 # 1. Extracción
                 df_raw = reader.extract_table_paginated(esquema, nombre_tabla)
                 
                 if df_raw.empty:
-                    # Creamos un archivo pequeño o registro para evitar re-procesar tablas vacías
-                    logging.info(f"Tabla {nombre_tabla} vacía.")
+                    logging.info(f"STATUS: VACÍA")
                     continue
 
                 # 2. Perfilado
@@ -64,13 +77,14 @@ def ejecutar_inventario_completo():
                 generar_excel_inventario(nombre_tabla, df_clean, df_dirty, df_summary, df_nulls)
                 
             except Exception as e:
-                logging.error(f"Fallo en tabla {nombre_tabla}: {str(e)}")
-                # Opcional: eliminar archivo corrupto si quedó a medias para que la próxima vez se reintente
+                logging.error(f"ERROR en tabla {nombre_tabla}: {str(e)}")
 
-        logging.info(f"=== PIPELINE FINALIZADO EN {round((time.time()-inicio_proceso)/60, 2)} MIN ===")
+        logging.info("="*60)
+        logging.info(f"RESUMEN: Pipeline finalizado en {round((time.time()-inicio_proceso)/60, 2)} min")
+        logging.info("="*60)
 
     except Exception as e:
-        logging.error(f"Error crítico: {e}")
+        logging.error(f"FALLO CRÍTICO: {e}")
     finally:
         reader.close()
 

@@ -1,3 +1,7 @@
+"""
+Modulo de extraccion de datos desde Oracle Database.
+Optimizado con Batch Dinamico y Arraysize de alto rendimiento.
+"""
 import oracledb
 import pandas as pd
 import logging
@@ -33,7 +37,7 @@ class OracleReader:
                 count = cur.fetchone()[0]
                 if count == 0:
                     self.tablas_vacias.append(tabla_full)
-                    logging.info(f"Registro: La tabla {tabla_full} se encuentra vacia.")
+                    logging.info(f"Registro: La tabla {tabla_full} esta vacia.")
                 return count
         except Exception as e:
             logging.error(f"Error al obtener conteo de {tabla_full}: {str(e)}")
@@ -48,8 +52,6 @@ class OracleReader:
             return 500000      
 
     def extract_table_paginated(self, esquema, tabla):
-        #Extrae datos usando subconsultas de ROWNUM y Batch Dinamico. Optimizado con arraysize para reducir latencia de red.
-
         tabla_full = f"{esquema}.{tabla}"
         total_rows = self.get_count(esquema, tabla)
 
@@ -64,7 +66,6 @@ class OracleReader:
         
         while offset < total_rows:
             limite_superior = offset + batch_size
-            
             query = f"""
                 SELECT * FROM (
                     SELECT a.*, ROWNUM rnum FROM (
@@ -73,21 +74,16 @@ class OracleReader:
                 ) WHERE rnum > {offset}
             """
             
-            # --- BLOQUE DE ALTO RENDIMIENTO ACTUALIZADO ---
             try:
                 with self.conn.cursor() as cur:
-                    # CONFIGURACION DE RED: Trae 10,000 registros por cada 'ida' al servidor
-                    cur.arraysize = 20000 
-                    
+                    cur.arraysize = 10000 # OPTIMIZACION DE RED
                     cur.execute(query)
                     cols = [desc[0] for desc in cur.description]
                     rows = cur.fetchall()
                     
                     chunk = pd.DataFrame(rows, columns=cols)
-                    
                     if 'RNUM' in chunk.columns:
                         chunk = chunk.drop(columns=['RNUM'])
-                        
                     chunks.append(chunk)
                 
                 offset += batch_size
@@ -104,4 +100,4 @@ class OracleReader:
     def close(self):
         if hasattr(self, 'conn') and self.conn:
             self.conn.close()
-            logging.info("Conexion con Oracle cerrada de forma segura.")
+            logging.info("Conexion con Oracle cerrada.")
