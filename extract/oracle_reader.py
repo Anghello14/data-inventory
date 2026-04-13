@@ -76,7 +76,7 @@ class OracleReader:
             
             try:
                 with self.conn.cursor() as cur:
-                    cur.arraysize = 10000 # OPTIMIZACION DE RED
+                    cur.arraysize = 25000 # OPTIMIZACION DE RED
                     cur.execute(query)
                     cols = [desc[0] for desc in cur.description]
                     rows = cur.fetchall()
