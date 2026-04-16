@@ -1,5 +1,13 @@
 esquema_origen: SPE
 tablas:
+  DR$DEMANDA_TEXT_IDX$K:
+    descripcion: Inventario tecnico de la tabla DR$DEMANDA_TEXT_IDX$K
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DR$ONP_DESCRIPCION_TEXT_IDX$K:
+    descripcion: Inventario tecnico de la tabla DR$ONP_DESCRIPCION_TEXT_IDX$K
+    destino_sugerido: POSTGRESQL
+    sensible: false
   AAA_CRUCE_FOSFEC_MARZO_2020:
     descripcion: Inventario tecnico de la tabla AAA_CRUCE_FOSFEC_MARZO_2020
     destino_sugerido: MONGODB

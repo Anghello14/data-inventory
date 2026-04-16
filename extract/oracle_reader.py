@@ -2,6 +2,7 @@ import oracledb
 import pandas as pd
 import logging
 import os
+import re
 from config.settings import ORACLE_USER, ORACLE_PASS, DSN, ORACLE_CLIENT_PATH
 
 class OracleReader:
@@ -14,6 +15,10 @@ class OracleReader:
             # Para binarios (BLOB)
             if default_type == oracledb.DB_TYPE_BLOB:
                 return cursor.var(oracledb.DB_TYPE_LONG_RAW, arraysize=cursor.arraysize)
+            # Para fechas: devolver como string para evitar errores con años fuera del rango de Python
+            if default_type in (oracledb.DB_TYPE_DATE, oracledb.DB_TYPE_TIMESTAMP,
+                                oracledb.DB_TYPE_TIMESTAMP_TZ, oracledb.DB_TYPE_TIMESTAMP_LTZ):
+                return cursor.var(oracledb.DB_TYPE_VARCHAR, size=50, arraysize=cursor.arraysize)
 
         try:
             if ORACLE_CLIENT_PATH and os.path.exists(ORACLE_CLIENT_PATH):
@@ -78,19 +83,52 @@ class OracleReader:
         """Extrae datos de forma lineal, protegida contra tipos pesados."""
         tabla_full = f"{esquema}.{tabla}"
         logging.info(f"Iniciando extraccion protegida de {tabla_full}...")
-        
+
+        # Tipos binarios que no se deben transferir (BLOB, RAW, LONG_RAW)
+        _BINARY_TYPES = (
+            oracledb.DB_TYPE_BLOB,
+            oracledb.DB_TYPE_RAW,
+            oracledb.DB_TYPE_LONG_RAW,
+        )
+
         try:
+            # 1. Consulta de inspección: obtener metadatos de columnas sin traer datos
             with self.conn.cursor() as cur:
-                # Buffer optimizado para no saturar la red con datos pesados
-                cur.arraysize = 30000 
-                cur.execute(f"SELECT * FROM {tabla_full}")
-                
-                cols = [desc[0] for desc in cur.description]
-                rows = cur.fetchall() 
-                
-                df = pd.DataFrame(rows, columns=cols)
-                logging.info(f"Progreso [{tabla}]: {len(df)} registros cargados.")
-                return df
+                cur.execute(f"SELECT * FROM {tabla_full} WHERE 1=0")
+                col_meta = [(desc[0], desc[1]) for desc in cur.description]
+
+            # 2. Construir SELECT sustituyendo columnas binarias por NULL
+            select_parts = [
+                f'NULL AS "{name}"' if col_type in _BINARY_TYPES else f'"{name}"'
+                for name, col_type in col_meta
+            ]
+            cols = [name for name, _ in col_meta]
+            binary_cols = [name for name, t in col_meta if t in _BINARY_TYPES]
+            if binary_cols:
+                logging.info(f"[{tabla}] Columnas BLOB/RAW omitidas (sin transferencia): {binary_cols}")
+
+            query = f"SELECT {', '.join(select_parts)} FROM {tabla_full}"
+
+            # 3. Extraccion real sin datos binarios
+            with self.conn.cursor() as cur:
+                cur.arraysize = 30000
+                cur.execute(query)
+                rows = cur.fetchall()
+
+            # Limpiar caracteres ilegales para Excel en campos de texto
+            _ILLEGAL = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\ufffd]')
+            rows = [
+                tuple(
+                    None if isinstance(v, bytes)
+                    else (_ILLEGAL.sub('', v) if isinstance(v, str) else v)
+                    for v in row
+                )
+                for row in rows
+            ]
+
+            df = pd.DataFrame(rows, columns=cols)
+            logging.info(f"Progreso [{tabla}]: {len(df)} registros cargados.")
+            return df
         except Exception as e:
             logging.error(f"Error en extraccion de {tabla_full}: {e}")
             return pd.DataFrame()
