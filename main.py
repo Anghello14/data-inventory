@@ -26,6 +26,9 @@ logging.basicConfig(
 )
 
 def ejecutar_inventario_completo():
+    # Orquesta el pipeline completo: lee config YAML, itera tabla por tabla,
+    # extrae datos desde Oracle, los perfila, escribe el Excel individual
+    # y al final consolida el Reporte Maestro de migración.
     inicio_proceso = time.time()
     
     # Separador visual de inicio
@@ -33,8 +36,9 @@ def ejecutar_inventario_completo():
     logging.info(f" INICIO DE EJECUCIÓN - ID: {timestamp_run}")
     logging.info("="*60)
     
+    # Instancia única de conexión a Oracle; se reutiliza para todas las tablas del ciclo
     reader = OracleReader()
-    
+
     # OBJETOS DE RECOLECCIÓN PARA REPORTE MAESTRO
     tablas_vacias = []
     tablas_masivas = []
@@ -55,6 +59,7 @@ def ejecutar_inventario_completo():
             logging.info(f" PROCESANDO {i}/{total}: {nombre_tabla}")
             print(f"{'='*70}")
 
+            # Ruta esperada del inventario individual; se usa para control de idempotencia
             check_excel = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
 
             # IDEMPOTENCIA
@@ -89,6 +94,7 @@ def ejecutar_inventario_completo():
                 # 2. EXTRACCIÓN
                 df_raw = reader.extract_table_paginated(esquema, nombre_tabla)
                 
+                # Si Oracle devolvió un DataFrame vacío (error de extracción) se omite la tabla
                 if df_raw.empty:
                     logging.info(f"STATUS: SIN DATOS TRAS EXTRACCIÓN")
                     continue
@@ -106,6 +112,7 @@ def ejecutar_inventario_completo():
                 # --------------------------
 
                 # 3. PERFILADO (Usamos el df_input filtrado)
+                # Inyectar la PK real al config de la tabla para que el profiler la valide
                 if constraints.get('PK') == 'N/A':
                     config_tabla['pk'] = None
                 else:
@@ -132,8 +139,10 @@ def ejecutar_inventario_completo():
         logging.info("="*60)
 
     except Exception as e:
+        # Error no controlado que rompe el flujo global (ej. fallo de configuración)
         logging.error(f"FALLO CRÍTICO EN EL FLUJO: {str(e)}")
     finally:
+        # Garantiza el cierre de la conexión Oracle sin importar si hubo error
         reader.close()
 
 if __name__ == "__main__":

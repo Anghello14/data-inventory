@@ -7,7 +7,8 @@ from config.settings import ORACLE_USER, ORACLE_PASS, DSN, ORACLE_CLIENT_PATH
 
 class OracleReader:
     def __init__(self):
-        # MANEJADOR UNIVERSAL: Convierte CLOB, NCLOB, BLOB y XMLType a tipos nativos de Python
+        # Manejador de tipos especiales: convierte LOBs y fechas a tipos seguros
+        # antes de que el driver intente materializarlos como objetos Python nativos
         def output_type_handler(cursor, name, default_type, size, precision, scale):
             # Para textos gigantes (CLOB, NCLOB y XML)
             if default_type in (oracledb.DB_TYPE_CLOB, oracledb.DB_TYPE_NCLOB, oracledb.DB_TYPE_XMLTYPE):
@@ -42,7 +43,8 @@ class OracleReader:
             raise
 
     def get_count(self, esquema, tabla):
-        """Obtiene el total de registros para decidir la estrategia de carga."""
+        # Consulta rápida de conteo: determina la estrategia de carga
+        # (tabla vacía / pocos registros / masiva) antes de extraer cualquier fila
         tabla_full = f"{esquema}.{tabla}"
         query = f"SELECT COUNT(*) FROM {tabla_full}"
         try:
@@ -54,7 +56,8 @@ class OracleReader:
             return 0
 
     def obtener_restricciones(self, esquema, tabla):
-        """Consulta las tablas de sistema para identificar PK, FK, UNIQUE y CHECK."""
+        # Consulta ALL_CONSTRAINTS y ALL_CONS_COLUMNS para catalogar PK, FK, UNIQUE y CHECK
+        # Estos datos se incluyen en el Reporte Maestro y se usan para validar duplicados en la PK
         query = f"""
         SELECT 
             CONSTRAINT_TYPE, 
@@ -69,6 +72,7 @@ class OracleReader:
             with self.conn.cursor() as cur:
                 cur.execute(query)
                 rows = cur.fetchall()
+                # Mapear cada tipo de restricción a su columna correspondiente
                 for rtype, rcol in rows:
                     if rtype == 'P': res['PK'] = rcol
                     elif rtype == 'R': res['FK'] = rcol
@@ -80,7 +84,9 @@ class OracleReader:
             return res
 
     def extract_table_paginated(self, esquema, tabla):
-        """Extrae datos de forma lineal, protegida contra tipos pesados."""
+        # Extrae todos los registros de la tabla en una sola pasada.
+        # Antes de transferir datos, inspecciona los tipos de columna para excluir
+        # BLOBs/RAW del SELECT y evitar bloqueos de red por datos binarios pesados.
         tabla_full = f"{esquema}.{tabla}"
         logging.info(f"Iniciando extraccion protegida de {tabla_full}...")
 
@@ -134,6 +140,7 @@ class OracleReader:
             return pd.DataFrame()
 
     def close(self):
+        # Libera el recurso de conexión al finalizar el pipeline
         if hasattr(self, 'conn') and self.conn:
             self.conn.close()
             logging.info("Conexion con Oracle cerrada.")

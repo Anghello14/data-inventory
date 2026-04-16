@@ -1,113 +1,158 @@
 # data-inventory
 
-Pipeline ETL en Python 3.10+ para analizar las tablas de la base de datos SPE.
-El output consiste en archivos CSV con el inventario detallado y el perfilamiento
-de calidad de los registros, acompañados de un manifiesto JSON.
+Pipeline ETL en Python 3.10+ para generar un inventario técnico de las tablas del esquema Oracle **SPE**.  
+Produce archivos Excel individuales por tabla y un Reporte Maestro consolidado con hallazgos de calidad, tipos de datos y restricciones de integridad.
+
+Existen dos variantes del pipeline según el volumen de la tabla:
+
+| Pipeline | Script | Estrategia |
+|---|---|---|
+| **Normal** | `main.py` | Transfiere datos, perfila filas (CLEAN / DIRTY) |
+| **Masivas** | `main_masivas.py` | Solo metadatos del diccionario Oracle, sin transferir filas |
+
+---
 
 ## Estructura del proyecto
 
 ```
 ├── config/
-│   ├── settings.py        # DSN, rutas, parámetros por defecto
-│   └── tablas.yaml        # Definición de tablas: PK, col_fecha, col_lote
+│   ├── settings.py              # DSN, rutas de salida, carga de variables .env
+│   ├── tablas.yaml              # Tablas normales: PK, destino sugerido, sensibilidad
+│   └── tablas_masivas.yaml      # Tablas masivas (> 1M filas): misma estructura
 ├── extract/
 │   ├── __init__.py
-│   └── oracle_reader.py   # Clase OracleReader con paginación
+│   ├── oracle_reader.py         # OracleReader: conexión, conteo, restricciones y extracción
+│   └── oracle_reader_masivas.py # OracleReader masivas: solo metadatos y conteo de nulos
 ├── transform/
 │   ├── __init__.py
-│   └── profiler.py        # Generación de reporte de calidad
+│   ├── profiler.py              # DataProfiler: segregación CLEAN/DIRTY, mapeo de tipos
+│   └── profiler_masivas.py      # DataProfiler masivas: análisis sobre metadatos
 ├── load/
 │   ├── __init__.py
-│   └── csv_writer.py      # Escritura CSV + generación de manifiesto
+│   ├── excel_writer.py          # Escritura Excel (4 pestañas: análisis, columnas, clean, dirty)
+│   └── excel_writer_masivas.py  # Escritura Excel masivas (2 pestañas: análisis, columnas)
+├── logs/                        # Logs de cada ejecución (auto-generado)
 ├── tests/
-│   ├── __init__.py
-│   ├── test_settings.py
-│   ├── test_oracle_reader.py
-│   ├── test_profiler.py
-│   └── test_csv_writer.py
-├── main.py                # Orquestación del proceso completo
-├── conftest.py            # Configuración de pytest
+│   └── __init__.py
+├── main.py                      # Orquestador del pipeline normal
+├── main_masivas.py              # Orquestador del pipeline masivas
+├── generar_reporte_maestro.py   # Consolida inventarios normales en Reporte Maestro
+├── generar_reporte_maestro_masivo.py  # Consolida inventarios masivos en Reporte Maestro
+├── crear_yaml.py                # Genera config/tablas.yaml desde tablas.txt
+├── reconstruir_reporte_anterior.py   # Utilidad de recuperación de reporte desde logs
+├── tablas.txt                   # Listado plano de tablas (insumo para crear_yaml.py)
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
+
+---
 
 ## Requisitos
 
 - Python 3.10+
-- Oracle Instant Client (solo si se usa modo *thick* del driver `oracledb`)
+- Oracle Instant Client (requerido para modo *thick* del driver `oracledb`)
+
+---
 
 ## Instalación
 
 ```bash
 # 1. Crear y activar entorno virtual
-python3 -m venv .venv
-source .venv/bin/activate        # Linux/macOS
+python -m venv .venv
 .venv\Scripts\activate           # Windows
+source .venv/bin/activate        # Linux/macOS
 
 # 2. Instalar dependencias
 pip install -r requirements.txt
 ```
 
+---
+
 ## Configuración
 
-Las credenciales de Oracle se pasan mediante **variables de entorno** (nunca se
-almacenan en el repositorio):
+Las credenciales de Oracle se definen en un archivo **`.env`** en la raíz del proyecto (nunca se sube al repositorio):
 
-| Variable         | Descripción                  | Default        |
-|------------------|------------------------------|----------------|
-| `ORACLE_USER`    | Usuario de base de datos     | `usuario`      |
-| `ORACLE_PASSWORD`| Contraseña                   | `contraseña`   |
-| `ORACLE_HOST`    | Host del servidor Oracle     | `localhost`    |
-| `ORACLE_PORT`    | Puerto TNS                   | `1521`         |
-| `ORACLE_SERVICE` | Nombre del servicio Oracle   | `ORCL`         |
-| `ORACLE_SCHEMA`  | Esquema por defecto          | igual a USER   |
-| `BATCH_SIZE`     | Filas por página de extracción | `10000`      |
-| `LOG_LEVEL`      | Nivel de logging             | `INFO`         |
-
-```bash
-export ORACLE_USER=mi_usuario
-export ORACLE_PASSWORD=mi_contraseña
-export ORACLE_HOST=mi_servidor
-export ORACLE_SERVICE=MI_SVC
+```env
+ORACLE_USER=mi_usuario
+ORACLE_PASS=mi_contraseña
+ORACLE_HOST=mi_servidor
+ORACLE_PORT=1521
+ORACLE_SERVICE=MI_SVC
+ORACLE_CLIENT_PATH=C:/oracle/instantclient_21_x
 ```
 
-### Definición de tablas (`config/tablas.yaml`)
+| Variable             | Descripción                                      |
+|----------------------|--------------------------------------------------|
+| `ORACLE_USER`        | Usuario de base de datos                         |
+| `ORACLE_PASS`        | Contraseña                                       |
+| `ORACLE_HOST`        | Host del servidor Oracle                         |
+| `ORACLE_PORT`        | Puerto TNS (normalmente `1521`)                  |
+| `ORACLE_SERVICE`     | Nombre del servicio Oracle                       |
+| `ORACLE_CLIENT_PATH` | Ruta al Oracle Instant Client (modo thick)       |
 
-Edita el archivo para agregar o quitar tablas del pipeline:
+### Definición de tablas (`config/tablas.yaml` / `config/tablas_masivas.yaml`)
+
+Cada tabla se configura con:
 
 ```yaml
+esquema_origen: SPE
 tablas:
-  - nombre: MI_TABLA
-    schema: MI_ESQUEMA
-    pk:
-      - ID_CAMPO
-    col_fecha: FECHA_CREACION
-    col_lote: LOTE_CARGA
-    activa: true
+  NOMBRE_TABLA:
+    descripcion: "Descripción de la tabla"
+    destino_sugerido: POSTGRESQL   # o MONGODB
+    sensible: true                 # true si contiene datos personales o críticos
 ```
+
+Para regenerar `tablas.yaml` desde el archivo plano `tablas.txt`:
+
+```bash
+python crear_yaml.py
+```
+
+---
 
 ## Uso
 
 ```bash
-# Procesar todas las tablas activas (lectura completa)
+# Pipeline normal (tablas con menos de 1,000,000 registros)
 python main.py
 
-# Filtrar por rango de fechas
-python main.py --fecha-inicio 2024-01-01 --fecha-fin 2024-03-31
-
-# Filtrar por lote
-python main.py --lote 20240101
-
-# Procesar solo una tabla
-python main.py --tabla CLIENTES
+# Pipeline masivas (tablas con más de 1,000,000 registros)
+python main_masivas.py
 ```
 
-Los archivos de salida se generan en `output/`:
+Ambos pipelines son **idempotentes**: si el archivo Excel de una tabla ya existe en el directorio de salida, la tabla se omite automáticamente.
 
-- `data_<tabla>.csv` — datos extraídos
-- `perfil_<tabla>.csv` — métricas de calidad por columna
-- `manifest.json` — metadatos de todos los archivos generados
+---
+
+## Salida
+
+| Directorio            | Contenido                                                      |
+|-----------------------|----------------------------------------------------------------|
+| `data_output/`        | `INVENTARIO_<TABLA>.xlsx` + `REPORTE_MAESTRO_MIGRACION_SPE.xlsx` |
+| `data_output_masivas/`| `INVENTARIO_<TABLA>.xlsx` + `REPORTE_MAESTRO_MIGRACION_SPE_MASIVAS.xlsx` |
+| `logs/`               | `pipeline_<timestamp>.log` y `pipeline_masivas_<timestamp>.log` |
+
+### Pestañas del Excel individual (pipeline normal)
+
+| Pestaña            | Contenido                                              |
+|--------------------|--------------------------------------------------------|
+| `ANALISIS_TECNICO` | Resumen ejecutivo: filas, peso, calidad, sensibilidad  |
+| `DETALLE_COLUMNAS` | Inventario de columnas con tipos Oracle, PG, Mongo     |
+| `CLEAN`            | Registros sin errores de integridad                    |
+| `DIRTY`            | Registros con errores y motivo de rechazo              |
+
+### Pestañas del Reporte Maestro
+
+| Pestaña                   | Contenido                                    |
+|---------------------------|----------------------------------------------|
+| `INVENTARIO_GENERAL`      | Consolidado de todos los ANALISIS_TECNICO    |
+| `CATALOGO_TIPOS_DATOS`    | Mapeo deduplicado Oracle → PostgreSQL/MongoDB |
+| `DETALLE_CONSTRAINTS`     | PK, FK, UNIQUE, CHECK por tabla              |
+| `RESUMEN_INTEGRIDAD`      | Totales de restricciones encontradas         |
+| `TABLAS_VACIAS`           | Tablas sin registros                         |
+| `TABLAS_MASIVAS`          | Tablas con más de 1,000,000 filas            |
+| `TABLAS_POCOS_REGISTROS`  | Tablas con menos de 100 filas                |
 
 Los logs se escriben en `logs/etl.log` y también en la consola.
 

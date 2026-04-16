@@ -33,7 +33,10 @@ ARCHIVO_RECUPERADO = DATA_OUTPUT_DIR / "REPORTE_MAESTRO_MIGRACION_SPE_RECUPERADO
 # ── 1. Parsear el log del 14/04 ──────────────────────────────────────────────
 
 def parsear_log_abril14(ruta_log: Path):
-    """Extrae las clasificaciones de tablas del log del 14/04."""
+    # Recorre línea a línea el log del 14/04 e identifica:
+    # - tablas masivas (por el patrón 'TABLA MASIVA: ...')
+    # - tablas con pocos registros (por 'TABLA CON POCOS REGISTROS: ...')
+    # - tablas vacías (por 'STATUS: TABLA VAC...' asociado al último PROCESANDO)
     tablas_vacias = []
     tablas_masivas = []
     tablas_pocos_registros = []
@@ -45,6 +48,7 @@ def parsear_log_abril14(ruta_log: Path):
     re_pocos      = re.compile(r'TABLA CON POCOS REGISTROS: (\S+) \((\d+)\)')
     re_vacia      = re.compile(r'STATUS: TABLA VAC')
 
+    # Lectura con errors='replace' para tolerar caracteres especiales en los mensajes de log
     with open(ruta_log, encoding='utf-8', errors='replace') as f:
         for linea in f:
             m_proc = re_procesando.search(linea)

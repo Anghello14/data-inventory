@@ -1,15 +1,19 @@
 import pandas as pd
 import logging
-import re
 
 class DataProfiler:
     def __init__(self, df, nombre_tabla, config_tabla):
+        # df           : DataFrame con los datos extraídos de Oracle (ya saneados)
+        # nombre_tabla : nombre lógico usado en logs y en el archivo Excel de salida
+        # config_tabla : dict del YAML con pk, not_null, sensible, etc.
         self.df = df
         self.nombre_tabla = nombre_tabla
         self.config = config_tabla
         self.total_registros = len(df)
         
     def _inferir_tipos_destino(self, serie):
+        # Mapea el dtype de pandas al equivalente en MongoDB y PostgreSQL
+        # para que el inventario incluya sugerencias de migración de tipos
         dtype = str(serie.dtype).lower()
         if "int" in dtype: return "INT8 / NumberLong", "BIGINT"
         elif "float" in dtype: return "DOUBLE / Decimal128", "NUMERIC"
@@ -18,6 +22,9 @@ class DataProfiler:
         else: return "MIXED / String", "VARCHAR"
 
     def analizar(self):
+        # Punto central del módulo: ejecuta las 4 etapas de auditoría técnica
+        # (dimensionamiento, segregación clean/dirty, detalle de columnas, resumen ejecutivo)
+        # y retorna cuatro DataFrames listos para ser escritos en el Excel de inventario.
         if self.df.empty:
             logging.warning(f"[{self.nombre_tabla}] DataFrame vacio. Saltando perfilado.")
             return None, None, None, None
@@ -25,10 +32,12 @@ class DataProfiler:
         logging.info(f"[{self.nombre_tabla}] Iniciando auditoria tecnica...")
 
         # 1. DIMENSIONAMIENTO
+        # Calcula el peso en memoria del DataFrame para estimar el tamaño en disco
         uso_memoria_bytes = self.df.memory_usage(deep=True).sum()
         tamano_mb = round(uso_memoria_bytes / (1024 * 1024), 2)
 
         # 2. SEGREGACIÓN DE DATOS (CLEAN / DIRTY)
+        # Se marca cada fila con la razón de rechazo; al final se separan en dos DataFrames
         self.df['REJECTION_REASON'] = ""
         
         # A. Validación de PK (Solo si existe)
@@ -70,6 +79,7 @@ class DataProfiler:
             df_clean = df_clean.drop(columns=['REJECTION_REASON'])
 
         # 3. DETALLE DE COLUMNAS (Mapeo de tipos Oracle)
+        # Genera una fila por columna con dtype, sugerencias de migración y conteo de nulos
         conteo_nulos = self.df.isnull().sum()
         reporte_columnas = []
         columnas_muertas = [col for col in self.df.columns if (nulos_col := conteo_nulos[col]) == self.total_registros]
@@ -91,6 +101,7 @@ class DataProfiler:
         df_nulls = pd.DataFrame(reporte_columnas)
 
         # 4. RESUMEN EJECUTIVO (Cálculo de calidad real)
+        # El índice de calidad = porcentaje de filas que pasaron todas las validaciones
         indice_num = (len(df_clean) / self.total_registros) * 100
         df_summary = pd.DataFrame([{
             'TABLA': self.nombre_tabla,

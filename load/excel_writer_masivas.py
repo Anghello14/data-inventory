@@ -1,8 +1,3 @@
-"""
-Modulo de escritura de resultados para tablas masivas.
-Genera reportes tecnicos en formato Excel (.xlsx) con solo las pestanas
-ANALISIS_TECNICO y DETALLE_COLUMNAS (omite CLEAN y DIRTY).
-"""
 import pandas as pd
 import logging
 from config.settings import DATA_OUTPUT_DIR_MASIVAS
@@ -13,6 +8,7 @@ def generar_excel_inventario(nombre_tabla, df_summary, df_nulls):
     1. ANALISIS_TECNICO: Resumen ejecutivo de calidad y peso.
     2. DETALLE_COLUMNAS: Inventario de tipos de datos y nulos.
     """
+    # Ruta final del archivo: un Excel por tabla en el directorio de salida de masivas
     ruta_archivo = DATA_OUTPUT_DIR_MASIVAS / f"INVENTARIO_{nombre_tabla}.xlsx"
     
     try:

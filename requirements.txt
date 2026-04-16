@@ -1,9 +1,19 @@
 # Python 3.10+ required
-SQLAlchemy>=2.0.0
+
+# Conexión a Oracle Database (modo thick con Oracle Instant Client)
 oracledb>=1.4.0
+
+# Manipulación y análisis de datos en memoria
 pandas>=2.0.0
-PyYAML>=6.0
+
+# Lectura y escritura de archivos Excel (.xlsx)
 openpyxl>=3.1.0
-pytest>=7.0.0
-pyyaml>=6.0.0
+
+# Lectura de archivos de configuración YAML (tablas.yaml, tablas_masivas.yaml)
+PyYAML>=6.0
+
+# Carga de variables de entorno desde archivo .env (credenciales Oracle)
 python-dotenv>=0.19.0
+
+# Framework de pruebas unitarias
+pytest>=7.0.0

@@ -12,14 +12,16 @@ def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros,
     """
     Consolida todos los hallazgos del pipeline en un único Reporte Maestro.
     """
+    # Verificar que el directorio de resultados exista antes de intentar leer archivos
     if not RUTA_RESULTADOS.exists():
         logging.error(f"La ruta {RUTA_RESULTADOS} no existe.")
         return
 
     lista_analisis = []
     lista_columnas = []
-    
+
     # 1. Procesar archivos generados (Inventarios individuales)
+    # Excluye archivos temporales de Excel (prefijo ~$) que quedan abiertos en Windows
     archivos = [f for f in os.listdir(RUTA_RESULTADOS) 
                 if f.startswith("INVENTARIO_") 
                 and f.endswith(".xlsx") 
@@ -48,11 +50,13 @@ def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros,
             logging.error(f"Error procesando {nombre_archivo}: {e}")
 
     # 2. Preparar DataFrames de los Objetos Recolectados
+    # Si las listas están vacías se genera un DataFrame con columnas para no romper la escritura
     df_vacias = pd.DataFrame(tablas_vacias) if tablas_vacias else pd.DataFrame(columns=['nombre', 'registros'])
     df_masivas = pd.DataFrame(tablas_masivas) if tablas_masivas else pd.DataFrame(columns=['nombre', 'registros'])
     df_pocos = pd.DataFrame(tablas_pocos_registros) if tablas_pocos_registros else pd.DataFrame(columns=['nombre', 'registros'])
     
     # 3. Procesar Detalle de Constraints
+    # Convierte la lista de dicts acumulada durante el pipeline a un DataFrame consolidado
     df_constraints = pd.DataFrame(detalle_constraints) if detalle_constraints else pd.DataFrame()
     
     # Tabla adicional: Totales de integridad
@@ -78,6 +82,7 @@ def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros,
     df_resumen_const = pd.DataFrame(resumen_constraints)
 
     # 4. Consolidar Catálogo de Tipos (Deduplicado)
+    # Une todos los mapeos tipo_oracle -> postgres / mongo y elimina filas repetidas
     if lista_columnas:
         df_maestro_tipos = pd.concat(lista_columnas, ignore_index=True)
         df_maestro_tipos = df_maestro_tipos.drop_duplicates().sort_values(by='TIPO_ORACLE')
@@ -85,6 +90,7 @@ def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros,
         df_maestro_tipos = pd.DataFrame(columns=['TIPO_ORACLE', 'SUGERENCIA_POSTGRES', 'SUGERENCIA_MONGODB'])
 
     # 5. Escritura del Reporte Maestro Final
+    # Un solo archivo Excel con todas las pestañas de hallazgos del inventario completo
     try:
         with pd.ExcelWriter(ARCHIVO_MAESTRO, engine='openpyxl') as writer:
             # Pestaña Principal

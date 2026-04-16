@@ -1,7 +1,3 @@
-"""
-Modulo de extraccion de datos desde Oracle Database.
-Optimizado con metadatos de integridad y manejo de objetos pesados (CLOB).
-"""
 import oracledb
 import pandas as pd
 import logging
@@ -11,7 +7,8 @@ from config.settings import ORACLE_USER, ORACLE_PASS, DSN, ORACLE_CLIENT_PATH
 
 class OracleReader:
     def __init__(self):
-        # MANEJADOR UNIVERSAL: Convierte CLOB, NCLOB, BLOB y XMLType a tipos nativos de Python
+        # Manejador de tipos especiales: convierte LOBs y fechas a tipos seguros
+        # antes de que el driver intente materializarlos como objetos Python nativos
         def output_type_handler(cursor, name, default_type, size, precision, scale):
             # Para textos gigantes (CLOB, NCLOB y XML)
             if default_type in (oracledb.DB_TYPE_CLOB, oracledb.DB_TYPE_NCLOB, oracledb.DB_TYPE_XMLTYPE):
@@ -46,7 +43,8 @@ class OracleReader:
             raise
 
     def get_count(self, esquema, tabla):
-        """Obtiene el total de registros para decidir la estrategia de carga."""
+        # Consulta rápida de conteo: determina si la tabla es candidata para análisis
+        # (vacía / pocos registros) sin transferir ninguna fila de datos
         tabla_full = f"{esquema}.{tabla}"
         query = f"SELECT COUNT(*) FROM {tabla_full}"
         try:
@@ -58,7 +56,7 @@ class OracleReader:
             return 0
 
     def obtener_restricciones(self, esquema, tabla):
-        """Consulta las tablas de sistema para identificar PK, FK, UNIQUE y CHECK."""
+        # Consulta ALL_CONSTRAINTS y ALL_CONS_COLUMNS para catalogar PK, FK, UNIQUE y CHECK
         query = f"""
         SELECT 
             CONSTRAINT_TYPE, 
@@ -84,7 +82,9 @@ class OracleReader:
             return res
 
     def extract_table_paginated(self, esquema, tabla):
-        """Extrae datos de forma lineal, protegida contra tipos pesados."""
+        # Extrae todos los registros de la tabla en una sola pasada.
+        # Detecta y excluye columnas BLOB/RAW del SELECT antes de transferir datos
+        # para evitar bloqueos de red y errores de encoding en Excel.
         tabla_full = f"{esquema}.{tabla}"
         logging.info(f"Iniciando extraccion protegida de {tabla_full}...")
 
@@ -138,11 +138,11 @@ class OracleReader:
             return pd.DataFrame()
 
     def get_metadata_completo(self, esquema, tabla, total_filas):
-        """
-        Obtiene todo lo necesario para ANALISIS_TECNICO y DETALLE_COLUMNAS
-        directamente del diccionario de Oracle y una sola consulta de conteos.
-        No transfiere ninguna fila de datos.
-        """
+        # Obtiene todo lo necesario para el análisis técnico SIN transferir filas de datos:
+        # - Columnas y tipos desde ALL_TAB_COLUMNS (diccionario Oracle)
+        # - Peso estimado desde ALL_TABLES (estadísticas de Oracle)
+        # - Conteo de nulos por columna en lotes de 50 para no exceder el límite de expresiones SQL
+        # Retorna un diccionario con cols_info, null_counts y tamano_mb.
         # 1. Nombres y tipos de columnas desde el diccionario
         try:
             with self.conn.cursor() as cur:

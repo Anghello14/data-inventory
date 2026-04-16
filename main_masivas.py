@@ -1,8 +1,3 @@
-"""
-Orquestador Principal - Proyecto SPE (Tablas Masivas)
-Ajustado para recolección de métricas especiales y control de volumen.
-Procesa tablas_masivas.yaml y genera reportes sin pestañas CLEAN y DIRTY.
-"""
 import yaml
 import logging
 import time
@@ -31,6 +26,9 @@ logging.basicConfig(
 )
 
 def ejecutar_inventario_completo():
+    # Variante del pipeline para tablas masivas (> 1M filas).
+    # NO transfiere datos; trabaja exclusivamente con metadatos del diccionario Oracle
+    # para generar el inventario sin saturar la red ni la memoria.
     inicio_proceso = time.time()
     
     # Separador visual de inicio
@@ -38,8 +36,9 @@ def ejecutar_inventario_completo():
     logging.info(f" INICIO DE EJECUCIÓN (MASIVAS) - ID: {timestamp_run}")
     logging.info("="*60)
     
+    # Instancia única de conexión a Oracle; se reutiliza para todas las tablas del ciclo
     reader = OracleReader()
-    
+
     # OBJETOS DE RECOLECCIÓN PARA REPORTE MAESTRO
     tablas_vacias = []
     tablas_masivas = []
@@ -60,6 +59,7 @@ def ejecutar_inventario_completo():
             logging.info(f" PROCESANDO {i}/{total}: {nombre_tabla}")
             print(f"{'='*70}")
 
+            # Ruta esperada del inventario individual; se usa para control de idempotencia
             check_excel = DATA_OUTPUT_DIR_MASIVAS / f"INVENTARIO_{nombre_tabla}.xlsx"
 
             # IDEMPOTENCIA
@@ -84,6 +84,7 @@ def ejecutar_inventario_completo():
                     tablas_pocos_registros.append({'nombre': nombre_tabla, 'registros': count})
 
                 # 2. METADATOS (sin transferir filas)
+                # Enriquecer config_tabla con el conteo real y la PK detectada en Oracle
                 config_tabla['total_filas'] = count
                 if constraints.get('PK') != 'N/A':
                     config_tabla['pk'] = constraints['PK']
@@ -117,8 +118,10 @@ def ejecutar_inventario_completo():
         logging.info("="*60)
 
     except Exception as e:
+        # Error no controlado que rompe el flujo global (ej. fallo de configuración)
         logging.error(f"FALLO CRÍTICO EN EL FLUJO: {str(e)}")
     finally:
+        # Garantiza el cierre de la conexión Oracle sin importar si hubo error
         reader.close()
 
 if __name__ == "__main__":

@@ -28,6 +28,9 @@ def _mapear_tipo(oracle_type):
 
 class DataProfiler:
     def __init__(self, metadata, nombre_tabla, config_tabla):
+        # metadata     : dict con cols_info, null_counts y tamano_mb (devuelto por get_metadata_completo)
+        # nombre_tabla : nombre lógico para logs y nombre del archivo Excel
+        # config_tabla : dict del YAML enriquecido con total_filas y pk detectada
         """
         metadata: dict devuelto por OracleReader.get_metadata_completo()
           - cols_info: list of (COLUMN_NAME, DATA_TYPE, NULLABLE)
@@ -39,6 +42,8 @@ class DataProfiler:
         self.config = config_tabla
 
     def analizar(self):
+        # Genera el inventario técnico a partir de metadatos, sin procesar filas de datos.
+        # Produce dos DataFrames: resumen ejecutivo (df_summary) y detalle de columnas (df_nulls).
         if not self.metadata:
             logging.warning(f"[{self.nombre_tabla}] Sin metadatos. Saltando perfilado.")
             return None, None
@@ -46,11 +51,12 @@ class DataProfiler:
         logging.info(f"[{self.nombre_tabla}] Iniciando auditoria tecnica...")
 
         cols_info   = self.metadata['cols_info']       # (name, type, nullable)
-        null_counts = self.metadata['null_counts']
-        tamano_mb   = self.metadata['tamano_mb']
+        null_counts = self.metadata['null_counts']      # {col: cantidad_de_nulos}
+        tamano_mb   = self.metadata['tamano_mb']        # peso estimado según estadísticas Oracle
         total_filas = self.config.get('total_filas', 0)
 
         # --- DETALLE DE COLUMNAS ---
+        # Itera cada columna del diccionario Oracle y construye una fila del inventario
         reporte_columnas = []
         columnas_muertas = 0
 
@@ -74,6 +80,7 @@ class DataProfiler:
         df_nulls = pd.DataFrame(reporte_columnas)
 
         # --- RESUMEN EJECUTIVO ---
+        # El índice de calidad se calcula como % de columnas activas (no muertas)
         total_cols = len(cols_info)
         cols_activas = total_cols - columnas_muertas
         indice_num = (cols_activas / total_cols * 100) if total_cols else 0

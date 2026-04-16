@@ -10,6 +10,7 @@ def generar_excel_inventario(nombre_tabla, df_clean, df_dirty, df_summary, df_nu
     3. CLEAN: Registros que cumplen con todas las reglas de integridad.
     4. DIRTY: Registros con errores (Duplicados, ?, Emails invalidos, etc).
     """
+    # Ruta final del archivo: un Excel por tabla en el directorio de salida
     ruta_archivo = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
     
     try:
@@ -24,14 +25,14 @@ def generar_excel_inventario(nombre_tabla, df_clean, df_dirty, df_summary, df_nu
             if df_clean is not None and not df_clean.empty:
                 df_clean.to_excel(writer, sheet_name='CLEAN', index=False)
             else:
-                # Crear pestaña vacía con encabezado informativo si no hay datos limpios
+                # Pestaña informativa cuando el 100% de los registros tiene algún problema
                 pd.DataFrame({"INFO": ["Sin registros que cumplan las reglas de integridad"]}).to_excel(writer, sheet_name='CLEAN', index=False)
-                
+
             # Pestaña 4: Datos con Error (Dirty)
             if df_dirty is not None and not df_dirty.empty:
                 df_dirty.to_excel(writer, sheet_name='DIRTY', index=False)
             else:
-                # Crear pestaña vacía si la calidad es del 100%
+                # Pestaña informativa cuando la calidad es del 100% (sin errores detectados)
                 pd.DataFrame({"INFO": ["No se detectaron errores de integridad ni caracteres corruptos"]}).to_excel(writer, sheet_name='DIRTY', index=False)
 
         # Log de confirmación profesional
