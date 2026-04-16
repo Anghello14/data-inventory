@@ -1,7 +1,3 @@
-"""
-Modulo de extraccion de datos desde Oracle Database.
-Optimizado con metadatos de integridad y manejo de objetos pesados (CLOB).
-"""
 import oracledb
 import pandas as pd
 import logging
@@ -86,7 +82,7 @@ class OracleReader:
         try:
             with self.conn.cursor() as cur:
                 # Buffer optimizado para no saturar la red con datos pesados
-                cur.arraysize = 5000 
+                cur.arraysize = 30000 
                 cur.execute(f"SELECT * FROM {tabla_full}")
                 
                 cols = [desc[0] for desc in cur.description]

@@ -1,7 +1,3 @@
-"""
-Orquestador Principal - Proyecto SPE
-Ajustado para recolección de métricas especiales y control de volumen.
-"""
 import yaml
 import logging
 import time

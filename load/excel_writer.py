@@ -1,7 +1,3 @@
-"""
-Modulo de escritura de resultados.
-Optimizado para generar reportes tecnicos en formato Excel (.xlsx).
-"""
 import pandas as pd
 import logging
 from config.settings import DATA_OUTPUT_DIR
