@@ -12,10 +12,11 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATA_OUTPUT_DIR = BASE_DIR / "data_output"
+DATA_OUTPUT_DIR_MASIVAS = BASE_DIR / "data_output_masivas"
 LOGS_DIR = BASE_DIR / "logs"
 
 # Crear directorios si no existen
-for folder in [DATA_OUTPUT_DIR, LOGS_DIR]:
+for folder in [DATA_OUTPUT_DIR, DATA_OUTPUT_DIR_MASIVAS, LOGS_DIR]:
     folder.mkdir(exist_ok=True)
 
 # ----------------------------------------------------------------

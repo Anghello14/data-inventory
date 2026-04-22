@@ -84,10 +84,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla AAA_CRUCE_EMPRESAS
     destino_sugerido: MONGODB
     sensible: false
-  AAA_CRUCE_FOSFEC_MARZO_2020:
-    descripcion: Inventario tecnico de la tabla AAA_CRUCE_FOSFEC_MARZO_2020
-    destino_sugerido: MONGODB
-    sensible: false
   AAA_CRUCE_INTERESADO:
     descripcion: Inventario tecnico de la tabla AAA_CRUCE_INTERESADO
     destino_sugerido: MONGODB
@@ -128,14 +124,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla AAA_IDE_ORIEN_201807_201812
     destino_sugerido: MONGODB
     sensible: true
-  AC_ACCIONES_ORIENTACION:
-    descripcion: Inventario tecnico de la tabla AC_ACCIONES_ORIENTACION
-    destino_sugerido: MONGODB
-    sensible: true
-  AC_COLOCACIONES:
-    descripcion: Inventario tecnico de la tabla AC_COLOCACIONES
-    destino_sugerido: MONGODB
-    sensible: true
   AC_EMPRESAS:
     descripcion: Inventario tecnico de la tabla AC_EMPRESAS
     destino_sugerido: MONGODB
@@ -144,18 +132,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla AC_INDICADOR_META
     destino_sugerido: MONGODB
     sensible: false
-  AC_INSCRITOS:
-    descripcion: Inventario tecnico de la tabla AC_INSCRITOS
-    destino_sugerido: MONGODB
-    sensible: true
-  AC_ORIENTADOS:
-    descripcion: Inventario tecnico de la tabla AC_ORIENTADOS
-    destino_sugerido: MONGODB
-    sensible: true
-  AC_POSTULACIONES:
-    descripcion: Inventario tecnico de la tabla AC_POSTULACIONES
-    destino_sugerido: MONGODB
-    sensible: true
   AC_SOLICITUDES:
     descripcion: Inventario tecnico de la tabla AC_SOLICITUDES
     destino_sugerido: MONGODB
@@ -240,10 +216,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla ARN_ANUALES
     destino_sugerido: MONGODB
     sensible: false
-  ARREGLO_1:
-    descripcion: Inventario tecnico de la tabla ARREGLO_1
-    destino_sugerido: MONGODB
-    sensible: false
   ARREGLO_2021:
     descripcion: Inventario tecnico de la tabla ARREGLO_2021
     destino_sugerido: MONGODB
@@ -276,10 +248,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla CAMBIO_ESTADO_C_DEMANDA
     destino_sugerido: MONGODB
     sensible: false
-  CAMBIOS_REGISTRO_ORO:
-    descripcion: Inventario tecnico de la tabla CAMBIOS_REGISTRO_ORO
-    destino_sugerido: POSTGRESQL
-    sensible: true
   CAMPE_SENA_CNO:
     descripcion: Inventario tecnico de la tabla CAMPE_SENA_CNO
     destino_sugerido: MONGODB
@@ -364,28 +332,12 @@ tablas:
     descripcion: Inventario tecnico de la tabla CIFRAS_ACCIONES_ORIENTACION
     destino_sugerido: MONGODB
     sensible: true
-  CIFRAS_COLOCACIONES:
-    descripcion: Inventario tecnico de la tabla CIFRAS_COLOCACIONES
-    destino_sugerido: MONGODB
-    sensible: true
   CIFRAS_EMPRESAS:
     descripcion: Inventario tecnico de la tabla CIFRAS_EMPRESAS
     destino_sugerido: MONGODB
     sensible: true
-  CIFRAS_INSCRITOS:
-    descripcion: Inventario tecnico de la tabla CIFRAS_INSCRITOS
-    destino_sugerido: MONGODB
-    sensible: true
-  CIFRAS_ORIENTADOS:
-    descripcion: Inventario tecnico de la tabla CIFRAS_ORIENTADOS
-    destino_sugerido: MONGODB
-    sensible: true
   CIFRAS_POSTULACIONES:
     descripcion: Inventario tecnico de la tabla CIFRAS_POSTULACIONES
-    destino_sugerido: MONGODB
-    sensible: true
-  CIFRAS_SOLICITUDES:
-    descripcion: Inventario tecnico de la tabla CIFRAS_SOLICITUDES
     destino_sugerido: MONGODB
     sensible: true
   CIFRAS_VACANTES:
@@ -398,14 +350,6 @@ tablas:
     sensible: true
   CK_LOG:
     descripcion: Inventario tecnico de la tabla CK_LOG
-    destino_sugerido: MONGODB
-    sensible: false
-  CMP3$93278:
-    descripcion: Inventario tecnico de la tabla CMP3$93278
-    destino_sugerido: MONGODB
-    sensible: false
-  CMP3$93887:
-    descripcion: Inventario tecnico de la tabla CMP3$93887
     destino_sugerido: MONGODB
     sensible: false
   CNO:
@@ -556,16 +500,8 @@ tablas:
     descripcion: Inventario tecnico de la tabla CONTROL_CURSO_BCK_1
     destino_sugerido: MONGODB
     sensible: false
-  CONTROL_DEMANDA:
-    descripcion: Inventario tecnico de la tabla CONTROL_DEMANDA
-    destino_sugerido: POSTGRESQL
-    sensible: false
   CONTROL_EMPRESA:
     descripcion: Inventario tecnico de la tabla CONTROL_EMPRESA
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CONTROL_OFERTA:
-    descripcion: Inventario tecnico de la tabla CONTROL_OFERTA
     destino_sugerido: POSTGRESQL
     sensible: false
   CONVENIO_ACCION:
@@ -588,10 +524,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla CORREO_ESPECIAL
     destino_sugerido: MONGODB
     sensible: true
-  CORREO_OFT_EMP:
-    descripcion: Inventario tecnico de la tabla CORREO_OFT_EMP
-    destino_sugerido: POSTGRESQL
-    sensible: false
   CORREOS_NEWSLETTER:
     descripcion: Inventario tecnico de la tabla CORREOS_NEWSLETTER
     destino_sugerido: MONGODB
@@ -604,18 +536,10 @@ tablas:
     descripcion: Inventario tecnico de la tabla CRU_CONF_VARIABLE
     destino_sugerido: POSTGRESQL
     sensible: true
-  CRU_EVENTO_CAMBIO:
-    descripcion: Inventario tecnico de la tabla CRU_EVENTO_CAMBIO
-    destino_sugerido: POSTGRESQL
-    sensible: false
   CRU_SERVER_LOCK:
     descripcion: Inventario tecnico de la tabla CRU_SERVER_LOCK
     destino_sugerido: POSTGRESQL
     sensible: false
-  CRUCE_DPS:
-    descripcion: Inventario tecnico de la tabla CRUCE_DPS
-    destino_sugerido: MONGODB
-    sensible: true
   CRUCE_ICBF:
     descripcion: Inventario tecnico de la tabla CRUCE_ICBF
     destino_sugerido: MONGODB
@@ -780,44 +704,8 @@ tablas:
     descripcion: Inventario tecnico de la tabla CZ_DEMXPES
     destino_sugerido: POSTGRESQL
     sensible: false
-  CZ_OFERTA:
-    descripcion: Inventario tecnico de la tabla CZ_OFERTA
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_ETD_FORM:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_ETD_FORM
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_ETD_NFORM:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_ETD_NFORM
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_EXP:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_EXP
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_EXP_IND:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_EXP_IND
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_IDIOMA:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_IDIOMA
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_LICENCIA:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_LICENCIA
-    destino_sugerido: POSTGRESQL
-    sensible: false
   CZ_OFT_TALLER:
     descripcion: Inventario tecnico de la tabla CZ_OFT_TALLER
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFT_VEHICULO:
-    descripcion: Inventario tecnico de la tabla CZ_OFT_VEHICULO
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  CZ_OFTXPES:
-    descripcion: Inventario tecnico de la tabla CZ_OFTXPES
     destino_sugerido: POSTGRESQL
     sensible: false
   DEM_COMP_LABORAL:
@@ -832,10 +720,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla DEM_ESTUDIOS
     destino_sugerido: POSTGRESQL
     sensible: true
-  DEM_ETD_FORMAL:
-    descripcion: Inventario tecnico de la tabla DEM_ETD_FORMAL
-    destino_sugerido: POSTGRESQL
-    sensible: false
   DEM_ETD_FORMAL_20150116:
     descripcion: Inventario tecnico de la tabla DEM_ETD_FORMAL_20150116
     destino_sugerido: MONGODB
@@ -864,28 +748,12 @@ tablas:
     descripcion: Inventario tecnico de la tabla DEM_PRESELECCION
     destino_sugerido: POSTGRESQL
     sensible: false
-  DEM_VARIABLE_CRUCE:
-    descripcion: Inventario tecnico de la tabla DEM_VARIABLE_CRUCE
-    destino_sugerido: POSTGRESQL
-    sensible: false
   DEM_VEHICULO:
     descripcion: Inventario tecnico de la tabla DEM_VEHICULO
     destino_sugerido: POSTGRESQL
     sensible: false
-  DEMANDA:
-    descripcion: Inventario tecnico de la tabla DEMANDA
-    destino_sugerido: POSTGRESQL
-    sensible: true
-  DEMANDA_FUNCION_CPL:
-    descripcion: Inventario tecnico de la tabla DEMANDA_FUNCION_CPL
-    destino_sugerido: POSTGRESQL
-    sensible: false
   DEMANDA_INDICE:
     descripcion: Inventario tecnico de la tabla DEMANDA_INDICE
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  DEMANDA_OCUPACION:
-    descripcion: Inventario tecnico de la tabla DEMANDA_OCUPACION
     destino_sugerido: POSTGRESQL
     sensible: false
   DEMANDA_SENA:
@@ -895,10 +763,6 @@ tablas:
   DEMANDAS_CONVOCATORIA_PT_2017:
     descripcion: Inventario tecnico de la tabla DEMANDAS_CONVOCATORIA_PT_2017
     destino_sugerido: MONGODB
-    sensible: false
-  DEMXFUNCION:
-    descripcion: Inventario tecnico de la tabla DEMXFUNCION
-    destino_sugerido: POSTGRESQL
     sensible: false
   DEMXFUNCIONREL1:
     descripcion: Inventario tecnico de la tabla DEMXFUNCIONREL1
@@ -1036,10 +900,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla DR$DEMANDA_TEXT_IDX$I
     destino_sugerido: MONGODB
     sensible: false
-  DR$DEMANDA_TEXT_IDX$K:
-    descripcion: Inventario tecnico de la tabla DR$DEMANDA_TEXT_IDX$K
-    destino_sugerido: POSTGRESQL
-    sensible: false
   DR$DEMANDA_TEXT_IDX$N:
     descripcion: Inventario tecnico de la tabla DR$DEMANDA_TEXT_IDX$N
     destino_sugerido: POSTGRESQL
@@ -1144,14 +1004,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla DR$MPO_NOMBRE_TEXT_IDX$R
     destino_sugerido: POSTGRESQL
     sensible: false
-  DR$OEX_FUNCIONES_TEXT_IDX$I:
-    descripcion: Inventario tecnico de la tabla DR$OEX_FUNCIONES_TEXT_IDX$I
-    destino_sugerido: MONGODB
-    sensible: false
-  DR$OEX_FUNCIONES_TEXT_IDX$K:
-    descripcion: Inventario tecnico de la tabla DR$OEX_FUNCIONES_TEXT_IDX$K
-    destino_sugerido: POSTGRESQL
-    sensible: false
   DR$OEX_FUNCIONES_TEXT_IDX$N:
     descripcion: Inventario tecnico de la tabla DR$OEX_FUNCIONES_TEXT_IDX$N
     destino_sugerido: POSTGRESQL
@@ -1160,28 +1012,12 @@ tablas:
     descripcion: Inventario tecnico de la tabla DR$OEX_FUNCIONES_TEXT_IDX$R
     destino_sugerido: POSTGRESQL
     sensible: false
-  DR$OFERTA_CORREO_CTX$I:
-    descripcion: Inventario tecnico de la tabla DR$OFERTA_CORREO_CTX$I
-    destino_sugerido: MONGODB
-    sensible: false
-  DR$OFERTA_CORREO_CTX$K:
-    descripcion: Inventario tecnico de la tabla DR$OFERTA_CORREO_CTX$K
-    destino_sugerido: POSTGRESQL
-    sensible: false
   DR$OFERTA_CORREO_CTX$N:
     descripcion: Inventario tecnico de la tabla DR$OFERTA_CORREO_CTX$N
     destino_sugerido: POSTGRESQL
     sensible: false
   DR$OFERTA_CORREO_CTX$R:
     descripcion: Inventario tecnico de la tabla DR$OFERTA_CORREO_CTX$R
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  DR$ONP_DESCRIPCION_TEXT_IDX$I:
-    descripcion: Inventario tecnico de la tabla DR$ONP_DESCRIPCION_TEXT_IDX$I
-    destino_sugerido: MONGODB
-    sensible: false
-  DR$ONP_DESCRIPCION_TEXT_IDX$K:
-    descripcion: Inventario tecnico de la tabla DR$ONP_DESCRIPCION_TEXT_IDX$K
     destino_sugerido: POSTGRESQL
     sensible: false
   DR$ONP_DESCRIPCION_TEXT_IDX$N:
@@ -1336,28 +1172,12 @@ tablas:
     descripcion: Inventario tecnico de la tabla DWH_INSC_MUN
     destino_sugerido: MONGODB
     sensible: true
-  DWH_ORIE_FUN:
-    descripcion: Inventario tecnico de la tabla DWH_ORIE_FUN
-    destino_sugerido: MONGODB
-    sensible: false
-  DWH_ORIE_MUN:
-    descripcion: Inventario tecnico de la tabla DWH_ORIE_MUN
-    destino_sugerido: MONGODB
-    sensible: true
   DWH_POST_FUN:
     descripcion: Inventario tecnico de la tabla DWH_POST_FUN
     destino_sugerido: MONGODB
     sensible: false
   DWH_POST_MUN:
     descripcion: Inventario tecnico de la tabla DWH_POST_MUN
-    destino_sugerido: MONGODB
-    sensible: true
-  DWH_SEGU_FUN:
-    descripcion: Inventario tecnico de la tabla DWH_SEGU_FUN
-    destino_sugerido: MONGODB
-    sensible: false
-  DWH_SEGU_MUN:
-    descripcion: Inventario tecnico de la tabla DWH_SEGU_MUN
     destino_sugerido: MONGODB
     sensible: true
   DWH_VACA_FUN:
@@ -1372,20 +1192,8 @@ tablas:
     descripcion: Inventario tecnico de la tabla EESXPES
     destino_sugerido: POSTGRESQL
     sensible: false
-  EGRESADO:
-    descripcion: Inventario tecnico de la tabla EGRESADO
-    destino_sugerido: MONGODB
-    sensible: false
-  EGRESADO_AUX:
-    descripcion: Inventario tecnico de la tabla EGRESADO_AUX
-    destino_sugerido: MONGODB
-    sensible: false
   EGRESADO_INSERTAR:
     descripcion: Inventario tecnico de la tabla EGRESADO_INSERTAR
-    destino_sugerido: MONGODB
-    sensible: false
-  EGRESADO_SIMULA:
-    descripcion: Inventario tecnico de la tabla EGRESADO_SIMULA
     destino_sugerido: MONGODB
     sensible: false
   EGRESADOS_TEC:
@@ -1460,10 +1268,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla EMPXEES_COP
     destino_sugerido: MONGODB
     sensible: false
-  ENVIO:
-    descripcion: Inventario tecnico de la tabla ENVIO
-    destino_sugerido: POSTGRESQL
-    sensible: false
   ENVIO_SENSIBILIZACION:
     descripcion: Inventario tecnico de la tabla ENVIO_SENSIBILIZACION
     destino_sugerido: POSTGRESQL
@@ -1524,10 +1328,6 @@ tablas:
     descripcion: Inventario tecnico de la tabla EVENTOS
     destino_sugerido: POSTGRESQL
     sensible: true
-  EXPERIENCIAXFUNCION:
-    descripcion: Inventario tecnico de la tabla EXPERIENCIAXFUNCION
-    destino_sugerido: POSTGRESQL
-    sensible: false
   FUENTE_SEG_CURSO:
     descripcion: Inventario tecnico de la tabla FUENTE_SEG_CURSO
     destino_sugerido: POSTGRESQL
@@ -1588,20 +1388,12 @@ tablas:
     descripcion: Inventario tecnico de la tabla GUIA_TALLER
     destino_sugerido: POSTGRESQL
     sensible: true
-  HIS_ARI_DEM:
-    descripcion: Inventario tecnico de la tabla HIS_ARI_DEM
-    destino_sugerido: POSTGRESQL
-    sensible: false
   HIS_ARI_DEM_2:
     descripcion: Inventario tecnico de la tabla HIS_ARI_DEM_2
     destino_sugerido: MONGODB
     sensible: false
   HIS_BARRIO_EMP:
     descripcion: Inventario tecnico de la tabla HIS_BARRIO_EMP
-    destino_sugerido: POSTGRESQL
-    sensible: false
-  HIS_BARRIO_OFT:
-    descripcion: Inventario tecnico de la tabla HIS_BARRIO_OFT
     destino_sugerido: POSTGRESQL
     sensible: false
   HIS_CEL_OFT:

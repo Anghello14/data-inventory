@@ -1,59 +1,44 @@
-"""
-Modulo de escritura de resultados.
-Soporta archivos unificados .xlsx y exportacion a .csv para tablas masivas (>1M filas).
-"""
 import pandas as pd
 import logging
 from config.settings import DATA_OUTPUT_DIR
 
 def generar_excel_inventario(nombre_tabla, df_clean, df_dirty, df_summary, df_nulls):
     """
-    Crea un inventario tecnico. Si el volumen supera 1,000,000 de filas,
-    utiliza CSV para los datos y Excel solo para el reporte de auditoria.
+    Crea un archivo Excel con cuatro pestañas fundamentales para la auditoria:
+    1. ANALISIS_TECNICO: Resumen ejecutivo de calidad y peso.
+    2. DETALLE_COLUMNAS: Inventario de tipos de datos y nulos.
+    3. CLEAN: Registros que cumplen con todas las reglas de integridad.
+    4. DIRTY: Registros con errores (Duplicados, ?, Emails invalidos, etc).
     """
+    # Ruta final del archivo: un Excel por tabla en el directorio de salida
+    ruta_archivo = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
+    
     try:
-        # Límite técnico de seguridad para Excel (Max: 1,048,576)
-        LIMITE_EXCEL = 1000000
-        total_filas = len(df_clean) if df_clean is not None else 0
-
-        # CASO A: TABLAS MASIVAS (> 1 Millon de filas)
-        if total_filas > LIMITE_EXCEL:
-            logging.warning(f"[{nombre_tabla}] Volumen masivo detectado ({total_filas} filas). Usando modo CSV.")
-            
-            # 1. Guardar el ANALISIS en Excel (siempre util para el jefe)
-            ruta_analisis = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}_DATOS_MASIVOS.xlsx"
-            with pd.ExcelWriter(ruta_analisis, engine='openpyxl') as writer:
-                df_summary.to_excel(writer, sheet_name='ANALISIS_TECNICO', index=False)
-                df_nulls.to_excel(writer, sheet_name='DETALLE_COLUMNAS', index=False)
-            
-            # 2. Guardar los DATOS en CSV (sin limite de filas)
-            if df_clean is not None:
-                df_clean.to_csv(DATA_OUTPUT_DIR / f"DATOS_{nombre_tabla}_CLEAN.csv", index=False)
-            if df_dirty is not None and not df_dirty.empty:
-                df_dirty.to_csv(DATA_OUTPUT_DIR / f"DATOS_{nombre_tabla}_DIRTY.csv", index=False)
-            
-            logging.info(f"[{nombre_tabla}] Inventario masivo generado (Excel + CSV).")
-            return True
-
-        # CASO B: TABLAS ESTÁNDAR (Estructura de pestañas original)
-        ruta_archivo = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
         with pd.ExcelWriter(ruta_archivo, engine='openpyxl') as writer:
+            # Pestaña 1: Resumen Ejecutivo
             df_summary.to_excel(writer, sheet_name='ANALISIS_TECNICO', index=False)
+            
+            # Pestaña 2: Inventario de Columnas y Mapeo
             df_nulls.to_excel(writer, sheet_name='DETALLE_COLUMNAS', index=False)
             
+            # Pestaña 3: Datos Limpios
             if df_clean is not None and not df_clean.empty:
                 df_clean.to_excel(writer, sheet_name='CLEAN', index=False)
             else:
-                pd.DataFrame({"INFO": ["Sin registros limpios"]}).to_excel(writer, sheet_name='CLEAN', index=False)
-                
+                # Pestaña informativa cuando el 100% de los registros tiene algún problema
+                pd.DataFrame({"INFO": ["Sin registros que cumplan las reglas de integridad"]}).to_excel(writer, sheet_name='CLEAN', index=False)
+
+            # Pestaña 4: Datos con Error (Dirty)
             if df_dirty is not None and not df_dirty.empty:
                 df_dirty.to_excel(writer, sheet_name='DIRTY', index=False)
             else:
-                pd.DataFrame({"INFO": ["Sin errores detectados"]}).to_excel(writer, sheet_name='DIRTY', index=False)
+                # Pestaña informativa cuando la calidad es del 100% (sin errores detectados)
+                pd.DataFrame({"INFO": ["No se detectaron errores de integridad ni caracteres corruptos"]}).to_excel(writer, sheet_name='DIRTY', index=False)
 
-        logging.info(f"[{nombre_tabla}] Inventario consolidado generado en Excel.")
+        # Log de confirmación profesional
+        logging.info(f"[{nombre_tabla}] Inventario Excel generado exitosamente.")
         return True
-    
+
     except Exception as e:
-        logging.error(f"Error critico al escribir resultados para {nombre_tabla}: {str(e)}")
+        logging.error(f"[{nombre_tabla}] Error al escribir el archivo Excel: {str(e)}")
         return False

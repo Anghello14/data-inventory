@@ -43,8 +43,8 @@ class OracleReader:
             raise
 
     def get_count(self, esquema, tabla):
-        # Consulta rápida de conteo: determina la estrategia de carga
-        # (tabla vacía / pocos registros / masiva) antes de extraer cualquier fila
+        # Consulta rápida de conteo: determina si la tabla es candidata para análisis
+        # (vacía / pocos registros) sin transferir ninguna fila de datos
         tabla_full = f"{esquema}.{tabla}"
         query = f"SELECT COUNT(*) FROM {tabla_full}"
         try:
@@ -57,7 +57,6 @@ class OracleReader:
 
     def obtener_restricciones(self, esquema, tabla):
         # Consulta ALL_CONSTRAINTS y ALL_CONS_COLUMNS para catalogar PK, FK, UNIQUE y CHECK
-        # Estos datos se incluyen en el Reporte Maestro y se usan para validar duplicados en la PK
         query = f"""
         SELECT 
             CONSTRAINT_TYPE, 
@@ -72,7 +71,6 @@ class OracleReader:
             with self.conn.cursor() as cur:
                 cur.execute(query)
                 rows = cur.fetchall()
-                # Mapear cada tipo de restricción a su columna correspondiente
                 for rtype, rcol in rows:
                     if rtype == 'P': res['PK'] = rcol
                     elif rtype == 'R': res['FK'] = rcol
@@ -85,8 +83,8 @@ class OracleReader:
 
     def extract_table_paginated(self, esquema, tabla):
         # Extrae todos los registros de la tabla en una sola pasada.
-        # Antes de transferir datos, inspecciona los tipos de columna para excluir
-        # BLOBs/RAW del SELECT y evitar bloqueos de red por datos binarios pesados.
+        # Detecta y excluye columnas BLOB/RAW del SELECT antes de transferir datos
+        # para evitar bloqueos de red y errores de encoding en Excel.
         tabla_full = f"{esquema}.{tabla}"
         logging.info(f"Iniciando extraccion protegida de {tabla_full}...")
 
@@ -117,7 +115,7 @@ class OracleReader:
 
             # 3. Extraccion real sin datos binarios
             with self.conn.cursor() as cur:
-                cur.arraysize = 30000
+                cur.arraysize = 5000
                 cur.execute(query)
                 rows = cur.fetchall()
 
@@ -139,8 +137,73 @@ class OracleReader:
             logging.error(f"Error en extraccion de {tabla_full}: {e}")
             return pd.DataFrame()
 
+    def get_metadata_completo(self, esquema, tabla, total_filas):
+        # Obtiene todo lo necesario para el análisis técnico SIN transferir filas de datos:
+        # - Columnas y tipos desde ALL_TAB_COLUMNS (diccionario Oracle)
+        # - Peso estimado desde ALL_TABLES (estadísticas de Oracle)
+        # - Conteo de nulos por columna en lotes de 50 para no exceder el límite de expresiones SQL
+        # Retorna un diccionario con cols_info, null_counts y tamano_mb.
+        # 1. Nombres y tipos de columnas desde el diccionario
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                    SELECT COLUMN_NAME, DATA_TYPE, NULLABLE
+                    FROM ALL_TAB_COLUMNS
+                    WHERE OWNER = :1 AND TABLE_NAME = :2
+                    ORDER BY COLUMN_ID
+                """, [esquema, tabla])
+                cols_info = cur.fetchall()
+        except Exception as e:
+            logging.error(f"Error obteniendo columnas de {tabla}: {e}")
+            return None
+
+        if not cols_info:
+            return None
+
+        # 2. Estimación de peso desde estadísticas de Oracle
+        tamano_mb = 0.0
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                    SELECT NVL(AVG_ROW_LEN, 0) * :1 / 1024 / 1024
+                    FROM ALL_TABLES
+                    WHERE OWNER = :2 AND TABLE_NAME = :3
+                """, [total_filas, esquema, tabla])
+                row = cur.fetchone()
+                if row and row[0]:
+                    tamano_mb = round(float(row[0]), 2)
+        except Exception:
+            pass
+
+        # 3. Conteo de nulos en una sola pasada por la tabla (por lotes de 50 columnas)
+        col_names = [r[0] for r in cols_info]
+        null_counts = {c: 0 for c in col_names}
+        tabla_full = f'"{esquema}"."{tabla}"'
+        batch_size = 50
+
+        for i in range(0, len(col_names), batch_size):
+            batch = col_names[i:i + batch_size]
+            # Alias posicional para evitar conflictos con nombres especiales
+            selects = ", ".join(
+                f'COUNT(*)-COUNT("{c}") AS C{i + j}' for j, c in enumerate(batch)
+            )
+            try:
+                with self.conn.cursor() as cur:
+                    cur.execute(f"SELECT {selects} FROM {tabla_full}")
+                    row = cur.fetchone()
+                    if row:
+                        for j, c in enumerate(batch):
+                            null_counts[c] = int(row[j]) if row[j] is not None else 0
+            except Exception as e:
+                logging.warning(f"[{tabla}] No se pudieron obtener nulos en batch {i}: {e}")
+
+        return {
+            'cols_info': cols_info,   # list of (COLUMN_NAME, DATA_TYPE, NULLABLE)
+            'null_counts': null_counts,
+            'tamano_mb': tamano_mb,
+        }
+
     def close(self):
-        # Libera el recurso de conexión al finalizar el pipeline
         if hasattr(self, 'conn') and self.conn:
             self.conn.close()
             logging.info("Conexion con Oracle cerrada.")

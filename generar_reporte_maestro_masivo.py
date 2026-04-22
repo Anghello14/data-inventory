@@ -2,11 +2,11 @@ import pandas as pd
 import os
 import logging
 from pathlib import Path
-from config.settings import DATA_OUTPUT_DIR
+from config.settings import DATA_OUTPUT_DIR_MASIVAS
 
 # Configuración de rutas
-RUTA_RESULTADOS = DATA_OUTPUT_DIR
-ARCHIVO_MAESTRO = RUTA_RESULTADOS / "REPORTE_MAESTRO_MIGRACION_SPE.xlsx"
+RUTA_RESULTADOS = DATA_OUTPUT_DIR_MASIVAS
+ARCHIVO_MAESTRO = RUTA_RESULTADOS / "REPORTE_MAESTRO_MIGRACION_SPE_MASIVAS.xlsx"
 
 def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros, detalle_constraints):
     """
@@ -42,7 +42,9 @@ def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros,
                 if 'DETALLE_COLUMNAS' in xls.sheet_names:
                     df_cols = pd.read_excel(xls, sheet_name='DETALLE_COLUMNAS')
                     # Capturamos todas las columnas de tipos para el catálogo maestro
-                    df_mapeo = df_cols[['TIPO_ORACLE_PANDAS', 'SUGERENCIA_POSTGRES', 'SUGERENCIA_MONGODB']].copy()
+                    tipo_col = 'TIPO_ORACLE' if 'TIPO_ORACLE' in df_cols.columns else 'TIPO_ORACLE_PANDAS'
+                    df_mapeo = df_cols[[tipo_col, 'SUGERENCIA_POSTGRES', 'SUGERENCIA_MONGODB']].copy()
+                    df_mapeo = df_mapeo.rename(columns={tipo_col: 'TIPO_ORACLE'})
                     lista_columnas.append(df_mapeo)
         except Exception as e:
             logging.error(f"Error procesando {nombre_archivo}: {e}")
@@ -83,9 +85,9 @@ def consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros,
     # Une todos los mapeos tipo_oracle -> postgres / mongo y elimina filas repetidas
     if lista_columnas:
         df_maestro_tipos = pd.concat(lista_columnas, ignore_index=True)
-        df_maestro_tipos = df_maestro_tipos.drop_duplicates().sort_values(by='TIPO_ORACLE_PANDAS')
+        df_maestro_tipos = df_maestro_tipos.drop_duplicates().sort_values(by='TIPO_ORACLE')
     else:
-        df_maestro_tipos = pd.DataFrame(columns=['TIPO_ORACLE_PANDAS', 'SUGERENCIA_POSTGRES', 'SUGERENCIA_MONGODB'])
+        df_maestro_tipos = pd.DataFrame(columns=['TIPO_ORACLE', 'SUGERENCIA_POSTGRES', 'SUGERENCIA_MONGODB'])
 
     # 5. Escritura del Reporte Maestro Final
     # Un solo archivo Excel con todas las pestañas de hallazgos del inventario completo

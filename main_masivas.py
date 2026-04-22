@@ -5,15 +5,15 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from extract.oracle_reader import OracleReader
-from transform.profiler import DataProfiler
-from load.excel_writer import generar_excel_inventario
-from generar_reporte_maestro import consolidar_inventario
-from config.settings import DATA_OUTPUT_DIR
+from extract.oracle_reader_masivas import OracleReader
+from transform.profiler_masivas import DataProfiler
+from load.excel_writer_masivas import generar_excel_inventario
+from generar_reporte_maestro_masivo import consolidar_inventario
+from config.settings import DATA_OUTPUT_DIR_MASIVAS
 
 # --- CONFIGURACIÓN DE LOGS ---
 timestamp_run = datetime.now().strftime("%Y%m%d_%H%M%S")
-log_filename = f"logs/pipeline_{timestamp_run}.log"
+log_filename = f"logs/pipeline_masivas_{timestamp_run}.log"
 os.makedirs("logs", exist_ok=True)
 
 logging.basicConfig(
@@ -26,14 +26,14 @@ logging.basicConfig(
 )
 
 def ejecutar_inventario_completo():
-    # Orquesta el pipeline completo: lee config YAML, itera tabla por tabla,
-    # extrae datos desde Oracle, los perfila, escribe el Excel individual
-    # y al final consolida el Reporte Maestro de migración.
+    # Variante del pipeline para tablas masivas (> 1M filas).
+    # NO transfiere datos; trabaja exclusivamente con metadatos del diccionario Oracle
+    # para generar el inventario sin saturar la red ni la memoria.
     inicio_proceso = time.time()
     
     # Separador visual de inicio
     logging.info("="*60)
-    logging.info(f" INICIO DE EJECUCIÓN - ID: {timestamp_run}")
+    logging.info(f" INICIO DE EJECUCIÓN (MASIVAS) - ID: {timestamp_run}")
     logging.info("="*60)
     
     # Instancia única de conexión a Oracle; se reutiliza para todas las tablas del ciclo
@@ -46,7 +46,7 @@ def ejecutar_inventario_completo():
     detalle_constraints = []
     
     try:
-        with open('config/tablas.yaml', 'r', encoding='utf-8') as f:
+        with open('config/tablas_masivas.yaml', 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
         
         esquema = config.get('esquema_origen', 'SPE')
@@ -60,7 +60,7 @@ def ejecutar_inventario_completo():
             print(f"{'='*70}")
 
             # Ruta esperada del inventario individual; se usa para control de idempotencia
-            check_excel = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
+            check_excel = DATA_OUTPUT_DIR_MASIVAS / f"INVENTARIO_{nombre_tabla}.xlsx"
 
             # IDEMPOTENCIA
             if check_excel.exists():
@@ -68,61 +68,40 @@ def ejecutar_inventario_completo():
                 continue
             
             try:
-                # 1. OBTENCIÓN DE CONTEO Y METADATOS (Constraints)
+                # 1. CONTEO
                 count = reader.get_count(esquema, nombre_tabla)
                 constraints = reader.obtener_restricciones(esquema, nombre_tabla)
                 constraints['TABLA'] = nombre_tabla
                 detalle_constraints.append(constraints)
 
-                # VALIDACIÓN: TABLAS VACÍAS
                 if count == 0:
                     logging.info(f"STATUS: TABLA VACÍA. Registrando...")
                     tablas_vacias.append({'nombre': nombre_tabla, 'registros': 0})
                     continue
 
-                # VALIDACIÓN: TABLAS MASIVAS (> 1,000,000)
-                if count > 1000000:
-                    logging.warning(f"TABLA MASIVA: {nombre_tabla} ({count} reg). Alimentando objeto y saltando...")
-                    tablas_masivas.append({'nombre': nombre_tabla, 'registros': count})
-                    continue
-
-                # VALIDACIÓN: POCOS REGISTROS (< 100) - Se procesan pero se marcan
                 if count < 100:
                     logging.info(f"TABLA CON POCOS REGISTROS: {nombre_tabla} ({count})")
                     tablas_pocos_registros.append({'nombre': nombre_tabla, 'registros': count})
 
-                # 2. EXTRACCIÓN
-                df_raw = reader.extract_table_paginated(esquema, nombre_tabla)
-                
-                # Si Oracle devolvió un DataFrame vacío (error de extracción) se omite la tabla
-                if df_raw.empty:
-                    logging.info(f"STATUS: SIN DATOS TRAS EXTRACCIÓN")
+                # 2. METADATOS (sin transferir filas)
+                # Enriquecer config_tabla con el conteo real y la PK detectada en Oracle
+                config_tabla['total_filas'] = count
+                if constraints.get('PK') != 'N/A':
+                    config_tabla['pk'] = constraints['PK']
+                else:
+                    config_tabla['pk'] = None
+
+                metadata = reader.get_metadata_completo(esquema, nombre_tabla, count)
+                if not metadata:
+                    logging.warning(f"STATUS: SIN METADATOS. Saltando.")
                     continue
 
-                # --- FILTRO ANTIBLOQUEO ---
-                # Identificamos columnas pesadas por nombre para no procesarlas en el profiler
-                # Agregamos 'XML' y 'BLOB' a la búsqueda por si acaso
-                cols_pesadas = [c for c in df_raw.columns if any(k in c.upper() for k in ['DESCRIPCION', 'COMENTARIO', 'OBSERVACION', 'XML', 'DATA', 'IMG', 'FILE'])]
-                
-                if cols_pesadas:
-                    logging.info(f"Omitiendo {len(cols_pesadas)} columnas pesadas para el perfilado.")
-                    df_input = df_raw.drop(columns=cols_pesadas)
-                else:
-                    df_input = df_raw
-                # --------------------------
+                # 3. PERFILADO
+                profiler = DataProfiler(metadata, nombre_tabla, config_tabla)
+                df_summary, df_nulls = profiler.analizar()
 
-                # 3. PERFILADO (Usamos el df_input filtrado)
-                # Inyectar la PK real al config de la tabla para que el profiler la valide
-                if constraints.get('PK') == 'N/A':
-                    config_tabla['pk'] = None
-                else:
-                    config_tabla['pk'] = constraints['PK']
-
-                profiler = DataProfiler(df_input, nombre_tabla, config_tabla)
-                df_clean, df_dirty, df_summary, df_nulls = profiler.analizar()
-
-                # 4. ESCRITURA (Usamos los resultados del perfilado optimizado)
-                generar_excel_inventario(nombre_tabla, df_clean, df_dirty, df_summary, df_nulls)
+                # 4. ESCRITURA
+                generar_excel_inventario(nombre_tabla, df_summary, df_nulls)
                 logging.info(f"STATUS: EXITOSO. Inventario generado.")
                 
             except Exception as e:
