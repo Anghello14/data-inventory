@@ -62,14 +62,21 @@ class DataProfiler:
             mask_corrupto = self.df[col].astype(str).str.contains(r'\?', na=False)
             self.df.loc[mask_corrupto, 'REJECTION_REASON'] += f"CARACTER_CORRUPTO_EN_{col} | "
 
-        # D. VALIDACIÓN DE FORMATO EMAIL
-        # Identificamos columnas que probablemente contienen correos por su nombre
-        cols_email = [c for c in self.df.columns if 'EMAIL' in c.upper() or 'CORREO' in c.upper()]
+        # D. VALIDACIÓN DE CAMPOS PERSONALIZADOS
+        # Lee 'validaciones_campos' del config para cada tabla
+        validaciones_campos = self.config.get('validaciones_campos', {})
         regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        for col in cols_email:
-            # Solo validamos si tiene contenido para no chocar con la regla de nulos
-            mask_invalid_email = (~self.df[col].astype(str).str.match(regex_email, na=True)) & (self.df[col].notnull())
-            self.df.loc[mask_invalid_email, 'REJECTION_REASON'] += f"FORMATO_EMAIL_INVALIDO_EN_{col} | "
+
+        for col, validacion_tipo in validaciones_campos.items():
+            if col not in self.df.columns:
+                continue
+
+            if validacion_tipo == 'email':
+                mask_invalid = (~self.df[col].astype(str).str.match(regex_email, na=True)) & (self.df[col].notnull())
+                self.df.loc[mask_invalid, 'REJECTION_REASON'] += f"FORMATO_EMAIL_INVALIDO_EN_{col} | "
+            elif validacion_tipo == 'integer':
+                mask_invalid = (self.df[col].notnull()) & (~self.df[col].astype(str).str.match(r'^-?\d+$', na=False))
+                self.df.loc[mask_invalid, 'REJECTION_REASON'] += f"NO_ES_ENTERO_{col} | "
 
         # SEPARACIÓN FINAL
         df_dirty = self.df[self.df['REJECTION_REASON'] != ""].copy()

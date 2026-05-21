@@ -83,8 +83,8 @@ class OracleReader:
             logging.warning(f"No se pudieron obtener restricciones de {tabla}: {e}")
             return res
 
-    def extract_table_paginated(self, esquema, tabla):
-        # Extrae todos los registros de la tabla en una sola pasada.
+    def extract_table(self, esquema, tabla, limite=None):
+        # Extrae todos los registros de la tabla en una sola pasada (carga en memoria).
         # Antes de transferir datos, inspecciona los tipos de columna para excluir
         # BLOBs/RAW del SELECT y evitar bloqueos de red por datos binarios pesados.
         tabla_full = f"{esquema}.{tabla}"
@@ -138,6 +138,11 @@ class OracleReader:
         except Exception as e:
             logging.error(f"Error en extraccion de {tabla_full}: {e}")
             return pd.DataFrame()
+
+    def extract_tabla(self, nombre_tabla, esquema="SPE", limite=None):
+        # Interfaz simplificada: recibe nombre tabla y esquema (con default)
+        # Útil para llamadas simples donde el esquema es siempre el mismo
+        return self.extract_table(esquema, nombre_tabla, limite)
 
     def close(self):
         # Libera el recurso de conexión al finalizar el pipeline
