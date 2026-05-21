@@ -2,7 +2,7 @@ import logging
 import time
 from extract.oracle_reader import OracleReader
 from transform.profiler import DataProfiler
-from load.excel_csv import ExcelWriter
+from load.excel_csv import ExcelWriter, CsvWriter, DualWriter
 
 
 class ETLPipeline:
@@ -12,9 +12,11 @@ class ETLPipeline:
     Uso básico:
         pipeline = ETLPipeline(nombre_tabla="MI_TABLA", config_tabla={...})
         df_clean, df_dirty = pipeline.ejecutar()
+
+    Soporta múltiples formatos: excel, csv, dual (ambos)
     """
 
-    def __init__(self, nombre_tabla, config_tabla, esquema="SPE", reader=None):
+    def __init__(self, nombre_tabla, config_tabla, esquema="SPE", reader=None, writer_class=None):
         self.nombre_tabla = nombre_tabla
         self.config_tabla = config_tabla
         self.esquema = esquema
@@ -24,6 +26,21 @@ class ETLPipeline:
         self.df_dirty = None
         self.df_summary = None
         self.df_nulls = None
+
+        # Elegir writer según config o parámetro
+        self.writer_class = writer_class or self._obtener_writer_class()
+
+    def _obtener_writer_class(self):
+        """Selecciona el writer según la configuración"""
+        salida_config = self.config_tabla.get('salida', {})
+        formato = salida_config.get('formato', 'excel').lower()
+
+        if formato == 'csv':
+            return CsvWriter
+        elif formato == 'dual' or formato == 'ambos':
+            return DualWriter
+        else:  # default a excel
+            return ExcelWriter
 
     def ejecutar(self):
         """
@@ -93,16 +110,22 @@ class ETLPipeline:
             logging.error(f"[{self.nombre_tabla}] Error en transform: {str(e)}")
 
     def _load(self):
-        """Escribe los datos a Excel"""
+        """Escribe los datos según el formato especificado"""
         try:
-            writer = ExcelWriter(self.nombre_tabla)
+            writer = self.writer_class(self.nombre_tabla)
+
+            # Obtener configuración de salida
+            salida_config = self.config_tabla.get('salida', {})
+            incluir_clean = salida_config.get('incluir_clean', True)
+            incluir_dirty = salida_config.get('incluir_dirty', True)
+
             writer.escribir(
                 self.df_clean,
                 self.df_dirty,
                 self.df_summary,
                 self.df_nulls,
-                incluir_clean=True,
-                incluir_dirty=True
+                incluir_clean=incluir_clean,
+                incluir_dirty=incluir_dirty
             )
             logging.info(f"[{self.nombre_tabla}] Load OK")
 

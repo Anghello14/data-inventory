@@ -130,44 +130,97 @@ df_clean, df_dirty = pipeline.ejecutar()
 
 ---
 
+## Formatos de Salida
+
+El ETL soporta tres formatos: **Excel**, **CSV** (dos archivos), o **ambos**.
+
+### Excel (por defecto)
+
+Genera `INVENTARIO_TABLA.xlsx` con 4 pestañas:
+- ANALISIS_TECNICO: Resumen ejecutivo
+- DETALLE_COLUMNAS: Mapeo de tipos
+- CLEAN: Registros válidos
+- DIRTY: Registros rechazados
+
+### CSV
+
+Genera dos archivos:
+- `TABLA_CLEAN.csv`: Registros válidos (fácil para procesamiento)
+- `TABLA_DIRTY.csv`: Registros rechazados
+
+Ideal para pipelines downstream que consumen CSV.
+
+### Dual (Excel + CSV)
+
+Genera ambos formatos. Útil cuando necesitas reportes ejecutivos + datos para procesamiento.
+
+---
+
 ## Personalización por Tabla
 
-### Opción 1: Editar validaciones en YAML
+### Opción 1: Cambiar formato en YAML
 
 ```yaml
 tablas:
-  TABLA_A:
+  MI_TABLA:
     pk: ID
-    validaciones_campos:
-      EMAIL: email
-      TELEFONO: integer
-      FECHA: date
+    # ... otras opciones ...
+    salida:
+      formato: csv           # o "excel" o "dual"/"ambos"
+      incluir_clean: true
+      incluir_dirty: true
 ```
 
-### Opción 2: Subclasear ExcelWriter (transformar datos antes de escribir)
+### Opción 2: Personalizar columnas y orden en CSV
 
 Crear `load/my_writer.py`:
+
+```python
+from load.excel_csv import CsvWriter
+
+class MiCsvWriter(CsvWriter):
+    def _seleccionar_columnas_clean(self, df):
+        # Elegir columnas y orden específico
+        return df[['ID', 'NOMBRE', 'CORREO', 'TELEFONO']]
+
+    def _preprocesar_clean(self, df):
+        # Transformar datos (renombrar, convertir tipos, etc)
+        df = df.rename(columns={"CORREO": "EMAIL"})
+        df['NOMBRE'] = df['NOMBRE'].str.upper()
+        return df
+```
+
+Usar en `etl/pipeline.py` o `main.py`:
+
+```python
+from etl.pipeline import ETLPipeline
+from load.my_writer import MiCsvWriter
+
+pipeline = ETLPipeline(
+    nombre_tabla="MI_TABLA",
+    config_tabla=config,
+    writer_class=MiCsvWriter
+)
+```
+
+### Opción 3: Subclasear ExcelWriter (Excel personalizado)
 
 ```python
 from load.excel_csv import ExcelWriter
 
 class MiExcelWriter(ExcelWriter):
+    def _seleccionar_columnas_clean(self, df):
+        # Ordenar: ID primero
+        return df[['ID'] + [c for c in df.columns if c != 'ID']]
+
     def _preprocesar_clean(self, df):
-        # Renombrar columnas, convertir tipos, etc
-        df = df.rename(columns={"VIEJO_NOMBRE": "NUEVO_NOMBRE"})
+        # Formatear valores
+        if 'NOMBRE' in df.columns:
+            df['NOMBRE'] = df['NOMBRE'].str.upper()
         return df
 ```
 
-Usar en `main.py`:
-
-```python
-from load.my_writer import MiExcelWriter
-
-writer = MiExcelWriter(nombre_tabla)
-writer.escribir(df_clean, df_dirty, df_summary, df_nulls)
-```
-
-### Opción 3: Subclasear ETLPipeline (lógica personalizada)
+### Opción 4: Subclasear ETLPipeline (lógica personalizada)
 
 ```python
 from etl.pipeline import ETLPipeline
@@ -175,9 +228,19 @@ from etl.pipeline import ETLPipeline
 class MiPipeline(ETLPipeline):
     def _transform(self):
         super()._transform()
-        # Agregar lógica adicional aquí
+        # Lógica adicional aquí
         logging.info("Transformación personalizada completada")
 ```
+
+---
+
+## Ejemplos de Personalización
+
+Ver `load/custom_writers.py` para más ejemplos:
+- Ordenar columnas específicamente
+- Transformar datos (renombrar, formatear)
+- Filtrar filas según criterios
+- Usar separadores y encoding personalizados
 
 ---
 

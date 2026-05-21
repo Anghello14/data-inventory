@@ -9,53 +9,43 @@ esquema_origen: SPE
 # Estructura base: copiar una tabla existente y adaptar según necesidades
 tablas:
 
-  # EJEMPLO GENÉRICO 1: Tabla pequeña con PK y NOT NULL
+  # EJEMPLO 1: Tabla pequeña con salida en EXCEL
   TABLA_EJEMPLO_1:
-    descripcion: "Tabla de ejemplo con validaciones básicas"
-    # Nombre de la columna que es clave primaria (será validada contra duplicados)
+    descripcion: "Tabla de ejemplo - salida Excel"
     pk: ID
-    # Columnas que NO pueden tener nulos
     not_null:
       - ID
       - NOMBRE
-    # Columnas que contienen datos sensibles (se marcarán en reportes)
     sensible: false
-    # Columnas a excluir del perfilado (muy pesadas, BLOB, etc)
-    # Si la columna está en Oracle, OracleReader la traerá como NULL
     exclude_from_profiling:
       - DESCRIPCION_LARGA
-      - DATOS_ADJUNTOS
-    # Validaciones personalizadas (regex, formatos específicos)
-    # Clave = nombre_columna, Valor = tipo de validación (email, integer, etc)
     validaciones_campos:
-      CORREO_CONTACTO: email
-      EDAD: integer
+      CORREO: email
+    salida:
+      formato: excel          # Genera Excel (4 pestañas)
 
-  # EJEMPLO GENÉRICO 2: Tabla sin PK (datos maestro)
+  # EJEMPLO 2: Tabla con salida en CSV (dos archivos: CLEAN.csv y DIRTY.csv)
   TABLA_EJEMPLO_2:
-    descripcion: "Tabla sin clave primaria"
-    pk: null
+    descripcion: "Tabla con salida CSV"
+    pk: ID
     not_null: []
     sensible: true
     exclude_from_profiling: []
     validaciones_campos: {}
+    salida:
+      formato: csv            # Genera dos CSVs: CLEAN.csv y DIRTY.csv
 
-  # EJEMPLO GENÉRICO 3: Tabla con filtros y batch config
+  # EJEMPLO 3: Tabla con salida DUAL (ambos formatos: Excel + CSV)
   TABLA_EJEMPLO_3:
-    descripcion: "Tabla con configuración de batch"
-    pk: ID
+    descripcion: "Tabla con salida dual (Excel + CSV)"
+    pk: CODIGO
     not_null:
-      - ID
+      - CODIGO
     sensible: false
     exclude_from_profiling: []
     validaciones_campos: {}
-    # Parámetros de extracción (OPCIONAL)
-    # Si no se especifica, se extrae todo
-    extraccion:
-      # Límite de registros (null = sin límite)
-      limite: null
-      # Tamaño de batch para streaming (si en futuro se implementa paginación real)
-      batch_size: 30000
+    salida:
+      formato: dual           # o "ambos" - genera AMBOS formatos (Excel + CSV)
 
 # ============================================================================
 # CONFIGURACIÓN GLOBAL DEL PIPELINE
@@ -64,33 +54,38 @@ pipeline:
   # Modo de ejecución: "strict" (falla si hay errors) o "tolerant" (continúa)
   modo: tolerant
 
-  # Idempotencia: si el Excel ya existe, ¿saltamos la tabla?
-  idempotencia: true
+  # Idempotencia: si el archivo ya existe, ¿saltamos la tabla?
+  idempotencia: false
 
   # Umbrales de alerta (son solo informativos, no frenan el pipeline)
   umbrales:
-    # Tablas con más de X registros se marcan como "masivas"
     masiva_desde: 1000000
-    # Tablas con menos de X registros se marcan como "pocas"
     pocas_desde: 100
-    # Si más del X% de registros es "dirty", alerta
     calidad_minima: 70
 
 # ============================================================================
-# CONFIGURACIÓN DE SALIDA
+# CONFIGURACIÓN DE SALIDA POR DEFECTO (puede ser overrideada en cada tabla)
 # ============================================================================
 salida:
   # Directorio de salida (relativo a raíz del proyecto)
   directorio: data_output
-  # Formato(s) de salida: excel, csv, ambos
+
+  # Formato(s) de salida: excel, csv, dual (o "ambos")
+  # - excel: Genera un Excel con 4 pestañas
+  # - csv: Genera dos CSVs (CLEAN.csv y DIRTY.csv)
+  # - dual o ambos: Genera AMBOS formatos
   formato: excel
+
   # ¿Incluir pestaña de análisis técnico en Excel?
   incluir_analisis_tecnico: true
+
   # ¿Incluir pestaña de detalle de columnas?
   incluir_detalle_columnas: true
-  # ¿Incluir pestaña con datos limpios?
+
+  # ¿Incluir datos limpios en la salida?
   incluir_clean: true
-  # ¿Incluir pestaña con datos dirty (rechazados)?
+
+  # ¿Incluir datos dirty (rechazados) en la salida?
   incluir_dirty: true
 
 # ============================================================================
@@ -99,5 +94,4 @@ salida:
 logs:
   directorio: logs
   nivel: INFO
-  # Formato: "consola", "archivo", "ambos"
   salida: ambos

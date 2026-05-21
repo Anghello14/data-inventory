@@ -83,28 +83,64 @@ tablas:
       - IMAGEN
 ```
 
-### 5c: Transformar datos antes de escribir Excel
+### 5c: Usar CSV en lugar de Excel
 
-Crear archivo `load/my_transformer.py`:
+Si necesitás salida en CSV (CLEAN.csv y DIRTY.csv):
 
-```python
-from load.excel_csv import ExcelWriter
-
-class MiExcelWriter(ExcelWriter):
-    def _preprocesar_clean(self, df):
-        # Aquí transformas los datos limpios
-        df['PROCESADO_EN'] = pd.Timestamp.now()
-        df = df.rename(columns={"VIEJO": "NUEVO"})
-        return df
+```yaml
+tablas:
+  MI_TABLA:
+    # ... config anterior ...
+    salida:
+      formato: csv            # En lugar de excel
 ```
 
-Usar en `main.py`:
+Output: `MI_TABLA_CLEAN.csv` y `MI_TABLA_DIRTY.csv`
+
+### 5d: Generar AMBOS formatos (Excel + CSV)
+
+```yaml
+tablas:
+  MI_TABLA:
+    # ... config anterior ...
+    salida:
+      formato: dual           # o "ambos"
+```
+
+Genera Excel + dos CSVs.
+
+### 5e: Personalizar orden de columnas en CSV
+
+Crear `load/my_csv_writer.py`:
 
 ```python
-from load.my_transformer import MiExcelWriter
+from load.excel_csv import CsvWriter
 
-# Cambiar esta línea en etl/pipeline.py, método _load():
-writer = MiExcelWriter(self.nombre_tabla)  # En lugar de ExcelWriter
+class MiCsvWriter(CsvWriter):
+    def _seleccionar_columnas_clean(self, df):
+        # Elegir columnas en este orden
+        return df[['ID', 'NOMBRE', 'CORREO', 'TELEFONO']]
+```
+
+Usar:
+
+```python
+from etl.pipeline import ETLPipeline
+from load.my_csv_writer import MiCsvWriter
+
+pipeline = ETLPipeline("MI_TABLA", config, writer_class=MiCsvWriter)
+```
+
+### 5f: Transformar datos antes de escribir
+
+```python
+from load.excel_csv import CsvWriter
+
+class MiCsvWriter(CsvWriter):
+    def _preprocesar_clean(self, df):
+        df = df.rename(columns={"CORREO": "EMAIL"})
+        df['NOMBRE'] = df['NOMBRE'].str.upper()
+        return df
 ```
 
 ---
