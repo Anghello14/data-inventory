@@ -1,1 +1,1 @@
-"""tests package – pruebas unitarias del pipeline ETL."""
+# Tests para el ETL base
