@@ -7,8 +7,7 @@ from pathlib import Path
 
 from extract.oracle_reader import OracleReader
 from transform.profiler import DataProfiler
-from load.excel_writer import generar_excel_inventario
-from generar_reporte_maestro import consolidar_inventario
+from load.csv_writer import acumular_csv_inventario
 from config.settings import DATA_OUTPUT_DIR
 
 # --- CONFIGURACIÓN DE LOGS ---
@@ -27,8 +26,7 @@ logging.basicConfig(
 
 def ejecutar_inventario_completo():
     # Orquesta el pipeline completo: lee config YAML, itera tabla por tabla,
-    # extrae datos desde Oracle, los perfila, escribe el Excel individual
-    # y al final consolida el Reporte Maestro de migración.
+    # extrae datos desde Oracle, los perfila, y acumula registros a CSVs (CLEAN, DIRTY).
     inicio_proceso = time.time()
     
     # Separador visual de inicio
@@ -39,12 +37,6 @@ def ejecutar_inventario_completo():
     # Instancia única de conexión a Oracle; se reutiliza para todas las tablas del ciclo
     reader = OracleReader()
 
-    # OBJETOS DE RECOLECCIÓN PARA REPORTE MAESTRO
-    tablas_vacias = []
-    tablas_masivas = []
-    tablas_pocos_registros = []
-    detalle_constraints = []
-    
     try:
         with open('config/tablas.yaml', 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
@@ -59,37 +51,24 @@ def ejecutar_inventario_completo():
             logging.info(f" PROCESANDO {i}/{total}: {nombre_tabla}")
             print(f"{'='*70}")
 
-            # Ruta esperada del inventario individual; se usa para control de idempotencia
-            check_excel = DATA_OUTPUT_DIR / f"INVENTARIO_{nombre_tabla}.xlsx"
-
-            # IDEMPOTENCIA
-            if check_excel.exists():
-                logging.info(f"STATUS: SKIP (Archivo Excel ya existe)")
-                continue
-            
             try:
                 # 1. OBTENCIÓN DE CONTEO Y METADATOS (Constraints)
                 count = reader.get_count(esquema, nombre_tabla)
                 constraints = reader.obtener_restricciones(esquema, nombre_tabla)
-                constraints['TABLA'] = nombre_tabla
-                detalle_constraints.append(constraints)
 
                 # VALIDACIÓN: TABLAS VACÍAS
                 if count == 0:
                     logging.info(f"STATUS: TABLA VACÍA. Registrando...")
-                    tablas_vacias.append({'nombre': nombre_tabla, 'registros': 0})
                     continue
 
                 # VALIDACIÓN: TABLAS MASIVAS (> 1,000,000)
                 if count > 1000000:
-                    logging.warning(f"TABLA MASIVA: {nombre_tabla} ({count} reg). Alimentando objeto y saltando...")
-                    tablas_masivas.append({'nombre': nombre_tabla, 'registros': count})
+                    logging.warning(f"TABLA MASIVA: {nombre_tabla} ({count} reg). Saltando...")
                     continue
 
                 # VALIDACIÓN: POCOS REGISTROS (< 100) - Se procesan pero se marcan
                 if count < 100:
                     logging.info(f"TABLA CON POCOS REGISTROS: {nombre_tabla} ({count})")
-                    tablas_pocos_registros.append({'nombre': nombre_tabla, 'registros': count})
 
                 # 2. EXTRACCIÓN
                 df_raw = reader.extract_table_paginated(esquema, nombre_tabla)
@@ -122,19 +101,12 @@ def ejecutar_inventario_completo():
                 df_clean, df_dirty, df_summary, df_nulls = profiler.analizar()
 
                 # 4. ESCRITURA (Usamos los resultados del perfilado optimizado)
-                generar_excel_inventario(nombre_tabla, df_clean, df_dirty, df_summary, df_nulls)
-                logging.info(f"STATUS: EXITOSO. Inventario generado.")
+                acumular_csv_inventario(nombre_tabla, df_clean, df_dirty, timestamp_run)
+                logging.info(f"STATUS: EXITOSO. Datos acumulados a CSVs.")
                 
             except Exception as e:
                 logging.error(f"ERROR en tabla {nombre_tabla}: {str(e)}")
 
-        # 5. CONSOLIDACIÓN DEL REPORTE MAESTRO
-        print(f"\n{'*'*70}")
-        logging.info("INICIANDO CONSOLIDACIÓN DEL REPORTE MAESTRO...")
-        print(f"{'*'*70}")
-        
-        consolidar_inventario(tablas_vacias, tablas_masivas, tablas_pocos_registros, detalle_constraints)
-        
         logging.info(f"RESUMEN FINAL: Pipeline completado en {round((time.time()-inicio_proceso)/60, 2)} min.")
         logging.info("="*60)
 
