@@ -2,21 +2,28 @@ import logging
 import time
 from extract.oracle_reader import OracleReader
 from transform.profiler import DataProfiler
-from load.excel_csv import ExcelWriter, CsvWriter, DualWriter
+from load.write_csv import CsvWriter
 
 
 class ETLPipeline:
     """
     Orquestador genérico del ETL: Extract → Transform → Load
 
-    Uso básico:
+    Genera dos CSVs por tabla:
+    - TABLA_CLEAN.csv: registros válidos
+    - TABLA_DIRTY.csv: registros rechazados
+
+    Uso:
         pipeline = ETLPipeline(nombre_tabla="MI_TABLA", config_tabla={...})
         df_clean, df_dirty = pipeline.ejecutar()
 
-    Soporta múltiples formatos: excel, csv, dual (ambos)
+    Personalización:
+        class MiPipeline(ETLPipeline):
+            def _cargar_writer(self):
+                return MiCsvWriter(self.nombre_tabla)
     """
 
-    def __init__(self, nombre_tabla, config_tabla, esquema="SPE", reader=None, writer_class=None):
+    def __init__(self, nombre_tabla, config_tabla, esquema="SPE", reader=None):
         self.nombre_tabla = nombre_tabla
         self.config_tabla = config_tabla
         self.esquema = esquema
@@ -24,23 +31,10 @@ class ETLPipeline:
         self.df_raw = None
         self.df_clean = None
         self.df_dirty = None
-        self.df_summary = None
-        self.df_nulls = None
 
-        # Elegir writer según config o parámetro
-        self.writer_class = writer_class or self._obtener_writer_class()
-
-    def _obtener_writer_class(self):
-        """Selecciona el writer según la configuración"""
-        salida_config = self.config_tabla.get('salida', {})
-        formato = salida_config.get('formato', 'excel').lower()
-
-        if formato == 'csv':
-            return CsvWriter
-        elif formato == 'dual' or formato == 'ambos':
-            return DualWriter
-        else:  # default a excel
-            return ExcelWriter
+    def _cargar_writer(self):
+        """Carga el writer (CsvWriter por defecto). Override para usar custom writer."""
+        return CsvWriter(self.nombre_tabla)
 
     def ejecutar(self):
         """
@@ -80,7 +74,7 @@ class ETLPipeline:
             df = self.reader.extract_tabla(self.nombre_tabla, self.esquema, limite)
 
             if df is not None and not df.empty:
-                logging.info(f"[{self.nombre_tabla}] Extracción OK: {len(df)} registros")
+                logging.info(f"[{self.nombre_tabla}] {len(df)} registros extraídos")
 
             return df
 
@@ -97,22 +91,24 @@ class ETLPipeline:
             if exclude_cols:
                 cols_a_excluir = [c for c in exclude_cols if c in df_input.columns]
                 if cols_a_excluir:
-                    logging.info(f"Excluyendo {len(cols_a_excluir)} columnas del perfilado: {cols_a_excluir}")
+                    logging.info(f"Excluyendo {len(cols_a_excluir)} columnas: {cols_a_excluir}")
                     df_input = df_input.drop(columns=cols_a_excluir)
 
             # Profiler
             profiler = DataProfiler(df_input, self.nombre_tabla, self.config_tabla)
-            self.df_clean, self.df_dirty, self.df_summary, self.df_nulls = profiler.analizar()
+            self.df_clean, self.df_dirty = profiler.analizar()
 
-            logging.info(f"[{self.nombre_tabla}] Transform OK: {len(self.df_clean) if self.df_clean is not None else 0} limpios")
+            clean_count = len(self.df_clean) if self.df_clean is not None else 0
+            dirty_count = len(self.df_dirty) if self.df_dirty is not None else 0
+            logging.info(f"[{self.nombre_tabla}] {clean_count} limpios, {dirty_count} dirty")
 
         except Exception as e:
             logging.error(f"[{self.nombre_tabla}] Error en transform: {str(e)}")
 
     def _load(self):
-        """Escribe los datos según el formato especificado"""
+        """Escribe los CSVs (CLEAN y DIRTY)"""
         try:
-            writer = self.writer_class(self.nombre_tabla)
+            writer = self._cargar_writer()
 
             # Obtener configuración de salida
             salida_config = self.config_tabla.get('salida', {})
@@ -122,18 +118,18 @@ class ETLPipeline:
             writer.escribir(
                 self.df_clean,
                 self.df_dirty,
-                self.df_summary,
-                self.df_nulls,
                 incluir_clean=incluir_clean,
                 incluir_dirty=incluir_dirty
             )
-            logging.info(f"[{self.nombre_tabla}] Load OK")
+            logging.info(f"[{self.nombre_tabla}] CSVs generados")
 
         except Exception as e:
             logging.error(f"[{self.nombre_tabla}] Error en load: {str(e)}")
 
     def get_estadisticas(self):
-        """Retorna estadísticas del pipeline"""
-        if self.df_summary is None:
-            return {}
-        return self.df_summary.to_dict(orient='records')[0] if not self.df_summary.empty else {}
+        """Retorna estadísticas básicas del pipeline"""
+        return {
+            'tabla': self.nombre_tabla,
+            'registros_clean': len(self.df_clean) if self.df_clean is not None else 0,
+            'registros_dirty': len(self.df_dirty) if self.df_dirty is not None else 0
+        }

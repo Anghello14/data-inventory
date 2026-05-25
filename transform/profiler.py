@@ -1,127 +1,134 @@
 import pandas as pd
 import logging
+from datetime import datetime
+import re
 
 class DataProfiler:
     def __init__(self, df, nombre_tabla, config_tabla):
         # df           : DataFrame con los datos extraídos de Oracle (ya saneados)
         # nombre_tabla : nombre lógico usado en logs y en el archivo Excel de salida
-        # config_tabla : dict del YAML con pk, not_null, sensible, etc.
+        # config_tabla : dict del YAML con pk, not_null, sensible, reglas_validacion, etc.
         self.df = df
         self.nombre_tabla = nombre_tabla
         self.config = config_tabla
         self.total_registros = len(df)
+
+        # Cargar reglas de validación desde config
+        self.reglas_validacion = self.config.get('reglas_validacion', {}).get('reglas', [])
         
-    def _inferir_tipos_destino(self, serie):
-        # Mapea el dtype de pandas al equivalente en MongoDB y PostgreSQL
-        # para que el inventario incluya sugerencias de migración de tipos
-        dtype = str(serie.dtype).lower()
-        if "int" in dtype: return "INT8 / NumberLong", "BIGINT"
-        elif "float" in dtype: return "DOUBLE / Decimal128", "NUMERIC"
-        elif "datetime" in dtype or "timestamp" in dtype: return "DATE / ISODate", "TIMESTAMP"
-        elif "object" in dtype: return "STRING / Object", "TEXT / VARCHAR"
-        else: return "MIXED / String", "VARCHAR"
+    def _validar_email(self, valor):
+        """R001: Valida formato de correo válido"""
+        if pd.isna(valor):
+            return True
+        regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return bool(re.match(regex_email, str(valor)))
+
+    def _validar_fecha_no_futura(self, valor, campo):
+        """R002: Valida fecha YYYY-MM-DD y no futura"""
+        if pd.isna(valor):
+            return True
+        try:
+            fecha = pd.to_datetime(valor, format='%Y-%m-%d')
+            hoy = pd.Timestamp(datetime.now().date())
+            return fecha <= hoy
+        except:
+            return False
+
+    def _detectar_caracteres_corruptos(self, valor, campos_sensibles=['nombre', 'apellido', 'dirección']):
+        """R003: Detecta caracteres corruptos o no imprimibles (?, tildes mal codificadas, etc.)"""
+        if pd.isna(valor):
+            return False
+        valor_str = str(valor)
+        # Detecta ?, caracteres de control, encoding inválido
+        if '?' in valor_str or any(ord(c) < 32 for c in valor_str if c not in '\n\r\t'):
+            return True
+        return False
+
+    def _validar_documento_unico(self, df, campo_documento):
+        """R004: Valida que no haya duplicados de documento en el lote"""
+        if campo_documento not in df.columns:
+            return pd.Series([False] * len(df), index=df.index)
+        duplicados = df[campo_documento].duplicated(keep=False)
+        return duplicados
+
+    def _validar_campos_obligatorios(self, df, campos_obligatorios):
+        """R005: Valida que campos obligatorios no estén nulos"""
+        mask_invalido = pd.Series([False] * len(df), index=df.index)
+        for campo in campos_obligatorios:
+            if campo in df.columns:
+                mask_invalido = mask_invalido | df[campo].isnull()
+        return mask_invalido
+
+    def _validar_telefono_digitos(self, valor):
+        """R006: Valida que teléfono contenga al menos dígitos"""
+        if pd.isna(valor):
+            return True
+        valor_limpio = re.sub(r'\D', '', str(valor))
+        return len(valor_limpio) > 0
+
+    def _registro_completo(self, fila):
+        """Valida que el registro NO tenga NINGÚN campo null (completamente completo)"""
+        return fila.isnull().sum() == 0
 
     def analizar(self):
-        # Punto central del módulo: ejecuta las 4 etapas de auditoría técnica
-        # (dimensionamiento, segregación clean/dirty, detalle de columnas, resumen ejecutivo)
-        # y retorna cuatro DataFrames listos para ser escritos en el Excel de inventario.
         if self.df.empty:
-            logging.warning(f"[{self.nombre_tabla}] DataFrame vacio. Saltando perfilado.")
-            return None, None, None, None
+            logging.warning(f"[{self.nombre_tabla}] DataFrame vacio.")
+            return None, None
 
-        logging.info(f"[{self.nombre_tabla}] Iniciando auditoria tecnica...")
-
-        # 1. DIMENSIONAMIENTO
-        # Calcula el peso en memoria del DataFrame para estimar el tamaño en disco
-        uso_memoria_bytes = self.df.memory_usage(deep=True).sum()
-        tamano_mb = round(uso_memoria_bytes / (1024 * 1024), 2)
-
-        # 2. SEGREGACIÓN DE DATOS (CLEAN / DIRTY)
-        # Se marca cada fila con la razón de rechazo; al final se separan en dos DataFrames
+        logging.info(f"[{self.nombre_tabla}] Iniciando validación de datos...")
         self.df['REJECTION_REASON'] = ""
-        
-        # A. Validación de PK (Solo si existe)
+
+        # R004: Validación de documentos duplicados
         pk_col = self.config.get('pk')
         if pk_col and pk_col in self.df.columns:
-            mask_dups = self.df.duplicated(subset=[pk_col], keep=False)
-            self.df.loc[mask_dups, 'REJECTION_REASON'] += f"DUPLICADO_EN_PK_{pk_col} | "
+            mask_dups = self._validar_documento_unico(self.df, pk_col)
+            self.df.loc[mask_dups, 'REJECTION_REASON'] += f"R004_DOCUMENTO_DUPLICADO | "
 
-        # B. Validación de Campos Obligatorios (NOT NULL)
-        not_null_cols = self.config.get('not_null', [])
-        for col in not_null_cols:
-            if col in self.df.columns:
-                mask_nulos = self.df[col].isnull()
-                self.df.loc[mask_nulos, 'REJECTION_REASON'] += f"NULO_EN_CAMPO_OBLIGATORIO_{col} | "
+        # R005: Validación de campos obligatorios
+        campos_obligatorios = self.config.get('campos_obligatorios', [])
+        if campos_obligatorios:
+            mask_obligatorios = self._validar_campos_obligatorios(self.df, campos_obligatorios)
+            self.df.loc[mask_obligatorios, 'REJECTION_REASON'] += "R005_CAMPOS_OBLIGATORIOS_VACIOS | "
 
-        # C. DETECCIÓN DE CARACTERES CORRUPTOS (Tildes mal insertadas '?')
-        # Buscamos en todas las columnas de texto (object)
+        # R003: Detección de caracteres corruptos
         cols_texto = self.df.select_dtypes(include=['object']).columns
         for col in cols_texto:
-            if col == 'REJECTION_REASON': continue
-            # Detecta el signo '?' que indica error de encoding en Oracle
-            mask_corrupto = self.df[col].astype(str).str.contains(r'\?', na=False)
-            self.df.loc[mask_corrupto, 'REJECTION_REASON'] += f"CARACTER_CORRUPTO_EN_{col} | "
+            if col == 'REJECTION_REASON':
+                continue
+            mask_corrupto = self.df[col].apply(lambda x: self._detectar_caracteres_corruptos(x))
+            self.df.loc[mask_corrupto, 'REJECTION_REASON'] += f"R003_CARACTERES_CORRUPTOS | "
 
-        # D. VALIDACIÓN DE CAMPOS PERSONALIZADOS
-        # Lee 'validaciones_campos' del config para cada tabla
-        validaciones_campos = self.config.get('validaciones_campos', {})
-        regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        # R001, R002, R006: Validaciones según reglas configuradas
+        for regla in self.reglas_validacion:
+            id_regla = regla.get('id')
+            campo = regla.get('campo')
 
-        for col, validacion_tipo in validaciones_campos.items():
-            if col not in self.df.columns:
+            if campo not in self.df.columns:
                 continue
 
-            if validacion_tipo == 'email':
-                mask_invalid = (~self.df[col].astype(str).str.match(regex_email, na=True)) & (self.df[col].notnull())
-                self.df.loc[mask_invalid, 'REJECTION_REASON'] += f"FORMATO_EMAIL_INVALIDO_EN_{col} | "
-            elif validacion_tipo == 'integer':
-                mask_invalid = (self.df[col].notnull()) & (~self.df[col].astype(str).str.match(r'^-?\d+$', na=False))
-                self.df.loc[mask_invalid, 'REJECTION_REASON'] += f"NO_ES_ENTERO_{col} | "
+            if id_regla == 'R001':
+                mask_invalid = self.df[campo].apply(lambda x: not self._validar_email(x))
+                self.df.loc[mask_invalid, 'REJECTION_REASON'] += "R001_FORMATO_EMAIL_INVALIDO | "
 
-        # SEPARACIÓN FINAL
+            elif id_regla == 'R002':
+                mask_invalid = self.df[campo].apply(lambda x: not self._validar_fecha_no_futura(x, campo))
+                self.df.loc[mask_invalid, 'REJECTION_REASON'] += "R002_FECHA_INVALIDA_O_FUTURA | "
+
+            elif id_regla == 'R006':
+                mask_invalid = self.df[campo].apply(lambda x: not self._validar_telefono_digitos(x))
+                self.df.loc[mask_invalid, 'REJECTION_REASON'] += "R006_TELEFONO_INVALIDO | "
+
+        # Validación especial: Solo CLEAN si el registro es COMPLETO (sin ningún null)
+        mask_incompleto = self.df.apply(lambda fila: not self._registro_completo(fila), axis=1)
+        self.df.loc[mask_incompleto, 'REJECTION_REASON'] += "REGISTRO_INCOMPLETO | "
+
+        # Separación final
         df_dirty = self.df[self.df['REJECTION_REASON'] != ""].copy()
         df_clean = self.df[self.df['REJECTION_REASON'] == ""].copy()
-        
+
         if not df_clean.empty:
             df_clean = df_clean.drop(columns=['REJECTION_REASON'])
 
-        # 3. DETALLE DE COLUMNAS (Mapeo de tipos Oracle)
-        # Genera una fila por columna con dtype, sugerencias de migración y conteo de nulos
-        conteo_nulos = self.df.isnull().sum()
-        reporte_columnas = []
-        columnas_muertas = [col for col in self.df.columns if (nulos_col := conteo_nulos[col]) == self.total_registros]
+        logging.info(f"[{self.nombre_tabla}] Validación completada. CLEAN: {len(df_clean)}, DIRTY: {len(df_dirty)}")
 
-        for col in self.df.columns:
-            if col == 'REJECTION_REASON': continue
-            mongo_type, pg_type = self._inferir_tipos_destino(self.df[col])
-            nulos_col = int(conteo_nulos[col])
-            
-            reporte_columnas.append({
-                'COLUMNA': col,
-                'TIPO_ORACLE_PANDAS': str(self.df[col].dtype),
-                'SUGERENCIA_POSTGRES': pg_type,
-                'SUGERENCIA_MONGODB': mongo_type,
-                'CANTIDAD_NULOS': nulos_col,
-                'PORCENTAJE_NULOS': f"{(nulos_col / self.total_registros * 100):.2f}%",
-                'ESTADO_COLUMNA': "MUERTA (BORRAR)" if nulos_col == self.total_registros else "ACTIVA"
-            })
-        df_nulls = pd.DataFrame(reporte_columnas)
-
-        # 4. RESUMEN EJECUTIVO (Cálculo de calidad real)
-        # El índice de calidad = porcentaje de filas que pasaron todas las validaciones
-        indice_num = (len(df_clean) / self.total_registros) * 100
-        df_summary = pd.DataFrame([{
-            'TABLA': self.nombre_tabla,
-            'TOTAL_FILAS_ORACLE': self.total_registros,
-            'PESO_ESTIMADO_MB': tamano_mb,
-            'FILAS_LIMPIAS': len(df_clean),
-            'FILAS_CON_ERROR': len(df_dirty),
-            'COLUMNAS_TOTALES': len(self.df.columns) - 1,
-            'COLUMNAS_MUERTAS': len(columnas_muertas),
-            'SENSIBLE': "SI" if self.config.get('sensible') else "NO",
-            'INDICE_CALIDAD': f"{indice_num:.2f}%"
-        }])
-
-        logging.info(f"[{self.nombre_tabla}] Perfilado finalizado. Peso: {tamano_mb} MB. Calidad: {indice_num:.2f}%")
-        
-        return df_clean, df_dirty, df_summary, df_nulls
+        return df_clean, df_dirty

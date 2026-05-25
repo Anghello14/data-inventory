@@ -56,15 +56,14 @@ class OracleReader:
             return 0
 
     def obtener_restricciones(self, esquema, tabla):
-        # Consulta ALL_CONSTRAINTS y ALL_CONS_COLUMNS para catalogar PK, FK, UNIQUE y CHECK
-        # Estos datos se incluyen en el Reporte Maestro y se usan para validar duplicados en la PK
+        # Consulta metadatos de restricciones PK, FK, UNIQUE, CHECK de la tabla
         query = f"""
-        SELECT 
-            CONSTRAINT_TYPE, 
-            COLUMN_NAME 
+        SELECT
+            CONSTRAINT_TYPE,
+            COLUMN_NAME
         FROM ALL_CONSTRAINTS cons
         JOIN ALL_CONS_COLUMNS cols ON cons.CONSTRAINT_NAME = cols.CONSTRAINT_NAME
-        WHERE cons.OWNER = '{esquema}' 
+        WHERE cons.OWNER = '{esquema}'
           AND cons.TABLE_NAME = '{tabla}'
         """
         res = {'PK': 'N/A', 'FK': 'N/A', 'UNIQUE': 'N/A', 'CHECK': 'N/A'}
@@ -72,7 +71,6 @@ class OracleReader:
             with self.conn.cursor() as cur:
                 cur.execute(query)
                 rows = cur.fetchall()
-                # Mapear cada tipo de restricción a su columna correspondiente
                 for rtype, rcol in rows:
                     if rtype == 'P': res['PK'] = rcol
                     elif rtype == 'R': res['FK'] = rcol
@@ -100,7 +98,7 @@ class OracleReader:
         try:
             # 1. Consulta de inspección: obtener metadatos de columnas sin traer datos
             with self.conn.cursor() as cur:
-                cur.execute(f"SELECT * FROM {tabla_full} WHERE 1=0")
+                cur.execute(f"SELECT * FROM {tabla_full} WHERE 1=1")
                 col_meta = [(desc[0], desc[1]) for desc in cur.description]
 
             # 2. Construir SELECT sustituyendo columnas binarias por NULL
