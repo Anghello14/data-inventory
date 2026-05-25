@@ -1,6 +1,6 @@
 esquema_origen: SPE
 tablas:
-  PAIS:
-    descripcion: Inventario tecnico de la tabla PAIS
+  CIIU:
+    descripcion: Inventario tecnico de la tabla CIIU
     destino_sugerido: POSTGRESQL
     sensible: false

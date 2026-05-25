@@ -32,3 +32,12 @@ DSN = f"{ORACLE_HOST}:{ORACLE_PORT}/{ORACLE_SERVICE}"
 
 # Ruta del cliente (Modo Thick)
 ORACLE_CLIENT_PATH = os.getenv("ORACLE_CLIENT_PATH")
+
+# ----------------------------------------------------------------
+# CONFIGURACIÓN DE POSTGRESQL (Desde .env)
+# ----------------------------------------------------------------
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5435")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASS = os.getenv("POSTGRES_PASS")

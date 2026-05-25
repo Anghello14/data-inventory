@@ -79,6 +79,13 @@ ORACLE_HOST=mi_servidor
 ORACLE_PORT=1521
 ORACLE_SERVICE=MI_SVC
 ORACLE_CLIENT_PATH=C:/oracle/instantclient_21_x
+
+# PostgreSQL (carga CSV -> tabla destino)
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=mi_base
+POSTGRES_USER=mi_usuario
+POSTGRES_PASS=mi_password
 ```
 
 | Variable             | Descripción                                      |
@@ -89,6 +96,11 @@ ORACLE_CLIENT_PATH=C:/oracle/instantclient_21_x
 | `ORACLE_PORT`        | Puerto TNS (normalmente `1521`)                  |
 | `ORACLE_SERVICE`     | Nombre del servicio Oracle                       |
 | `ORACLE_CLIENT_PATH` | Ruta al Oracle Instant Client (modo thick)       |
+| `POSTGRES_HOST`      | Host de PostgreSQL                               |
+| `POSTGRES_PORT`      | Puerto de PostgreSQL (default `5432`)            |
+| `POSTGRES_DB`        | Base de datos destino                            |
+| `POSTGRES_USER`      | Usuario de PostgreSQL                            |
+| `POSTGRES_PASS`      | Contraseña de PostgreSQL                         |
 
 ### Definición de tablas (`config/tablas.yaml` / `config/tablas_masivas.yaml`)
 
@@ -120,6 +132,30 @@ python main.py
 # Pipeline masivas (tablas con más de 1,000,000 registros)
 python main_masivas.py
 ```
+
+### Cargar un CSV especifico a PostgreSQL
+
+```bash
+python cargar_csv_postgres.py --csv data_output/idioma_20260525_105728.csv --tabla idioma
+```
+
+Opciones utiles:
+
+```bash
+# Definir schema destino
+python cargar_csv_postgres.py --csv data_output/estados_civiles_20260525_114353.csv --tabla estado_civil --schema catalogo
+
+# Validar sin insertar (dry-run)
+python cargar_csv_postgres.py --csv data_output/tipos_vehiculo_20260525_123651.csv --tabla tipos_vehiculo --dry-run
+
+# Truncar tabla antes de insertar
+python cargar_csv_postgres.py --csv data_output/divisiones_ciiu.csv --tabla divisiones_ciiu --truncate
+```
+
+Notas de carga:
+- El script valida que todas las columnas del CSV existan en la tabla destino.
+- Inserta por lotes (`--chunk-size`, default `5000`) para manejar archivos grandes.
+- Convierte vacios y `NaN` a `NULL` al insertar.
 
 Ambos pipelines son **idempotentes**: si el archivo Excel de una tabla ya existe en el directorio de salida, la tabla se omite automáticamente.
 
