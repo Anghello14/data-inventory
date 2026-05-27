@@ -140,7 +140,7 @@ class PostgresCsvLoader:
                         mapped_columns = [normalized_table_cols[c.lower()] for c in csv_columns]
 
                         if truncate_before_insert and not dry_run:
-                            truncate_query = sql.SQL("TRUNCATE TABLE {}.{}").format(
+                            truncate_query = sql.SQL("TRUNCATE TABLE {}.{} CASCADE").format(
                                 sql.Identifier(schema_name),
                                 sql.Identifier(table_name),
                             )
