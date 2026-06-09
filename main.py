@@ -78,17 +78,11 @@ def ejecutar_inventario_completo():
                     logging.info(f"STATUS: SIN DATOS TRAS EXTRACCIÓN")
                     continue
 
-                # --- FILTRO ANTIBLOQUEO ---
-                # Identificamos columnas pesadas por nombre para no procesarlas en el profiler
-                # Agregamos 'XML' y 'BLOB' a la búsqueda por si acaso
-                cols_pesadas = [c for c in df_raw.columns if any(k in c.upper() for k in ['DESCRIPCION', 'COMENTARIO', 'OBSERVACION', 'XML', 'DATA', 'IMG', 'FILE'])]
-                
-                if cols_pesadas:
-                    logging.info(f"Omitiendo {len(cols_pesadas)} columnas pesadas para el perfilado.")
-                    df_input = df_raw.drop(columns=cols_pesadas)
-                else:
-                    df_input = df_raw
-                # --------------------------
+                # Conservamos todas las columnas de la fuente para que el CSV final
+                # represente la estructura real de la tabla. El filtrado de LOBs/
+                # binarios ya ocurre en OracleReader, así que no hace falta excluir
+                # columnas de texto como DESCRIPCION en esta etapa.
+                df_input = df_raw
 
                 # 3. PERFILADO (Usamos el df_input filtrado)
                 # Inyectar la PK real al config de la tabla para que el profiler la valide

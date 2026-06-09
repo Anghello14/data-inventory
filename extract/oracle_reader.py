@@ -117,7 +117,7 @@ class OracleReader:
 
             # 3. Extraccion real sin datos binarios
             with self.conn.cursor() as cur:
-                cur.arraysize = 30000
+                cur.arraysize = 25000
                 cur.execute(query)
                 rows = cur.fetchall()
 
