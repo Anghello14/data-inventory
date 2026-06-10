@@ -140,7 +140,7 @@ def ejecutar_inventario_completo():
 
                 # Recalcular SIEMPRE al inicio para evitar arrastrar detecciones viejas
                 # desde checkpoint cuando cambian reglas o datos en origen.
-                columnas_muertas = reader.obtener_columnas_muertas(esquema, nombre_tabla)
+                columnas_muertas, porcentaje_vacio_por_columna = reader.obtener_estadisticas_vacios(esquema, nombre_tabla)
                 estado_tabla["dead_columns"] = columnas_muertas
                 estado_tabla["dead_columns_checked"] = True
                 _guardar_checkpoint(checkpoint)
@@ -153,6 +153,17 @@ def ejecutar_inventario_completo():
                         f"[{nombre_tabla}] Columnas muertas detectadas: {cantidad_muertas} | "
                         f"Nombres: {columnas_muertas}"
                     )
+
+                if porcentaje_vacio_por_columna:
+                    resumen_vacios = " | ".join(
+                        f"{col}={pct:.2f}%"
+                        for col, pct in sorted(
+                            porcentaje_vacio_por_columna.items(),
+                            key=lambda item: item[1],
+                            reverse=True,
+                        )
+                    )
+                    logging.info(f"[{nombre_tabla}] Porcentaje de vacío por columna: {resumen_vacios}")
 
                 chunk_inicial = int(estado_tabla.get("last_completed_chunk", 0) or 0)
                 if chunk_inicial > 0:

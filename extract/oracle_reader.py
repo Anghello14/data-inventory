@@ -83,9 +83,8 @@ class OracleReader:
             logging.warning(f"No se pudieron obtener restricciones de {tabla}: {e}")
             return res
 
-    def obtener_columnas_muertas(self, esquema, tabla):
-        # Detecta columnas completamente vacías en toda la tabla para excluirlas
-        # del flujo por chunks y evitar falsos DIRTY masivos.
+    def obtener_estadisticas_vacios(self, esquema, tabla):
+        # Detecta columnas completamente vacías y calcula porcentaje de vacío por columna.
         # En columnas de texto, "vacía" incluye NULL y también espacios en blanco.
         tabla_full = f"{esquema}.{tabla}"
         _BINARY_TYPES = (
@@ -110,35 +109,46 @@ class OracleReader:
                 (name, col_type) for name, col_type in col_meta if col_type not in _BINARY_TYPES
             ]
             if not columnas_analizables:
-                return []
+                return [], {}
 
             exprs = []
             for col, col_type in columnas_analizables:
                 if col_type in _TEXT_TYPES:
                     exprs.append(
-                        f'SUM(CASE WHEN NULLIF(TRIM("{col}"), \'\') IS NOT NULL THEN 1 ELSE 0 END) AS "{col}"'
+                        f'SUM(CASE WHEN NULLIF(TRIM("{col}"), \'\') IS NULL THEN 1 ELSE 0 END) AS "{col}"'
                     )
                 else:
                     exprs.append(
-                        f'SUM(CASE WHEN "{col}" IS NOT NULL THEN 1 ELSE 0 END) AS "{col}"'
+                        f'SUM(CASE WHEN "{col}" IS NULL THEN 1 ELSE 0 END) AS "{col}"'
                     )
 
-            query = f"SELECT {', '.join(exprs)} FROM {tabla_full}"
+            query = f"SELECT COUNT(*) AS TOTAL_FILAS, {', '.join(exprs)} FROM {tabla_full}"
 
             with self.conn.cursor() as cur:
                 cur.execute(query)
                 row = cur.fetchone()
 
             if not row:
-                return []
+                return [], {}
+
+            total_filas = int(row[0] or 0)
+            vacios_por_columna = row[1:]
 
             columnas_muertas = [
-                col for (col, _), valor in zip(columnas_analizables, row) if (valor or 0) == 0
+                col for (col, _), valor in zip(columnas_analizables, vacios_por_columna)
+                if total_filas > 0 and int(valor or 0) == total_filas
             ]
-            return columnas_muertas
+
+            porcentaje_vacio_por_columna = {}
+            for (col, _), vacios_col in zip(columnas_analizables, vacios_por_columna):
+                vacios_col = int(vacios_col or 0)
+                porcentaje = 0.0 if total_filas == 0 else (vacios_col / total_filas) * 100
+                porcentaje_vacio_por_columna[col] = round(porcentaje, 2)
+
+            return columnas_muertas, porcentaje_vacio_por_columna
         except Exception as e:
             logging.warning(f"No se pudieron detectar columnas muertas en {tabla_full}: {e}")
-            return []
+            return [], {}
 
     def extract_table_paginated(self, esquema, tabla, chunk_size=50000, start_chunk=0, excluded_columns=None):
         # Extrae registros de la tabla en chunks para evitar sobrecarga de memoria.
