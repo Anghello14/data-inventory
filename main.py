@@ -61,41 +61,44 @@ def ejecutar_inventario_completo():
                     logging.info(f"STATUS: TABLA VACÍA. Registrando...")
                     continue
 
-                # VALIDACIÓN: TABLAS MASIVAS (> 1,000,000)
-                if count > 1000000:
-                    logging.warning(f"TABLA MASIVA: {nombre_tabla} ({count} reg). Saltando...")
-                    continue
-
                 # VALIDACIÓN: POCOS REGISTROS (< 100) - Se procesan pero se marcan
                 if count < 100:
                     logging.info(f"TABLA CON POCOS REGISTROS: {nombre_tabla} ({count})")
 
-                # 2. EXTRACCIÓN
-                df_raw = reader.extract_table_paginated(esquema, nombre_tabla)
-                
-                # Si Oracle devolvió un DataFrame vacío (error de extracción) se omite la tabla
-                if df_raw.empty:
-                    logging.info(f"STATUS: SIN DATOS TRAS EXTRACCIÓN")
-                    continue
-
+                # 2. EXTRACCIÓN Y PROCESAMIENTO EN CHUNKS
                 # Conservamos todas las columnas de la fuente para que el CSV final
                 # represente la estructura real de la tabla. El filtrado de LOBs/
                 # binarios ya ocurre en OracleReader, así que no hace falta excluir
                 # columnas de texto como DESCRIPCION en esta etapa.
-                df_input = df_raw
 
-                # 3. PERFILADO (Usamos el df_input filtrado)
+                # 3. PERFILADO (Usamos el df_input por chunk)
                 # Inyectar la PK real al config de la tabla para que el profiler la valide
                 if constraints.get('PK') == 'N/A':
                     config_tabla['pk'] = None
                 else:
                     config_tabla['pk'] = constraints['PK']
 
-                profiler = DataProfiler(df_input, nombre_tabla, config_tabla)
-                df_clean, df_dirty, df_summary, df_nulls = profiler.analizar()
+                procesado_al_menos_un_chunk = False
+                for df_raw in reader.extract_table_paginated(esquema, nombre_tabla, chunk_size=50000):
+                    procesado_al_menos_un_chunk = True
+                    df_input = df_raw
 
-                # 4. ESCRITURA (Usamos los resultados del perfilado optimizado)
-                acumular_csv_inventario(nombre_tabla, df_clean, df_dirty, timestamp_run)
+                    profiler = DataProfiler(df_input, nombre_tabla, config_tabla)
+                    df_clean, df_dirty, df_summary, df_nulls = profiler.analizar()
+
+                    # 4. ESCRITURA (Usamos los resultados del perfilado optimizado)
+                    acumular_csv_inventario(
+                        nombre_tabla,
+                        df_clean,
+                        df_dirty,
+                        timestamp_run,
+                        total_registros_tabla=count,
+                    )
+
+                if not procesado_al_menos_un_chunk:
+                    logging.info(f"STATUS: SIN DATOS TRAS EXTRACCIÓN")
+                    continue
+
                 logging.info(f"STATUS: EXITOSO. Datos acumulados a CSVs.")
                 
             except Exception as e:

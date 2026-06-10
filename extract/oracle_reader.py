@@ -83,12 +83,12 @@ class OracleReader:
             logging.warning(f"No se pudieron obtener restricciones de {tabla}: {e}")
             return res
 
-    def extract_table_paginated(self, esquema, tabla):
-        # Extrae todos los registros de la tabla en una sola pasada.
+    def extract_table_paginated(self, esquema, tabla, chunk_size=50000):
+        # Extrae registros de la tabla en chunks para evitar sobrecarga de memoria.
         # Antes de transferir datos, inspecciona los tipos de columna para excluir
         # BLOBs/RAW del SELECT y evitar bloqueos de red por datos binarios pesados.
         tabla_full = f"{esquema}.{tabla}"
-        logging.info(f"Iniciando extraccion protegida de {tabla_full}...")
+        logging.info(f"Iniciando extraccion protegida de {tabla_full} en chunks de {chunk_size}...")
 
         # Tipos binarios que no se deben transferir (BLOB, RAW, LONG_RAW)
         _BINARY_TYPES = (
@@ -115,29 +115,34 @@ class OracleReader:
 
             query = f"SELECT {', '.join(select_parts)} FROM {tabla_full}"
 
-            # 3. Extraccion real sin datos binarios
+            # 3. Extraccion real sin datos binarios por lotes
             with self.conn.cursor() as cur:
                 cur.arraysize = 25000
                 cur.execute(query)
-                rows = cur.fetchall()
 
-            # Limpiar caracteres ilegales para Excel en campos de texto
-            _ILLEGAL = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\ufffd]')
-            rows = [
-                tuple(
-                    None if isinstance(v, bytes)
-                    else (_ILLEGAL.sub('', v) if isinstance(v, str) else v)
-                    for v in row
-                )
-                for row in rows
-            ]
+                _ILLEGAL = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\ufffd]')
+                total_cargado = 0
 
-            df = pd.DataFrame(rows, columns=cols)
-            logging.info(f"Progreso [{tabla}]: {len(df)} registros cargados.")
-            return df
+                while True:
+                    rows = cur.fetchmany(chunk_size)
+                    if not rows:
+                        break
+
+                    rows = [
+                        tuple(
+                            None if isinstance(v, bytes)
+                            else (_ILLEGAL.sub('', v) if isinstance(v, str) else v)
+                            for v in row
+                        )
+                        for row in rows
+                    ]
+
+                    total_cargado += len(rows)
+                    logging.info(f"Progreso [{tabla}]: {total_cargado} registros cargados.")
+                    yield pd.DataFrame(rows, columns=cols)
         except Exception as e:
             logging.error(f"Error en extraccion de {tabla_full}: {e}")
-            return pd.DataFrame()
+            return
 
     def close(self):
         # Libera el recurso de conexión al finalizar el pipeline

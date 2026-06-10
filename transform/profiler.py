@@ -31,6 +31,12 @@ class DataProfiler:
 
         logging.info(f"[{self.nombre_tabla}] Iniciando auditoria tecnica...")
 
+        # Normaliza espacios en columnas de texto para evitar falsos positivos
+        # por caracteres invisibles al inicio o al final del valor.
+        cols_texto = self.df.select_dtypes(include=['object', 'string']).columns
+        for col in cols_texto:
+            self.df[col] = self.df[col].apply(lambda v: v.strip() if isinstance(v, str) else v)
+
         # 1. DIMENSIONAMIENTO
         # Calcula el peso en memoria del DataFrame para estimar el tamaño en disco
         uso_memoria_bytes = self.df.memory_usage(deep=True).sum()
@@ -46,12 +52,27 @@ class DataProfiler:
             mask_dups = self.df.duplicated(subset=[pk_col], keep=False)
             self.df.loc[mask_dups, 'REJECTION_REASON'] += f"DUPLICADO_EN_PK_{pk_col} | "
 
-        # B. Validación de Campos Obligatorios (NOT NULL)
-        not_null_cols = self.config.get('not_null', [])
-        for col in not_null_cols:
-            if col in self.df.columns:
-                mask_nulos = self.df[col].isnull()
-                self.df.loc[mask_nulos, 'REJECTION_REASON'] += f"NULO_EN_CAMPO_OBLIGATORIO_{col} | "
+        # B. Validación global de campos vacíos
+        # Cualquier campo vacío (NULL o texto en blanco) se considera no funcional
+        # y se envía a DIRTY con formato: "nombre_campo vacio".
+        for col in self.df.columns:
+            if col == 'REJECTION_REASON':
+                continue
+
+            mask_nulos = self.df[col].isnull()
+            if pd.api.types.is_string_dtype(self.df[col]) or self.df[col].dtype == 'object':
+                mask_blancos = self.df[col].notnull() & (self.df[col].astype(str).str.strip() == "")
+            else:
+                mask_blancos = pd.Series(False, index=self.df.index)
+
+            mask_vacios = mask_nulos | mask_blancos
+
+            # Si la columna está completamente vacía (columna muerta),
+            # se omite de la validación para no enviar toda la tabla a DIRTY.
+            if mask_vacios.all():
+                continue
+
+            self.df.loc[mask_vacios, 'REJECTION_REASON'] += f"{col} vacio | "
 
         # C. DETECCIÓN DE CARACTERES CORRUPTOS (Tildes mal insertadas '?')
         # Buscamos en todas las columnas de texto (object)
