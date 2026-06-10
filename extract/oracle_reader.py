@@ -83,12 +83,73 @@ class OracleReader:
             logging.warning(f"No se pudieron obtener restricciones de {tabla}: {e}")
             return res
 
-    def extract_table_paginated(self, esquema, tabla, chunk_size=50000):
+    def obtener_columnas_muertas(self, esquema, tabla):
+        # Detecta columnas completamente vacías en toda la tabla para excluirlas
+        # del flujo por chunks y evitar falsos DIRTY masivos.
+        # En columnas de texto, "vacía" incluye NULL y también espacios en blanco.
+        tabla_full = f"{esquema}.{tabla}"
+        _BINARY_TYPES = (
+            oracledb.DB_TYPE_BLOB,
+            oracledb.DB_TYPE_RAW,
+            oracledb.DB_TYPE_LONG_RAW,
+        )
+        _TEXT_TYPES = (
+            oracledb.DB_TYPE_CHAR,
+            oracledb.DB_TYPE_NCHAR,
+            oracledb.DB_TYPE_VARCHAR,
+            oracledb.DB_TYPE_NVARCHAR,
+            oracledb.DB_TYPE_LONG,
+        )
+
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(f"SELECT * FROM {tabla_full} WHERE 1=0")
+                col_meta = [(desc[0], desc[1]) for desc in cur.description]
+
+            columnas_analizables = [
+                (name, col_type) for name, col_type in col_meta if col_type not in _BINARY_TYPES
+            ]
+            if not columnas_analizables:
+                return []
+
+            exprs = []
+            for col, col_type in columnas_analizables:
+                if col_type in _TEXT_TYPES:
+                    exprs.append(
+                        f'SUM(CASE WHEN NULLIF(TRIM("{col}"), \'\') IS NOT NULL THEN 1 ELSE 0 END) AS "{col}"'
+                    )
+                else:
+                    exprs.append(
+                        f'SUM(CASE WHEN "{col}" IS NOT NULL THEN 1 ELSE 0 END) AS "{col}"'
+                    )
+
+            query = f"SELECT {', '.join(exprs)} FROM {tabla_full}"
+
+            with self.conn.cursor() as cur:
+                cur.execute(query)
+                row = cur.fetchone()
+
+            if not row:
+                return []
+
+            columnas_muertas = [
+                col for (col, _), valor in zip(columnas_analizables, row) if (valor or 0) == 0
+            ]
+            return columnas_muertas
+        except Exception as e:
+            logging.warning(f"No se pudieron detectar columnas muertas en {tabla_full}: {e}")
+            return []
+
+    def extract_table_paginated(self, esquema, tabla, chunk_size=50000, start_chunk=0, excluded_columns=None):
         # Extrae registros de la tabla en chunks para evitar sobrecarga de memoria.
         # Antes de transferir datos, inspecciona los tipos de columna para excluir
         # BLOBs/RAW del SELECT y evitar bloqueos de red por datos binarios pesados.
         tabla_full = f"{esquema}.{tabla}"
-        logging.info(f"Iniciando extraccion protegida de {tabla_full} en chunks de {chunk_size}...")
+        excluded_columns = set(excluded_columns or [])
+        logging.info(
+            f"Iniciando extraccion protegida de {tabla_full} en chunks de {chunk_size} "
+            f"(reanudar desde chunk {start_chunk + 1})..."
+        )
 
         # Tipos binarios que no se deben transferir (BLOB, RAW, LONG_RAW)
         _BINARY_TYPES = (
@@ -103,17 +164,30 @@ class OracleReader:
                 cur.execute(f"SELECT * FROM {tabla_full} WHERE 1=0")
                 col_meta = [(desc[0], desc[1]) for desc in cur.description]
 
-            # 2. Construir SELECT sustituyendo columnas binarias por NULL
-            select_parts = [
-                f'NULL AS "{name}"' if col_type in _BINARY_TYPES else f'"{name}"'
-                for name, col_type in col_meta
-            ]
-            cols = [name for name, _ in col_meta]
+            # 2. Construir SELECT sustituyendo columnas binarias por NULL y
+            # excluyendo columnas muertas detectadas a nivel tabla.
+            select_parts = []
+            cols = []
+            for name, col_type in col_meta:
+                if name in excluded_columns:
+                    continue
+                if col_type in _BINARY_TYPES:
+                    select_parts.append(f'NULL AS "{name}"')
+                else:
+                    select_parts.append(f'"{name}"')
+                cols.append(name)
+
+            if not cols:
+                logging.warning(f"[{tabla}] No hay columnas para extraer tras exclusiones. Se omite tabla.")
+                return
+
             binary_cols = [name for name, t in col_meta if t in _BINARY_TYPES]
             if binary_cols:
                 logging.info(f"[{tabla}] Columnas BLOB/RAW omitidas (sin transferencia): {binary_cols}")
+            if excluded_columns:
+                logging.info(f"[{tabla}] Columnas excluidas por muertas: {sorted(excluded_columns)}")
 
-            query = f"SELECT {', '.join(select_parts)} FROM {tabla_full}"
+            query = f"SELECT {', '.join(select_parts)} FROM {tabla_full} ORDER BY ROWID"
 
             # 3. Extraccion real sin datos binarios por lotes
             with self.conn.cursor() as cur:
@@ -122,11 +196,21 @@ class OracleReader:
 
                 _ILLEGAL = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\ufffd]')
                 total_cargado = 0
+                chunk_actual = 0
 
                 while True:
                     rows = cur.fetchmany(chunk_size)
                     if not rows:
                         break
+
+                    chunk_actual += 1
+                    if chunk_actual <= start_chunk:
+                        total_cargado += len(rows)
+                        logging.info(
+                            f"Progreso [{tabla}]: chunk {chunk_actual} ya procesado previamente. "
+                            f"Saltando {len(rows)} filas."
+                        )
+                        continue
 
                     rows = [
                         tuple(
@@ -138,7 +222,10 @@ class OracleReader:
                     ]
 
                     total_cargado += len(rows)
-                    logging.info(f"Progreso [{tabla}]: {total_cargado} registros cargados.")
+                    logging.info(
+                        f"Progreso [{tabla}]: {total_cargado} registros cargados "
+                        f"(chunk {chunk_actual})."
+                    )
                     yield pd.DataFrame(rows, columns=cols)
         except Exception as e:
             logging.error(f"Error en extraccion de {tabla_full}: {e}")

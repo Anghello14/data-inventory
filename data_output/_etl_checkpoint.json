@@ -1,0 +1,13 @@
+{
+  "output_timestamp": "20260610_102403",
+  "tables": {
+    "DEMANDA": {
+      "status": "completed",
+      "last_completed_chunk": 66,
+      "dead_columns": [
+        "FUN_ID_VALIDA_DEM"
+      ],
+      "dead_columns_checked": true
+    }
+  }
+}
