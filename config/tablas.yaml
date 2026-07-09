@@ -1,9 +1,9 @@
 esquema_origen: SPE
 tablas:
   # INDICE:
-  #   descripcion: Inventario tecnico de la tabla INDICE
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
+  #    descripcion: Inventario tecnico de la tabla INDICE
+  #    destino_sugerido: POSTGRESQL
+  #    sensible: false
   # AREA_INFLUENCIA:
   #   descripcion: Inventario tecnico de la tabla AREA_INFLUENCIA
   #   destino_sugerido: POSTGRESQL
@@ -64,7 +64,35 @@ tablas:
   #   descripcion: Inventario tecnico de la tabla SEC_USUARIO
   #   destino_sugerido: POSTGRESQL
   #   sensible: false
-  DEMANDA:
-    descripcion: Inventario tecnico de la tabla DEMANDA
+  # DEMANDA:
+  #   descripcion: Inventario tecnico de la tabla DEMANDA
+  #   destino_sugerido: POSTGRESQL
+  #   sensible: false
+  REMISION_HIDROCARBUROS:
+    descripcion: Inventario tecnico de la tabla REMISION_HIDROCARBUROS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  REMISION_CARGUE_HIDROCARBUROS:
+    descripcion: Inventario tecnico de la tabla REMISION_CARGUE_HIDROCARBUROS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  SOLICITUDES_BUSQUEDA:
+    descripcion: Inventario tecnico de la tabla SOLICITUDES_BUSQUEDA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  VIEW_SOLICITUDES_BUSC_TRANS:
+    descripcion: Inventario tecnico de la tabla VIEW_SOLICITUDES_BUSC_TRANS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  TEMP_VACANTES_SEGUIMIENTO:
+    descripcion: Inventario tecnico de la tabla TEMP_VACANTES_SEGUIMIENTO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  AUX_SOLICITUDES_MOD_HIDRO:
+    descripcion: Inventario tecnico de la tabla AUX_SOLICITUDES_MOD_HIDRO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_MUN_HID:
+    descripcion: Inventario tecnico de la tabla DEM_MUN_HID
     destino_sugerido: POSTGRESQL
     sensible: false

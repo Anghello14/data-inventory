@@ -1,12 +1,70 @@
 {
-  "output_timestamp": "20260610_122642",
+  "output_timestamp": "20260703_090944",
   "tables": {
-    "DEMANDA": {
+    "OFT_PREFERENCIA_OCUP": {
       "status": "completed",
-      "last_completed_chunk": 66,
-      "dead_columns": [
-        "FUN_ID_VALIDA_DEM"
-      ],
+      "last_completed_chunk": 700,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OFTXPES": {
+      "status": "completed",
+      "last_completed_chunk": 224,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_VARIABLE_CRUCE": {
+      "status": "completed",
+      "last_completed_chunk": 209,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ENVIO": {
+      "status": "completed",
+      "last_completed_chunk": 860,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "REMISION_HIDROCARBUROS": {
+      "status": "completed",
+      "last_completed_chunk": 3,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "REMISION_CARGUE_HIDROCARBUROS": {
+      "status": "completed",
+      "last_completed_chunk": 71,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SOLICITUDES_BUSQUEDA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "VIEW_SOLICITUDES_BUSC_TRANS": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "TEMP_VACANTES_SEGUIMIENTO": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "AUX_SOLICITUDES_MOD_HIDRO": {
+      "status": "completed",
+      "last_completed_chunk": 2,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_MUN_HID": {
+      "status": "completed",
+      "last_completed_chunk": 6,
+      "dead_columns": [],
       "dead_columns_checked": true
     }
   }

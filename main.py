@@ -25,8 +25,6 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-
-
 def _cargar_checkpoint():
     estado_base = {
         "output_timestamp": None,
@@ -48,14 +46,12 @@ def _cargar_checkpoint():
         logging.warning(f"No se pudo leer checkpoint. Se iniciará uno nuevo. Detalle: {e}")
         return estado_base
 
-
 def _guardar_checkpoint(estado):
     CHECKPOINT_FILE.parent.mkdir(parents=True, exist_ok=True)
     tmp_file = CHECKPOINT_FILE.with_suffix('.tmp')
     with tmp_file.open('w', encoding='utf-8') as f:
         json.dump(estado, f, ensure_ascii=False, indent=2)
     tmp_file.replace(CHECKPOINT_FILE)
-
 
 def _obtener_estado_tabla(estado, nombre_tabla):
     tablas = estado.setdefault("tables", {})
