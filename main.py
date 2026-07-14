@@ -4,7 +4,6 @@ import time
 import os
 import json
 from datetime import datetime
-from pathlib import Path
 
 from extract.oracle_reader import OracleReader
 from transform.profiler import DataProfiler
@@ -60,7 +59,6 @@ def _obtener_estado_tabla(estado, nombre_tabla):
             "status": "pending",
             "last_completed_chunk": 0,
             "dead_columns": [],
-            "dead_columns_checked": False
         }
     return tablas[nombre_tabla]
 
@@ -138,7 +136,6 @@ def ejecutar_inventario_completo():
                 # desde checkpoint cuando cambian reglas o datos en origen.
                 columnas_muertas, porcentaje_vacio_por_columna = reader.obtener_estadisticas_vacios(esquema, nombre_tabla)
                 estado_tabla["dead_columns"] = columnas_muertas
-                estado_tabla["dead_columns_checked"] = True
                 _guardar_checkpoint(checkpoint)
 
                 cantidad_muertas = len(columnas_muertas)
@@ -178,10 +175,8 @@ def ejecutar_inventario_completo():
                     excluded_columns=estado_tabla.get("dead_columns", []),
                 ):
                     procesado_al_menos_un_chunk = True
-                    df_input = df_raw
-
-                    profiler = DataProfiler(df_input, nombre_tabla, config_tabla)
-                    df_clean, df_dirty, df_summary, df_nulls = profiler.analizar()
+                    profiler = DataProfiler(df_raw, nombre_tabla, config_tabla)
+                    df_clean, df_dirty, _, _ = profiler.analizar()
 
                     # 4. ESCRITURA (Usamos los resultados del perfilado optimizado)
                     acumular_csv_inventario(

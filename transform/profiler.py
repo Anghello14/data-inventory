@@ -99,42 +99,9 @@ class DataProfiler:
         if not df_clean.empty:
             df_clean = df_clean.drop(columns=['REJECTION_REASON'])
 
-        # 3. DETALLE DE COLUMNAS (Mapeo de tipos Oracle)
-        # Genera una fila por columna con dtype, sugerencias de migración y conteo de nulos
-        conteo_nulos = self.df.isnull().sum()
-        reporte_columnas = []
-        columnas_muertas = [col for col in self.df.columns if (nulos_col := conteo_nulos[col]) == self.total_registros]
-
-        for col in self.df.columns:
-            if col == 'REJECTION_REASON': continue
-            mongo_type, pg_type = self._inferir_tipos_destino(self.df[col])
-            nulos_col = int(conteo_nulos[col])
-            
-            reporte_columnas.append({
-                'COLUMNA': col,
-                'TIPO_ORACLE_PANDAS': str(self.df[col].dtype),
-                'SUGERENCIA_POSTGRES': pg_type,
-                'SUGERENCIA_MONGODB': mongo_type,
-                'CANTIDAD_NULOS': nulos_col,
-                'PORCENTAJE_NULOS': f"{(nulos_col / self.total_registros * 100):.2f}%",
-                'ESTADO_COLUMNA': "MUERTA (BORRAR)" if nulos_col == self.total_registros else "ACTIVA"
-            })
-        df_nulls = pd.DataFrame(reporte_columnas)
-
-        # 4. RESUMEN EJECUTIVO (Cálculo de calidad real)
-        # El índice de calidad = porcentaje de filas que pasaron todas las validaciones
         indice_num = (len(df_clean) / self.total_registros) * 100
-        df_summary = pd.DataFrame([{
-            'TABLA': self.nombre_tabla,
-            'TOTAL_FILAS_ORACLE': self.total_registros,
-            'PESO_ESTIMADO_MB': tamano_mb,
-            'FILAS_LIMPIAS': len(df_clean),
-            'FILAS_CON_ERROR': len(df_dirty),
-            'COLUMNAS_TOTALES': len(self.df.columns) - 1,
-            'COLUMNAS_MUERTAS': len(columnas_muertas),
-            'SENSIBLE': "SI" if self.config.get('sensible') else "NO",
-            'INDICE_CALIDAD': f"{indice_num:.2f}%"
-        }])
+        df_nulls = None
+        df_summary = None
 
         logging.info(f"[{self.nombre_tabla}] Perfilado finalizado. Peso: {tamano_mb} MB. Calidad: {indice_num:.2f}%")
         
