@@ -83,6 +83,23 @@ class OracleReader:
             logging.warning(f"No se pudieron obtener restricciones de {tabla}: {e}")
             return res
 
+    def obtener_columnas_not_null(self, esquema, tabla):
+        # Obtiene columnas con restricción NOT NULL directamente del diccionario de Oracle.
+        query = f"""
+        SELECT COLUMN_NAME
+        FROM ALL_TAB_COLUMNS
+        WHERE OWNER = '{esquema}'
+          AND TABLE_NAME = '{tabla}'
+          AND NULLABLE = 'N'
+        """
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(query)
+                return [row[0] for row in cur.fetchall()]
+        except Exception as e:
+            logging.warning(f"No se pudieron obtener columnas NOT NULL de {esquema}.{tabla}: {e}")
+            return []
+
     def obtener_estadisticas_vacios(self, esquema, tabla):
         # Detecta columnas completamente vacías y calcula porcentaje de vacío por columna.
         # En columnas de texto, "vacía" incluye NULL y también espacios en blanco.

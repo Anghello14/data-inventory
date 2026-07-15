@@ -66,6 +66,23 @@
       "last_completed_chunk": 6,
       "dead_columns": [],
       "dead_columns_checked": true
+    },
+    "CARACTER": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": []
+    },
+    "ORIGEN": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "INSTITUCION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
     }
   }
 }

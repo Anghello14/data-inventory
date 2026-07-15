@@ -52,9 +52,17 @@ class DataProfiler:
             mask_dups = self.df.duplicated(subset=[pk_col], keep=False)
             self.df.loc[mask_dups, 'REJECTION_REASON'] += f"DUPLICADO_EN_PK_{pk_col} | "
 
-        # B. Validación global de campos vacíos
-        # Cualquier campo vacío (NULL o texto en blanco) se considera no funcional
-        # y se envía a DIRTY con formato: "nombre_campo vacio".
+        # B. Validación de campos vacíos con nulabilidad + detección de columnas muertas.
+        # Si la columna permite NULL, no se marca como DIRTY por venir vacía.
+        # Aun así, registramos columnas totalmente vacías para trazabilidad técnica.
+        columnas_obligatorias = {
+            str(col).upper() for col in self.config.get('not_null', []) if col
+        }
+        if pk_col:
+            columnas_obligatorias.add(str(pk_col).upper())
+
+        columnas_muertas_chunk = []
+
         for col in self.df.columns:
             if col == 'REJECTION_REASON':
                 continue
@@ -67,12 +75,19 @@ class DataProfiler:
 
             mask_vacios = mask_nulos | mask_blancos
 
-            # Si la columna está completamente vacía (columna muerta),
-            # se omite de la validación para no enviar toda la tabla a DIRTY.
             if mask_vacios.all():
+                columnas_muertas_chunk.append(col)
+                continue
+
+            if col.upper() not in columnas_obligatorias:
                 continue
 
             self.df.loc[mask_vacios, 'REJECTION_REASON'] += f"{col} vacio | "
+
+        if columnas_muertas_chunk:
+            logging.info(
+                f"[{self.nombre_tabla}] Columnas totalmente vacías en chunk: {columnas_muertas_chunk}"
+            )
 
         # C. DETECCIÓN DE CARACTERES CORRUPTOS (Tildes mal insertadas '?')
         # Buscamos en todas las columnas de texto (object)
