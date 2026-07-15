@@ -1,106 +1,322 @@
 esquema_origen: SPE
 tablas:
-  # INDICE:
-  #    descripcion: Inventario tecnico de la tabla INDICE
-  #    destino_sugerido: POSTGRESQL
-  #    sensible: false
-  # AREA_INFLUENCIA:
-  #   descripcion: Inventario tecnico de la tabla AREA_INFLUENCIA
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # CNO:
-  #   descripcion: Inventario tecnico de la tabla CNO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # OCUPACION:
-  #   descripcion: Inventario tecnico de la tabla OCUPACION
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # CAMPO_OCUPACIONAL:
-  #   descripcion: Inventario tecnico de la tabla CAMPO_OCUPACIONAL
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # AREA_OCUPACIONAL:
-  #   descripcion: Inventario tecnico de la tabla AREA_OCUPACIONAL
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # AREA_DESEMPENO:
-  #   descripcion: Inventario tecnico de la tabla AREA_DESEMPENO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # NIVEL_CUALIFICACION_NUM:
-  #   descripcion: Inventario tecnico de la tabla NIVEL_CUALIFICACION_NUM
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # NIVEL_CUALIFICACION:
-  #   descripcion: Inventario tecnico de la tabla NIVEL_CUALIFICACION
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # JORNADA_TRABAJO:
-  #   descripcion: Inventario tecnico de la tabla JORNADA_TRABAJO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # TIPO_SUELDO:
-  #   descripcion: Inventario tecnico de la tabla TIPO_SUELDO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # TIPO_CONTRATO:
-  #   descripcion: Inventario tecnico de la tabla TIPO_CONTRATO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # REGIONAL:
-  #   descripcion: Inventario tecnico de la tabla REGIONAL
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # CENTRO_SPE:
-  #   descripcion: Inventario tecnico de la tabla CENTRO_SPE
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # FUNCIONARIO:
-  #   descripcion: Inventario tecnico de la tabla FUNCIONARIO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # SEC_USUARIO:
-  #   descripcion: Inventario tecnico de la tabla SEC_USUARIO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # DEMANDA:
-  #   descripcion: Inventario tecnico de la tabla DEMANDA
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # REMISION_HIDROCARBUROS:
-  #   descripcion: Inventario tecnico de la tabla REMISION_HIDROCARBUROS
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # REMISION_CARGUE_HIDROCARBUROS:
-  #   descripcion: Inventario tecnico de la tabla REMISION_CARGUE_HIDROCARBUROS
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # SOLICITUDES_BUSQUEDA:
-  #   descripcion: Inventario tecnico de la tabla SOLICITUDES_BUSQUEDA
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # VIEW_SOLICITUDES_BUSC_TRANS:
-  #   descripcion: Inventario tecnico de la tabla VIEW_SOLICITUDES_BUSC_TRANS
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # TEMP_VACANTES_SEGUIMIENTO:
-  #   descripcion: Inventario tecnico de la tabla TEMP_VACANTES_SEGUIMIENTO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # AUX_SOLICITUDES_MOD_HIDRO:
-  #   descripcion: Inventario tecnico de la tabla AUX_SOLICITUDES_MOD_HIDRO
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # CARACTER:
-  #   descripcion: Inventario tecnico de la tabla CARACTER
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  # ORIGEN:
-  #   descripcion: Inventario tecnico de la tabla ORIGEN
-  #   destino_sugerido: POSTGRESQL
-  #   sensible: false
-  INSTITUCION:
-    descripcion: Inventario tecnico de la tabla INSTITUCION
+  AREA_DESEMPENO:
+    descripcion: Inventario tecnico de la tabla AREA_DESEMPENO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  AREA_INFLUENCIA:
+    descripcion: Inventario tecnico de la tabla AREA_INFLUENCIA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  AUX_SOLICITUDES_MOD_HIDRO:
+    descripcion: Inventario tecnico de la tabla AUX_SOLICITUDES_MOD_HIDRO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ESTADO_CIVIL:
+    descripcion: Inventario tecnico de la tabla ESTADO_CIVIL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ESTADO_OFERTA:
+    descripcion: Inventario tecnico de la tabla ESTADO_OFERTA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ESTRATO:
+    descripcion: Inventario tecnico de la tabla ESTRATO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  JORNADA_TRABAJO:
+    descripcion: Inventario tecnico de la tabla JORNADA_TRABAJO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  NIVEL_CUALIFICACION:
+    descripcion: Inventario tecnico de la tabla NIVEL_CUALIFICACION
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  PAIS:
+    descripcion: Inventario tecnico de la tabla PAIS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  POSICION_FAMILIAR:
+    descripcion: Inventario tecnico de la tabla POSICION_FAMILIAR
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  PROGRAMA_ESPECIAL:
+    descripcion: Inventario tecnico de la tabla PROGRAMA_ESPECIAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  SECCION_CIIU:
+    descripcion: Inventario tecnico de la tabla SECCION_CIIU
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  SEC_USUARIO:
+    descripcion: Inventario tecnico de la tabla SEC_USUARIO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  SOLICITUDES_BUSQUEDA:
+    descripcion: Inventario tecnico de la tabla SOLICITUDES_BUSQUEDA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  SUELDO:
+    descripcion: Inventario tecnico de la tabla SUELDO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  TIPO_CONTRATO:
+    descripcion: Inventario tecnico de la tabla TIPO_CONTRATO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  TIPO_DOC_IDENT:
+    descripcion: Inventario tecnico de la tabla TIPO_DOC_IDENT
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  TIPO_EMPRESA:
+    descripcion: Inventario tecnico de la tabla TIPO_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  TIPO_SUELDO:
+    descripcion: Inventario tecnico de la tabla TIPO_SUELDO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  VARIABLE_CRUCE:
+    descripcion: Inventario tecnico de la tabla VARIABLE_CRUCE
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  FUENTE_SEG_OFERTA:
+    descripcion: Inventario tecnico de la tabla FUENTE_SEG_OFERTA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  NIVEL_CUALIFICACION_NUM:
+    descripcion: Inventario tecnico de la tabla NIVEL_CUALIFICACION_NUM
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEPARTAMENTO:
+    descripcion: Inventario tecnico de la tabla DEPARTAMENTO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DIVISION_CIIU:
+    descripcion: Inventario tecnico de la tabla DIVISION_CIIU
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  AREA_OCUPACIONAL:
+    descripcion: Inventario tecnico de la tabla AREA_OCUPACIONAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  MUNICIPIO:
+    descripcion: Inventario tecnico de la tabla MUNICIPIO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  GRUPO_CIIU:
+    descripcion: Inventario tecnico de la tabla GRUPO_CIIU
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CAMPO_OCUPACIONAL:
+    descripcion: Inventario tecnico de la tabla CAMPO_OCUPACIONAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  REGIONAL:
+    descripcion: Inventario tecnico de la tabla REGIONAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CIIU:
+    descripcion: Inventario tecnico de la tabla CIIU
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OCUPACION:
+    descripcion: Inventario tecnico de la tabla OCUPACION
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CENTRO_SPE:
+    descripcion: Inventario tecnico de la tabla CENTRO_SPE
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CNO:
+    descripcion: Inventario tecnico de la tabla CNO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  FUNCIONARIO:
+    descripcion: Inventario tecnico de la tabla FUNCIONARIO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  INDICE:
+    descripcion: Inventario tecnico de la tabla INDICE
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  EMPRESA:
+    descripcion: Inventario tecnico de la tabla EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  EVENTOS:
+    descripcion: Inventario tecnico de la tabla EVENTOS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  REMISION_HIDROCARBUROS:
+    descripcion: Inventario tecnico de la tabla REMISION_HIDROCARBUROS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OFT_PREFERENCIA_OCUP:
+    descripcion: Inventario tecnico de la tabla OFT_PREFERENCIA_OCUP
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEMANDA:
+    descripcion: Inventario tecnico de la tabla DEMANDA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OFERTA:
+    descripcion: Inventario tecnico de la tabla OFERTA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ACCION_SEGUIMIENTO_DEM:
+    descripcion: Inventario tecnico de la tabla ACCION_SEGUIMIENTO_DEM
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEMANDA$REORG:
+    descripcion: Inventario tecnico de la tabla CZ_DEMANDA$REORG
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEMXPES:
+    descripcion: Inventario tecnico de la tabla CZ_DEMXPES
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEM_ETD_FORM:
+    descripcion: Inventario tecnico de la tabla CZ_DEM_ETD_FORM
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEM_ETD_NFORM:
+    descripcion: Inventario tecnico de la tabla CZ_DEM_ETD_NFORM
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEM_IDIOMA:
+    descripcion: Inventario tecnico de la tabla CZ_DEM_IDIOMA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEM_LICENCIA:
+    descripcion: Inventario tecnico de la tabla CZ_DEM_LICENCIA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEM_VARIABLE:
+    descripcion: Inventario tecnico de la tabla CZ_DEM_VARIABLE
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CZ_DEM_VEHICULO:
+    descripcion: Inventario tecnico de la tabla CZ_DEM_VEHICULO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEMANDA_FUNCION_CPL:
+    descripcion: Inventario tecnico de la tabla DEMANDA_FUNCION_CPL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEMANDA_INDICE:
+    descripcion: Inventario tecnico de la tabla DEMANDA_INDICE
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEMXFUNCIONREL1:
+    descripcion: Inventario tecnico de la tabla DEMXFUNCIONREL1
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEMXFUNCIONREL2:
+    descripcion: Inventario tecnico de la tabla DEMXFUNCIONREL2
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEMXPES:
+    descripcion: Inventario tecnico de la tabla DEMXPES
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_COMP_LABORAL:
+    descripcion: Inventario tecnico de la tabla DEM_COMP_LABORAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_ETD_FORMAL:
+    descripcion: Inventario tecnico de la tabla DEM_ETD_FORMAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_ETD_NO_FORMAL:
+    descripcion: Inventario tecnico de la tabla DEM_ETD_NO_FORMAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_EVENTO:
+    descripcion: Inventario tecnico de la tabla DEM_EVENTO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_IDIOMA:
+    descripcion: Inventario tecnico de la tabla DEM_IDIOMA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_LICENCIA:
+    descripcion: Inventario tecnico de la tabla DEM_LICENCIA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_MUN_HID:
+    descripcion: Inventario tecnico de la tabla DEM_MUN_HID
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_VARIABLE_CRUCE:
+    descripcion: Inventario tecnico de la tabla DEM_VARIABLE_CRUCE
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  DEM_VEHICULO:
+    descripcion: Inventario tecnico de la tabla DEM_VEHICULO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  HIS_DEM_NUMVACANTES:
+    descripcion: Inventario tecnico de la tabla HIS_DEM_NUMVACANTES
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  LOG_DEM_ETD_FORMAL:
+    descripcion: Inventario tecnico de la tabla LOG_DEM_ETD_FORMAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  LOG_DEM_ETD_NO_FORMAL:
+    descripcion: Inventario tecnico de la tabla LOG_DEM_ETD_NO_FORMAL
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  LOG_DEM_IDIOMA:
+    descripcion: Inventario tecnico de la tabla LOG_DEM_IDIOMA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  MC_BANIN_PROG_DEMANDA:
+    descripcion: Inventario tecnico de la tabla MC_BANIN_PROG_DEMANDA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  MC_BANIN_PROG_DEMANDA_2022:
+    descripcion: Inventario tecnico de la tabla MC_BANIN_PROG_DEMANDA_2022
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CORREO_OFT_EMP:
+    descripcion: Inventario tecnico de la tabla CORREO_OFT_EMP
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ENVIO:
+    descripcion: Inventario tecnico de la tabla ENVIO
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ENVIO_SENSIBILIZACION:
+    descripcion: Inventario tecnico de la tabla ENVIO_SENSIBILIZACION
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  INVITACION:
+    descripcion: Inventario tecnico de la tabla INVITACION
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OFTXPES:
+    descripcion: Inventario tecnico de la tabla OFTXPES
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OFT_CORREO_DEM:
+    descripcion: Inventario tecnico de la tabla OFT_CORREO_DEM
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OFT_CTL_CONSULTA_DEM:
+    descripcion: Inventario tecnico de la tabla OFT_CTL_CONSULTA_DEM
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  OFT_CTL_SOCIAL_QUEJA:
+    descripcion: Inventario tecnico de la tabla OFT_CTL_SOCIAL_QUEJA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  REMISION_CARGUE_HIDROCARBUROS:
+    descripcion: Inventario tecnico de la tabla REMISION_CARGUE_HIDROCARBUROS
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  CONVENIO_GESTION:
+    descripcion: Inventario tecnico de la tabla CONVENIO_GESTION
     destino_sugerido: POSTGRESQL
     sensible: false
