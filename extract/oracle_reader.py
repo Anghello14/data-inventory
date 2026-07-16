@@ -214,16 +214,25 @@ class OracleReader:
             if excluded_columns:
                 logging.info(f"[{tabla}] Columnas excluidas por muertas: {sorted(excluded_columns)}")
 
-            query = f"SELECT {', '.join(select_parts)} FROM {tabla_full} ORDER BY ROWID"
+            offset_rows = max(int(start_chunk), 0) * int(chunk_size)
+            columnas_select = ', '.join(select_parts)
+            query = (
+                "SELECT * FROM ("
+                f"SELECT {columnas_select}, ROW_NUMBER() OVER (ORDER BY ROWID) AS RN "
+                f"FROM {tabla_full}"
+                ") "
+                "WHERE RN > :offset_rows "
+                "ORDER BY RN"
+            )
 
             # 3. Extraccion real sin datos binarios por lotes
             with self.conn.cursor() as cur:
                 cur.arraysize = 25000
-                cur.execute(query)
+                cur.execute(query, offset_rows=offset_rows)
 
                 _ILLEGAL = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\ufffd]')
-                total_cargado = 0
-                chunk_actual = 0
+                total_cargado = offset_rows
+                chunk_actual = int(start_chunk)
 
                 while True:
                     rows = cur.fetchmany(chunk_size)
@@ -231,13 +240,6 @@ class OracleReader:
                         break
 
                     chunk_actual += 1
-                    if chunk_actual <= start_chunk:
-                        total_cargado += len(rows)
-                        logging.info(
-                            f"Progreso [{tabla}]: chunk {chunk_actual} ya procesado previamente. "
-                            f"Saltando {len(rows)} filas."
-                        )
-                        continue
 
                     rows = [
                         tuple(
@@ -253,10 +255,11 @@ class OracleReader:
                         f"Progreso [{tabla}]: {total_cargado} registros cargados "
                         f"(chunk {chunk_actual})."
                     )
-                    yield pd.DataFrame(rows, columns=cols)
+                    df_chunk = pd.DataFrame(rows, columns=cols + ['RN'])
+                    yield df_chunk.drop(columns=['RN'])
         except Exception as e:
             logging.error(f"Error en extraccion de {tabla_full}: {e}")
-            return
+            raise
 
     def close(self):
         # Libera el recurso de conexión al finalizar el pipeline
