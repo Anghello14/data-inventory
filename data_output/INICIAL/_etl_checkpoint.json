@@ -1,0 +1,17 @@
+{
+  "output_timestamp": "20260720_221425",
+  "tables": {
+    "INSTITUCION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TIPO_CSPE": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    }
+  }
+}

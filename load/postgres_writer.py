@@ -1,5 +1,6 @@
 import logging
 import re
+import uuid
 from pathlib import Path
 
 import pandas as pd
@@ -20,6 +21,12 @@ _IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 class PostgresCsvLoader:
+    _INT_RANGES = {
+        "smallint": (-32768, 32767),
+        "integer": (-2147483648, 2147483647),
+        "bigint": (-9223372036854775808, 9223372036854775807),
+    }
+
     def __init__(self):
         self._validate_env()
 
@@ -73,6 +80,69 @@ class PostgresCsvLoader:
             cur.execute(query, (schema, table))
             return [row[0] for row in cur.fetchall()]
 
+    def _get_table_uuid_columns(self, conn, schema: str, table: str):
+        query = """
+            SELECT column_name
+            FROM information_schema.columns
+            WHERE table_schema = %s
+              AND table_name = %s
+              AND data_type = 'uuid'
+        """
+
+        with conn.cursor() as cur:
+            cur.execute(query, (schema, table))
+            return {row[0] for row in cur.fetchall()}
+
+    def _get_table_column_types(self, conn, schema: str, table: str):
+        query = """
+            SELECT column_name, data_type
+            FROM information_schema.columns
+            WHERE table_schema = %s
+              AND table_name = %s
+        """
+
+        with conn.cursor() as cur:
+            cur.execute(query, (schema, table))
+            return {row[0]: row[1] for row in cur.fetchall()}
+
+    @staticmethod
+    def _is_valid_uuid(value) -> bool:
+        if value is None:
+            return True
+        if not isinstance(value, str):
+            return False
+        try:
+            uuid.UUID(value)
+            return True
+        except (ValueError, AttributeError, TypeError):
+            return False
+
+    @staticmethod
+    def _is_int_like(value) -> bool:
+        if value is None:
+            return True
+        if isinstance(value, int):
+            return True
+        if not isinstance(value, str):
+            return False
+        text = value.strip()
+        if text == "":
+            return True
+        if text[0] in {"+", "-"}:
+            text = text[1:]
+        return text.isdigit()
+
+    @classmethod
+    def _is_int_in_range(cls, value, data_type: str) -> bool:
+        if value is None:
+            return True
+        min_value, max_value = cls._INT_RANGES[data_type]
+        try:
+            num = int(str(value).strip())
+        except (TypeError, ValueError):
+            return False
+        return min_value <= num <= max_value
+
     @staticmethod
     def _resolve_csv_path(csv_path: str) -> Path:
         source = Path(csv_path)
@@ -110,6 +180,8 @@ class PostgresCsvLoader:
 
         try:
             table_columns = self._get_table_columns(conn, schema_name, table_name)
+            table_uuid_columns = self._get_table_uuid_columns(conn, schema_name, table_name)
+            table_column_types = self._get_table_column_types(conn, schema_name, table_name)
             if not table_columns:
                 raise ValueError(f"No existe la tabla destino {schema_name}.{table_name}")
 
@@ -164,6 +236,35 @@ class PostgresCsvLoader:
 
                     if not rows:
                         continue
+
+                    for row_idx, row in zip(chunk.index.tolist(), rows):
+                        for col_idx, col_name in enumerate(mapped_columns, start=1):
+                            value = row[col_idx - 1]
+                            csv_line = int(row_idx) + 2  # +1 por base 1 y +1 por cabecera
+
+                            if col_name in table_uuid_columns and not self._is_valid_uuid(value):
+                                raise ValueError(
+                                    "Discrepancia de tipo UUID en cabecera "
+                                    f"'{col_name}' (columna {col_idx}, linea CSV {csv_line}): "
+                                    f"valor invalido '{value}'"
+                                )
+
+                            col_type = table_column_types.get(col_name)
+                            if col_type in self._INT_RANGES:
+                                if not self._is_int_like(value):
+                                    raise ValueError(
+                                        "Discrepancia de tipo numerico en cabecera "
+                                        f"'{col_name}' (columna {col_idx}, linea CSV {csv_line}): "
+                                        f"se esperaba {col_type}, valor invalido '{value}'"
+                                    )
+                                if not self._is_int_in_range(value, col_type):
+                                    min_value, max_value = self._INT_RANGES[col_type]
+                                    raise ValueError(
+                                        "Discrepancia de rango numerico en cabecera "
+                                        f"'{col_name}' (columna {col_idx}, linea CSV {csv_line}): "
+                                        f"{value} fuera de rango para {col_type} "
+                                        f"[{min_value}, {max_value}]"
+                                    )
 
                     if dry_run:
                         total_inserted += len(rows)

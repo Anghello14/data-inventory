@@ -1,0 +1,3985 @@
+codigo,departamento,pais_id
+66075,uthai thani,66
+66076,uttaradit,66
+79001,carriacou,79
+79002,petite martinique,79
+79003,saint andrew,79
+79004,saint david,79
+79005,saint george,79
+79006,saint john,79
+79007,saint mark,79
+79008,saint patrick,79
+79009,saint george´s,79
+81001,hokkaido,81
+81002,aichi,81
+81003,akita,81
+81004,aomori,81
+81005,chiba,81
+81006,fukui,81
+81007,fukushima,81
+81008,gifu,81
+81009,gumma,81
+81010,hiroshima,81
+81011,hyogo,81
+81012,ibaraki,81
+81013,ishikawa,81
+81014,iwate,81
+81015,kanagawa,81
+81016,kyoto,81
+81017,mie,81
+81018,miyagi,81
+81019,nagano,81
+81020,nara,81
+81021,niigata,81
+81022,okayama,81
+81023,osaka,81
+81024,saitama,81
+81025,shiga,81
+81026,shimane,81
+81027,shizuoka,81
+81028,tochigi,81
+81029,tokio,81
+81030,tottori,81
+81031,toyama,81
+81032,wakayama,81
+81033,yamagata,81
+81034,yamaguchi,81
+81035,yamanashi,81
+81036,honshu,81
+81037,fukuoka,81
+81038,kagoshima,81
+81039,kumamoto,81
+81040,miyazaki,81
+81041,nagasaki,81
+81042,oita,81
+81043,saga,81
+81044,kiu-shiu,81
+81045,ehime,81
+81046,kagawa,81
+81047,kochi,81
+81048,tokushima,81
+81049,shikoku,81
+81050,okinawa,81
+82001,cheju,82
+82002,chungchong meridional,82
+82003,chungchong septentrional,82
+82004,cholla meridional,82
+82005,cholla septentrional,82
+82006,kangwon,82
+82007,kyonggy,82
+82008,kyongsang meridional,82
+82009,kyongsang septentrional,82
+82010,seúl,82
+82011,pusan,82
+82012,taegu,82
+82013,inchon,82
+82014,kwangju,82
+82015,taejon,82
+84001,an giang,84
+84002,ben tre,84
+84003,can tho,84
+84004,dong thap,84
+84005,kien giang,84
+84006,long an,84
+84007,minh hai,84
+84008,soc trang,84
+84009,tien giang,84
+84010,tra vinh,84
+84011,vinh long,84
+84012,dong bang song cuu long,84
+84013,ha tay,84
+84014,hai hung,84
+84015,haiphong (municipalidad),84
+84016,hanoi (capital),84
+84017,nam ha,84
+84018,ninh binh,84
+84019,thai binh,84
+84020,dong bang song hong,84
+84021,ba ria-vung tau,84
+84022,dong nai,84
+84023,ho chi minh (municipalidad),84
+84024,song be,84
+84025,tay ninh,84
+84026,dong nam bo,84
+84027,binh dinh,84
+84028,binh thuan,84
+84029,khanh hoa,84
+84030,ninh thuan,84
+84031,phu yen,84
+84032,quang nam-da nang,84
+84033,quang ngai,84
+84034,duyen hai mien trung,84
+84035,ha tinh,84
+84036,nghe an,84
+84037,quang binh,84
+84038,quanq tri,84
+84039,thanh hoa,84
+84040,thua thien-hue,84
+84041,khu bon cu,84
+84042,bac thai,84
+84043,cao bang,84
+84044,ha bac,84
+84045,ha giang,84
+84046,hoa binh,84
+84047,lai chau,84
+84048,lang son,84
+84049,lao cai,84
+84050,quang ninh,84
+84051,son la,84
+84052,tuyen quang,84
+84053,vinh phu,84
+84054,yen bai,84
+84055,mien nui va trung du,84
+84056,dak lak,84
+84057,gia lai-kon tum,84
+84058,kon tum,84
+84059,lam dong,84
+84060,tay nguyen,84
+86001,guangxi zhuang,86
+86002,guangdong,86
+86003,hainan,86
+86004,henan,86
+86005,hunan,86
+86006,hubei,86
+86007,jiangxi,86
+86008,centromeridional,86
+86009,gansu,86
+86010,ningxia hui,86
+86011,qinghai,86
+86012,shaanxi,86
+86013,xinjiang uygur,86
+86014,nordoccidental,86
+86015,heilongjiang,86
+86016,jilin,86
+86017,liaoning,86
+86018,mongolia interior,86
+86019,nordoriental,86
+86020,anhui,86
+86021,fujian,86
+86022,jiangsu,86
+86023,shanghai,86
+86024,shandong,86
+86025,zhejiang,86
+86026,oriental,86
+86027,hebei,86
+86028,pekín,86
+86029,shanxi,86
+86030,tianjin,86
+86031,septentrional,86
+86032,guizhou,86
+86033,sicchuan,86
+86034,xizang (tíbet),86
+86035,yunnan,86
+86036,sudoccidental,86
+86037,hong kong,86
+90001,adiyaman,90
+90002,aksaray,90
+90003,amasya,90
+90004,ankara,90
+90005,cankiri,90
+90006,corum,90
+90007,karaman,90
+90008,kahramanmaras,90
+90009,kayseri,90
+90010,kirikkale,90
+90011,kirsehir,90
+90012,konya,90
+90013,malatya,90
+90014,nevsehir,90
+90015,nigde,90
+90016,sivas,90
+90017,tokat,90
+90018,yozgat,90
+90019,anatolia central,90
+90020,afyonkarahisar,90
+90021,bilecik,90
+90022,burdur,90
+90023,denizli,90
+90024,eskisehir,90
+90025,isparta,90
+90026,kütahya,90
+90027,usak,90
+90028,anatolia occidental,90
+90029,agri,90
+90030,batman,90
+90031,bayburt,90
+90032,bingöl,90
+90033,bitlis,90
+90034,diyarbakir,90
+90035,elazig,90
+90036,erzincan,90
+90037,erzurum,90
+90038,gümüshane,90
+90039,hakkari,90
+90040,kars,90
+90041,mus,90
+90042,siirt,90
+90043,sirnak,90
+90044,tunceli,90
+90045,van,90
+90046,anatolia oriental,90
+90047,gaziantep,90
+90048,mardin,90
+90049,sanliurfa,90
+90050,anatolia sudoriental,90
+90051,artvin,90
+90052,bolu,90
+90053,giresun,90
+90054,kastamonu,90
+90055,ordu,90
+90056,rize,90
+90057,sakarya,90
+90058,samsun,90
+90059,sinop,90
+90060,trebisonda,90
+90061,zonguldak,90
+90062,costas del mar negro,90
+90063,adana,90
+90064,antalia,90
+90065,hatay,90
+90066,icel,90
+90067,costas del mediterráneo,90
+90068,aydin,90
+90069,balikesir,90
+90070,bursa,90
+90071,canakkale,90
+90072,esmirna,90
+90073,estambul,90
+90074,kocaeli,90
+90075,manisa,90
+90076,mugla,90
+90077,mármara y costas del egeo,90
+90078,canakkale,90
+90079,edirne,90
+90080,estambul,90
+90081,kocaeli,90
+90082,manisa,90
+90083,mugla,90
+90084,tracia,90
+91001,andhra pradesh,91
+91002,arunachal pradesh,91
+91003,assam,91
+91004,bengala occidental,91
+91005,bihar,91
+91006,goa,91
+91007,gujarat,91
+91008,haryana,91
+91009,himachal pradesh,91
+91010,jammu y cachemira,91
+91011,karnataka,91
+91012,kerala,91
+91013,madhya pradesh,91
+91014,maharashtra,91
+91015,manipur,91
+91016,meghalaya,91
+91017,mizoram,91
+91018,nagaland,91
+91019,orissa,91
+91020,punjab,91
+91021,rajasthan,91
+91022,sikkim,91
+91023,tamil nadu,91
+91024,tripura,91
+91025,uttar pradesh,91
+91026,andamán y nicobar,91
+91027,chandigarh,91
+91028,dadra y nagar haveli,91
+91029,daman y diu,91
+91030,delhi,91
+91031,lakshadweep,91
+91032,pondicherry,91
+92001,beluchistán,92
+92002,frontera del noroeste,92
+92003,punjab,92
+92004,sind,92
+92005,islamabad,92
+94001,kandy,94
+94002,matale,94
+94003,nuwara eliya,94
+94004,central,94
+94005,anuradhapura,94
+94006,polonnaruwa,94
+94007,central norte,94
+94008,galle,94
+94009,hambantota,94
+94010,matara,94
+94011,meridional,94
+94012,kurunegala,94
+94013,puttalam,94
+94014,noroeste,94
+94015,colombo,94
+94016,gampaha,94
+94017,kalutara,94
+94018,occidental,94
+94019,amparai,94
+94020,batticaloa,94
+94021,trincomalee,94
+94022,oriental,94
+94023,jaffna,94
+94024,kilinochchi,94
+593010,manabí costa,593
+593011,galápagos insular,593
+593012,azuay,593
+593013,bolívar,593
+593014,cañar,593
+593015,carchi,593
+593016,chimborazo,593
+593017,cotopaxi,593
+593018,imbabura,593
+593019,loja,593
+593020,pichincha,593
+593021,tungurahua sierra,593
+595001,alto paraguay,595
+595002,boquerón,595
+595003,presidente hayes,595
+595004,región occidental,595
+595005,alto paraná,595
+595006,amambay,595
+595007,caaguazú,595
+595008,caazapá,595
+595009,canindiyú,595
+595010,central,595
+595011,concepción,595
+595012,cordillera,595
+595013,guairá,595
+595014,itapúa,595
+595015,misiones,595
+595016,ñeembucú,595
+595017,paraguarí,595
+595018,san pedro,595
+595019,región oriental,595
+597001,brokopondo,597
+597002,commenwijne,597
+597003,coronie,597
+597004,marowijne,597
+597005,nickerie,597
+597006,para,597
+597007,saramacca,597
+597008,sipaliwini,597
+597009,wanica,597
+597010,paramaribo,597
+598001,artigas,598
+598002,canelones,598
+598003,cerro largo,598
+598004,colonia,598
+598005,durazno,598
+598006,flores,598
+598007,florida,598
+598008,lavalleja,598
+598009,maldonado,598
+598010,montevideo,598
+598011,paysandú,598
+598012,río negro,598
+598013,rivera,598
+598014,rocha,598
+598015,salto,598
+598016,san josé,598
+598017,soriano,598
+598018,tacuarembó,598
+598019,treinta y tres,598
+673001,belait,673
+673002,brunei-muara,673
+673003,temburong,673
+673004,tutong,673
+675001,central,675
+675002,chimbu,675
+675003,enga,675
+675004,gulf,675
+675005,highlands meridional,675
+675006,highlands occidental,675
+675007,highlands oriental,675
+675008,madang,675
+675009,manus,675
+675010,milne bay,675
+675011,morobe,675
+675012,nueva bretaña este,675
+675013,nueva bretaña oeste,675
+675014,nueva irlanda,675
+675015,occidental,675
+675016,salomón norte,675
+675017,sepik este,675
+675018,sepik oeste,675
+675019,septentrional,675
+675020,port moresby,675
+676001,eua,676
+676002,ha´apai,676
+676003,niuas,676
+676004,tongatapu,676
+676005,vava´u.,676
+678001,ambae/maewo,678
+678002,ambrym,678
+678003,banks/torres,678
+678004,éfaté,678
+678005,épi,678
+678006,malekula,678
+678007,paama,678
+678008,pentecost,678
+678009,santo/malo,678
+678010,shepherd,678
+678011,taféa,678
+685001,savaii,685
+685002,fa´aseleleaga,685
+685003,gaga´emauga,685
+685004,gaga´ifomauga,685
+685005,palauli,685
+685006,satupa´itea,685
+685007,vaisigano,685
+685008,upolu,685
+685009,a´ana,685
+685010,aiga-i-le-tai,685
+685011,atua,685
+685012,tuamasaga,685
+685013,vaa-o-fonoti,685
+686001,gilbert o kiribati,686
+686002,abaiang,686
+686003,abemama,686
+686004,aranuka,686
+686005,arorae,686
+686006,banaba,686
+686007,beru,686
+686008,butaritari,686
+686009,kuria,686
+686010,maiana,686
+686011,makin,686
+686012,marakei,686
+686013,nikunau,686
+686014,nonouti,686
+686015,onotoa,686
+686016,tabiteuea septentrional,686
+686017,tabiteuea meridional,686
+686018,tamana,686
+686019,tarawa septentrional,686
+686020,tarawa meridional,686
+686021,line,686
+686022,islas norte,686
+686023,kiritimati (christmas),686
+686024,tabuaerean (fanning),686
+686025,teraina (washington),686
+686026,"islas del sur (caroline, flint, malden, starbuck, vostok)",686
+686027,"fénix (birnie, enderbury,kanton [canton], mckean, manra [sidney], nikumaroro [gardner], orona [hull], rawaki [fénix])",686
+691001,kosrae,691
+691002,ponape (ponhpei),691
+691003,truk (chuuk),691
+691004,yap,691
+850001,chagang,850
+850002,hamgyong meridional,850
+850003,hamgyong septentrional,850
+850004,hwanghae meridional,850
+850005,hwanghae septentrional,850
+850006,kangwon,850
+850007,pyongan meridional,850
+850008,pyongan septentrional,850
+850009,yanggang,850
+850010,kaesong,850
+850011,namp´o,850
+850012,pyongyang,850
+850013,hyangsan-chigu,850
+855001,phnom penh sihanoukvillel,855
+855002,kompong som,855
+855003,battambang,855
+855004,kampot,855
+855005,kandal,855
+855006,koh kong,855
+855007,kompong cham,855
+855008,kompong chhnang,855
+855009,kompong speu,855
+855010,kompong thom,855
+855011,kratie,855
+855012,mondolkiri,855
+855013,oddar meanchey,855
+855014,preah vihear,855
+855015,prey veng,855
+855016,pursat,855
+855017,ratanakiri,855
+855018,siem reap,855
+855019,stung treng,855
+855020,svay rieng,855
+855021,takeo,855
+856001,attopeu,856
+856002,bokeo,856
+856003,bolikhamsai,856
+856004,champassak,856
+856005,chiengkhouang,856
+856006,houaphanh,856
+856007,khammouane,856
+856008,luang-namtha,856
+856009,luang-prabang,856
+856010,oudomxay,856
+856011,phongsaly,856
+856012,saravane,856
+856013,savannakhet,856
+856014,sayaboury,856
+856015,sekong,856
+856016,vientiane,856
+856017,vientiane,856
+880001,barisal,880
+880002,chittagong,880
+880003,dhaka,880
+880004,khulna,880
+880005,rajshahi,880
+960001,addu,960
+960002,ari dhekunu gofi,960
+960003,ari uthuru gofi,960
+960004,faadhippolhu,960
+960005,felidhu,960
+960006,foammulah,960
+960007,hadhdhunmathi,960
+960008,huvadhu norte,960
+960009,huvadhu sur,960
+960010,kolhumadulu,960
+960011,maalhosmadulu norte,960
+960012,maalhosmadulu sur,960
+960013,male,960
+960014,miladhunmadulu norte,960
+960015,miladhunmadulu sur,960
+960016,mulakatholhu,960
+960017,nilandhe norte,960
+960018,nilandhe sur,960
+960019,thiladhunmathi norte,960
+960020,thiladhunmathi sur,960
+961001,beirut,961
+961002,beqaa,961
+961003,líbano del norte,961
+961004,líbano del sur,961
+961005,monte líbano,961
+962001,amman,962
+962002,balqa,962
+962003,irbid,962
+962004,karak,962
+962005,ma´an,962
+962006,mafraq,962
+962007,tafilah,962
+962008,zarqa,962
+963001,alepo,963
+963002,damasco,963
+963003,deir-ez-zor,963
+963004,dera´a,963
+963005,hama,963
+963006,hasakeh,963
+963007,homs,963
+963008,idlib,963
+963009,latakia,963
+963010,quneitra,963
+963011,raqqa,963
+963012,soueida,963
+963013,tartous,963
+963014,damasco,963
+964001,anbar,964
+964002,babylon,964
+964003,bagdad,964
+964004,basora,964
+964005,diala,964
+964006,kerbela,964
+964007,maysan,964
+964008,muthanna,964
+964009,najaf,964
+964010,nineveh,964
+964011,qadissiya,964
+964012,salah ad-din,964
+964013,ta´min,964
+964014,thi-qar,964
+964015,wasét,964
+964016,dahuk,964
+964017,irbil,964
+964018,sulaymaniya,964
+965001,ahmadi,965
+965002,farawaniya,965
+965003,hawalli,965
+965004,jahra,965
+965005,kuwait,965
+966001,asir,966
+966002,baha,966
+966003,frontera septentrional,966
+966004,gasim,966
+966005,ha´il,966
+966006,jawt,966
+966007,jizan,966
+966008,meca,966
+966009,medina,966
+966010,najran,966
+966011,oriental,966
+966012,qurayyat,966
+966013,riyadh,966
+966014,tabuk,966
+967001,"bayda, al-",967
+967002,dhamar,967
+967003,hajjah,967
+967004,"hudaydah, al-",967
+967005,ibb,967
+967006,"jawf, al-",967
+967007,"mahwit, al-",967
+967008,ma´rib,967
+967009,sa´dah,967
+30025,acarnania y etolia,30
+30026,acaya,30
+30027,élide,30
+30028,grecia occidental,30
+30029,cefalonia,30
+30030,corfú,30
+30031,leucada,30
+30032,zante,30
+30033,islas jónicas,30
+30034,calcídica,30
+30035,imathia,30
+30036,kilkis,30
+30037,pella,30
+30038,piería,30
+30039,salónica,30
+30040,seres,30
+30041,macedonia central,30
+30042,florina,30
+30043,grevena,30
+30044,kastoría,30
+30045,kozani,30
+30046,macedonia occidental,30
+30047,drama,30
+30048,ebros,30
+30049,kavala,30
+30050,rhodope,30
+30051,xanthi,30
+30052,macedonia oriental y tracia,30
+30053,arcadia,30
+30054,argólida,30
+30055,nauplina corinto,30
+30056,laconia,30
+30057,mesenia,30
+30058,peloponeso,30
+30059,hagion oros,30
+30060,karditza,30
+30061,larisa,30
+30062,magnesia,30
+30063,triccala,30
+30064,tesalia,30
+32001,bruselas,32
+32002,flandes,32
+32003,amberes,32
+32004,brabante (p. flamenca),32
+32005,flandes occidental,32
+32006,flandes oriental,32
+32007,limburgo,32
+32008,valonia,32
+32009,brabante (p. valona),32
+32010,hainaut,32
+32011,lieja,32
+32012,luxemburgo,32
+32013,namur,32
+33001,alto rhin,33
+33002,bajo rhin,33
+33003,alsacia,33
+33004,eure,33
+33005,seine-maritime,33
+33006,alta normandía,33
+33007,dordoña,33
+33008,gironde,33
+33009,las landas,33
+33010,lot-et-garonne,33
+33011,pirineos atlánticos,33
+33012,aquitania,33
+33013,allier,33
+33014,cantal,33
+33015,alto loira,33
+33016,puy-de-dôme,33
+33017,auvernia,33
+33018,calvados,33
+33019,mancha,33
+33020,orne,33
+33021,baja normandía,33
+33022,côte-d´or,33
+33023,nièvre,33
+33024,saône-et-loire,33
+33025,yonne,33
+33026,borgoña,33
+33027,côtes-d´armor,33
+33028,finisterre,33
+33029,ille-et-vilaine,33
+33030,morbihan,33
+33031,bretaña,33
+33032,cher,33
+33033,eure-et-loir,33
+33034,indre,33
+33035,indre-et-loire,33
+33036,loir-et-cher,33
+33037,loiret,33
+33038,centro,33
+33039,alta córcega,33
+33040,córcega del sur,33
+33041,córcega,33
+33042,alto marne,33
+33043,ardenas,33
+33044,aube,33
+33045,marne,33
+33046,champaña-ardenas,33
+33047,alto-saona,33
+33048,doubs,33
+33049,jura,33
+33050,territorio de belfort,33
+33051,franco-condado,33
+33052,essonne,33
+33053,hauts-de-seine,33
+33054,parís,33
+33055,sena y marne,33
+33056,sena-saint-denis,33
+33057,val-de-marne,33
+33058,val-d´oise,33
+33059,yvelines,33
+33060,isla de francia,33
+33061,aude,33
+33062,gard,33
+33063,hérault,33
+33064,lozère,33
+33065,pirineos orientales,33
+33066,languedoc-rosellón,33
+33067,alto vienne,33
+33068,corrèze,33
+33069,creuse,33
+33070,limousin,33
+33071,meurthe y mosela,33
+33072,mosa,33
+33073,mosela,33
+33074,vosgos,33
+33075,lorena,33
+33076,alto garona,33
+33077,alto pirineos,33
+33078,ariège,33
+33079,aveyron,33
+33080,gers,33
+33081,lot,33
+33082,tarn,33
+33083,tarn y garona,33
+33084,midi-pyrénées,33
+33085,nord,33
+33086,paso de calais,33
+33087,nord-paso de calais,33
+33088,loira atlántico,33
+33089,maine-et-loire,33
+33090,mayenne,33
+33091,sarthe,33
+33092,vendée,33
+33093,país del loira,33
+33094,aisne,33
+33095,oise,33
+33096,somme,33
+33097,picardía,33
+33098,charente,33
+33099,charente-marítimo,33
+33100,deux sèvres,33
+33101,vienne,33
+33102,poitou-charentes,33
+33103,altos alpes,33
+33104,alpes de alta provenza,33
+33105,alpes marítimos,33
+213039,skikda,213
+213040,souk ahras,213
+213041,tamanrasset,213
+213042,tbessa,213
+213043,tiaret,213
+213044,tindouf,213
+52030,chiapas,52
+52031,colima,52
+52032,guerrero,52
+52033,oaxaca,52
+53001,camagüey,53
+53002,ciego de ávila,53
+53003,cienfuegos,53
+53004,ciudad de la habana,53
+53005,granma,53
+53006,guantánamo,53
+53007,"habana, la",53
+53008,holguín,53
+53009,isla de la juventud,53
+53010,matanzas,53
+53011,pinar del río,53
+53012,sancti spíritus,53
+53013,santiago de cuba,53
+53014,"tunas, las",53
+53015,villa clara,53
+54001,catamarca,54
+54002,mendoza,54
+54003,la rioja,54
+54004,san juan andina,54
+54005,córdoba,54
+54006,la pampa,54
+54007,san luis centro,54
+54008,distrito federal,54
+54009,buenos aires,54
+54010,corrientes,54
+54011,chaco,54
+54012,entre ríos,54
+54013,formosa,54
+54014,misiones,54
+54015,santa fe litoral,54
+54016,jujuy,54
+54017,salta,54
+54018,santiago del estero,54
+54019,tucumán norte,54
+54020,chubut,54
+54021,neuquén,54
+54022,río negro,54
+54023,santa cruz,54
+54024,tierra del fuego patagonia,54
+55001,acre,55
+55002,amapá,55
+55003,amazonas,55
+55004,pará,55
+55005,rondônia,55
+55006,roraima,55
+55007,tocantins,55
+55008,norte,55
+55009,alagoas,55
+55010,bahia,55
+55011,ceará,55
+55013,paraíba,55
+55014,pernambuco,55
+55015,piauí,55
+55016,rio grande do norte,55
+55017,sergipe,55
+55018,nordeste,55
+55019,espírito santo,55
+55020,minas gerais,55
+55021,rio de janeiro,55
+55023,sudeste,55
+55024,paraná,55
+55025,rio grande do sul,55
+55026,santa catarina,55
+55027,sur,55
+55028,goiás,55
+55029,matogrosso,55
+55030,matogrosso do sul,55
+55031,distrito federal,55
+55032,centro-oeste,55
+56001,i tarapacá,56
+56002,ii antofagasta,56
+56003,iii atacama,56
+56004,iv coquimbo,56
+56005,v valparaíso,56
+56006,vi libertador general bernardo o´higgins,56
+56007,vii maule,56
+56008,viii biobío,56
+56009,ix la araucanía,56
+56010,x los lagos,56
+56011,xi aisén del general carlos ibáñez del campo,56
+56012,xii magallanes y antártica chilena,56
+56013,región metropolitana de santiago,56
+57005,antioquia,57
+57008,atlántico,57
+57011,bogotá d.c.,57
+57013,bolívar,57
+57015,boyacá,57
+57017,caldas,57
+57018,caquetá,57
+57019,cauca,57
+57020,cesar,57
+57023,córdoba,57
+57025,cundinamarca,57
+57027,chocó,57
+57041,huila,57
+57044,"guajira, la",57
+57047,magdalena,57
+57050,meta,57
+57052,nariño,57
+57054,norte de santander,57
+57063,quindío,57
+57066,risaralda,57
+57068,santander,57
+57070,sucre,57
+57073,tolima,57
+57076,valle del cauca,57
+57081,arauca,57
+57085,casanare,57
+57086,putumayo,57
+57088,san andrés y providencia,57
+57091,amazonas,57
+57094,guainía,57
+57095,guaviare,57
+57097,vaupés,57
+57099,vichada,57
+58001,amazonas,58
+58002,anzoátegui,58
+58003,apure,58
+58004,aragua,58
+58005,barinas,58
+58006,bolívar,58
+58007,carabobo,58
+58008,cojedes,58
+58009,delta amacuro,58
+58010,falcón,58
+58011,guárico,58
+58012,lara,58
+58013,mérida,58
+58014,miranda,58
+58015,monagas,58
+58016,nueva esparta,58
+58017,portuguesa,58
+58018,sucre,58
+58019,táchira,58
+58020,trujillo,58
+58021,yaracuy,58
+58022,zulia,58
+58023,dependencias federales,58
+58024,distrito federal,58
+60001,malasia oriental,60
+60002,sabah,60
+60003,sarawak,60
+60004,malasia occidental,60
+60005,johor,60
+60006,kedah,60
+60007,kelantán,60
+60008,melaka,60
+1001,alberta,1
+1002,columbia británica,1
+1003,isla príncipe eduardo,1
+1004,manitoba,1
+1005,nueva brunswick,1
+1006,nueva escocia,1
+1007,ontario,1
+1008,quebec,1
+1009,saskatchewan,1
+1010,terranova,1
+46004,gävleborg,46
+46005,göteborg-bohus,46
+46006,gotlandia,46
+46007,halland,46
+46008,jämtland,46
+60009,negeri sembilan,60
+60010,pahang,60
+60011,perak,60
+60012,perlis,60
+60013,pelau pinang,60
+60014,selangor,60
+60015,terengganu,60
+60016,territorios federales,60
+60017,kuala lumpur,60
+60018,labuan,60
+61001,australia meridional,61
+61002,australia occidental,61
+61003,nueva gales del sur,61
+61004,queensland,61
+61005,tasmania,61
+61006,victoria,61
+61007,territorio de la capital,61
+61008,territorio del norte,61
+62001,bali,62
+62002,bengkulu,62
+62003,borneo central,62
+62004,borneo meridional,62
+62005,borneo occidental,62
+62006,borneo oriental,62
+62007,célebes central,62
+62008,célebes meridional,62
+62009,célebes septentrional,62
+62010,célebes sudoriental,62
+62011,irian occidental,62
+62012,java central,62
+62013,java occidental,62
+62014,java oriental,62
+62015,lampung,62
+62016,molucas,62
+62017,riau,62
+62018,sonda occidental (islas de la),62
+62019,sonda oriental (islas de la),62
+62020,sumatra meridional,62
+62021,sumatra occidental,62
+62022,sumatra septentrional,62
+62023,timor oriental,62
+62024,yambi,62
+62025,aceh,62
+62026,yogyakarta,62
+62027,yakarta,62
+63001,abra,63
+63002,albay,63
+63003,aurora,63
+63004,bataan,63
+63005,batangas,63
+63006,benguet,63
+63007,bulacán,63
+63008,cagayán,63
+63009,camarines norte,63
+63010,camarines sur,63
+63011,cavite,63
+63012,ifugao,63
+63013,ilocos norte,63
+63014,ilocos sur,63
+63015,isabela,63
+63016,kalinga-apayao,63
+63017,laguna,63
+63018,la unión,63
+63019,manila,63
+63020,mountain,63
+63021,nueva écija,63
+63022,nueva vizcaya,63
+63023,pampanga,63
+63024,pangasinan,63
+63025,quezón,63
+63026,quirino,63
+63027,rizal,63
+63028,sorsogon,63
+63029,tarlac,63
+63030,zambales luzón,63
+63031,agusán del norte,63
+63032,agusán del sur,63
+63033,basilan,63
+63034,bukidnon,63
+63035,camiguín,63
+63036,cotabato norte,63
+63037,cotabato sur,63
+63038,davao,63
+63039,davao sur,63
+63040,davao oriental,63
+63041,lanao norte,63
+63042,lanao sur,63
+63043,maguindanao,63
+63044,misamis occidental,63
+63045,misamis oriental,63
+63046,sultán kudarat,63
+63047,surigao norte,63
+63048,surigao sur,63
+63049,zamboanga norte,63
+63050,zamboanga sur mindanao,63
+63051,aklan,63
+63052,antique,63
+63053,batanes,63
+63054,bohol,63
+63055,cápiz,63
+63056,catanduanes,63
+63057,cebú,63
+63058,iloilo,63
+63059,leyte,63
+63060,leyte sur,63
+63061,marinduque,63
+63062,masbate,63
+63063,mindoro occidental,63
+63064,mindoro oriental,63
+63065,negros occidental,63
+63066,negros oriental,63
+63067,palawan,63
+63068,romblon,63
+63069,samar norte,63
+63070,samar oriental,63
+63071,siquijor,63
+63072,sulu,63
+63073,samar,63
+63074,tawi-tawi,63
+64001,auckland,64
+64002,bay of plenty,64
+64003,gisborne,64
+64004,hawke´s bay,64
+64005,manawatu-wanganui,64
+64006,northland,64
+64007,taranaki,64
+64008,waikato,64
+64009,wellington,64
+64010,canterbury,64
+64011,nelson-marlborough,64
+64012,otago,64
+64013,southland,64
+64014,west coast,64
+64015,islas chatham,64
+64016,islas offshore,64
+64017,islas stewart,64
+65001,alexandra,65
+65002,aljunied,65
+65003,ang mo kio,65
+65004,ayer rajah,65
+65005,bedok,65
+65006,boon lay,65
+65007,boon teck,65
+65008,braddell heights,65
+65009,brickworks,65
+65010,bukit batok,65
+65011,butik gombak,65
+65012,bukit merah,65
+184011,shaba,184
+185001,"altagracia, la",185
+185002,azua,185
+185003,bahoruco,185
+185004,barahona,185
+185005,dajabón,185
+185006,duarte,185
+185007,elías piña,185
+185008,espaillat,185
+185009,hato mayor,185
+185010,independencia,185
+185011,maría trinidad sánchez,185
+185012,monseñor nouel,185
+185013,monte cristi,185
+185014,monte plata,185
+185015,pedernales,185
+185016,peravia,185
+185017,puerto plata,185
+185018,"romana, la",185
+185019,salcedo,185
+185020,samaná,185
+185021,san cristóbal,185
+185022,san juan,185
+185023,san pedro de macorís,185
+185024,sánchez ramírez,185
+185025,santiago,185
+185026,santiago rodríguez,185
+185027,"seibo, el",185
+185028,valverde,185
+185029,"vega, la",185
+185030,santo domingo,185
+188001,badakhshan,188
+188002,badghis,188
+188003,baghlan,188
+188004,balkh,188
+188005,bamiyan,188
+188006,farah,188
+188007,fariab,188
+188008,ghazni,188
+188009,ghor,188
+188010,helmand,188
+188011,herat,188
+188012,jozjan,188
+188013,kabul,188
+188014,kandahar,188
+188015,kapisa,188
+188016,konar,188
+188017,kunduz,188
+188018,laghman,188
+188019,logar,188
+188020,nangarhar,188
+188021,nimroz,188
+188022,paktia,188
+188023,paktika,188
+188024,parwan,188
+188025,samangar,188
+188026,takhar,188
+188027,uruzgan,188
+188028,wardak,188
+188029,zabul,188
+189001,adygea,189
+189002,baskortostan,189
+189003,buriatos,189
+189004,cabardia-balcaria,189
+189005,calmucos,189
+189006,carelia,189
+189007,chechenia,189
+189008,chuvash,189
+189009,dagestan,189
+189010,gorno altai,189
+189011,hakassia,189
+189012,ingushetia,189
+189013,karakajevo-cerkessia,189
+189014,komi,189
+189015,marduinos,189
+189016,"mari, el",189
+189017,osetia septentrional,189
+189018,rusia,189
+189019,amur,189
+189020,arkángel,189
+189021,astracán,189
+189022,belgorod,189
+189023,briansk,189
+189024,cheliabinsk,189
+189025,chita,189
+189026,irkutsk,189
+189027,ivanovo,189
+189028,kaliningrado,189
+189029,kaluga,189
+189030,kamchatka,189
+189031,kemerovo,189
+189032,kirov,189
+189033,kostroma,189
+189034,kurgan,189
+189035,kursk,189
+189036,leningrado,189
+189037,lipetsk,189
+189038,magadan,189
+189039,moscú,189
+189040,murmansk,189
+189041,nizhny novgorod,189
+189042,novgorod,189
+189043,novosibirsk,189
+189044,omsk,189
+189045,orel,189
+189046,orenburg,189
+189047,penza,189
+189048,perm,189
+189049,pskov,189
+189050,riazán,189
+189051,rostov,189
+189052,sajalín,189
+189053,samara,189
+189054,saratov,189
+189055,simbirsk,189
+189056,smolensko,189
+189057,sverdlovsk,189
+189058,tambov,189
+189059,tiumen,189
+189060,tomsk,189
+189061,tula,189
+189062,tver,189
+189063,vladimir,189
+189064,volgogrado,189
+189065,vologda,189
+189066,voronezh,189
+189067,yaroslavl,189
+189068,yevreyskaya,189
+189069,altai,189
+189070,khabarovsk,189
+189071,krasnodar,189
+189072,krasnoyarsk,189
+189073,primorye,189
+189074,stavropol,189
+189075,moscú,189
+189076,san petersburgo,189
+189077,aga-buryat,189
+189078,chukchi,189
+189079,evenk,189
+189080,komi-permyac,189
+189081,khanty-mansi,189
+189082,koryak,189
+189083,nenets,189
+189084,taimyir,189
+189085,ust-orda buryat,189
+189086,yamalo-nenek,189
+189087,tatarstan,189
+189088,tuva,189
+189089,udmurtia,189
+189090,yakuzia,189
+192001,nevis,192
+192002,saint kitts,192
+195001,san vicente,195
+195002,barouaille,195
+195003,bridgetown,195
+195004,calliaqua,195
+195005,chateaubelair,195
+195006,colonarie,195
+195007,georgetown,195
+195008,kingstown (ciudad),195
+195009,kingstown (suburbios),195
+195010,layou,195
+195011,marriaqua,195
+195012,sandy bay,195
+195013,granadinas,195
+195014,northern grenadines,195
+195015,southern grenadines,195
+197001,anse-la raye,197
+197002,canaries,197
+197003,castries,197
+197004,choiseul,197
+197005,dennery,197
+197006,gros islet,197
+197007,laborie,197
+197008,micoud,197
+197009,soufrière,197
+197010,vieux fort,197
+199001,caroni,199
+199002,nariva/mayaro,199
+199003,san andrés/san david,199
+199004,san jorge,199
+199005,san patricio,199
+199006,victoria,199
+199007,arima,199
+199008,chaguanas,199
+199009,point fortin,199
+208001,saint andrew,208
+208002,saint david,208
+208003,saint george,208
+208004,saint john,208
+208005,saint joseph,208
+208006,saint luke,208
+208007,saint mark,208
+208008,saint patrick,208
+208009,saint paul,208
+208010,saint peter,208
+212001,agadir,212
+212002,alhucemas (el-hoceïman),212
+212003,azilal,212
+212004,béni-mellal,212
+212005,ben--slimane,212
+212006,boulemane,212
+212007,chefchaouen,212
+212008,el-jadida,212
+212009,el-kelaa srarhna,212
+212010,errachidia,212
+212011,essaouira,212
+212012,fez,212
+212013,figuig,212
+212014,guelmin,212
+212015,ifrane,212
+212016,kénitra,212
+212017,khemisset,212
+212018,khenifra,212
+212019,khouribga,212
+212020,marrakech,212
+212021,meknès,212
+212022,nador,212
+212023,ouarzazate,212
+212024,oujda,212
+212025,safi,212
+212026,settat,212
+212027,sidi kacem,212
+212028,tánger,212
+212029,tan-tan,212
+212030,taounate,212
+212031,taroudannt,212
+212032,tata,212
+212033,taza,212
+212034,tetuán (tétouan),212
+212035,tiznit,212
+212036,casablanca (dar el-beida),212
+212037,rabat-salé,212
+213001,adrar,213
+213002,aïn defla,213
+213003,aïn temouchent,213
+213004,annaba,213
+213005,argel,213
+213006,batna,213
+213007,béchar,213
+213008,béjaïa,213
+213009,biskra,213
+213010,blida,213
+213011,bordj bou arreridj,213
+213012,bouira,213
+213013,boumerdes,213
+213014,chlef,213
+213015,constantina,213
+213016,djelfa,213
+213017,el-bayadh,213
+213018,el-oued,213
+213019,el-tarf,213
+213020,ghardaïa,213
+213021,guelma,213
+213022,iiiizi,213
+213023,jijel,213
+213024,kenchela,213
+213025,laghouat,213
+213026,mascara,213
+213027,médéa,213
+213028,mila,213
+213029,mostaganem,213
+213030,m´sila,213
+213031,naama,213
+213032,orán,213
+213033,ouargla,213
+213034,oum el-bouaghi,213
+213035,relizane,213
+213036,saïda,213
+213037,sétif,213
+213038,sidi bel-abbès,213
+250007,kibungo,250
+250008,kibuye,250
+250009,kigali,250
+250010,kigali (ciudad),250
+250011,ruhengeri,250
+251001,arussi,251
+251002,bale,251
+254006,occidental,254
+254007,oriental,254
+254008,rift valley,254
+255001,arusha,255
+255002,costa,255
+255003,dar es salaam,255
+255004,dodoma,255
+255005,iringa,255
+255006,kagera,255
+255007,kigoma,255
+255008,kilimanjaro,255
+255009,lindi,255
+255010,mara,255
+255011,mbeya,255
+255012,morogoro,255
+255013,mtwara,255
+255014,mwanza,255
+255015,pemba meridional,255
+255016,pemba septentrional,255
+255017,rukwa,255
+255018,ruvuma,255
+255019,shinyanga,255
+255020,singida,255
+255021,tabora,255
+255022,tanga,255
+255023,zanzíbar meridional y central,255
+255024,zanzíbar occidental,255
+255025,zanzíbar septentrional,255
+256001,kalangala,256
+256002,kampala,256
+256003,kiboga,256
+256004,luwero,256
+256005,masaka,256
+256006,mpigi,256
+256007,mubende,256
+256008,mukono,256
+256009,rakai,256
+256010,iganga,256
+256011,jinja,256
+256012,kamuli,256
+256013,kapchorwa,256
+256014,kumi,256
+256015,mbale,256
+256016,pallisa,256
+256017,soroti,256
+256018,tororo,256
+256019,apac,256
+256020,arúa,256
+256021,gulu,256
+256022,kitgum,256
+256023,kotido,256
+256024,lira,256
+256025,moroto,256
+256026,moyo,256
+256027,nebbi,256
+256028,bundibugyo,256
+256029,bushenyi,256
+256030,hoima,256
+256031,kabale,256
+256032,kabarole,256
+256033,kasese,256
+256034,kibaale,256
+256035,kisoro,256
+256036,masindi,256
+256037,mbarara,256
+256038,rukungiri,256
+257001,bubanza,257
+257002,bujumbura,257
+257003,bururi,257
+257004,cankuzo,257
+257005,cibitoke,257
+257006,gitega,257
+257007,karuzi,257
+257008,kayanza,257
+257009,kirundo,257
+257010,makamba,257
+257011,muramvya,257
+257012,muyinga,257
+257013,ngozi,257
+257014,rutana,257
+257015,ruyigi,257
+258001,cabo delgado,258
+258002,gaza,258
+258003,inhambane,258
+258004,manica,258
+258005,maputo,258
+258006,maputo (ciudad),258
+258007,nampula,258
+258008,niassa,258
+258009,sofala,258
+258010,tete,258
+258011,zembezia,258
+260001,central,260
+260002,copperbelt,260
+260003,luapula,260
+260004,lusaka,260
+260005,meridional,260
+260006,nordoccidental,260
+260007,occidental,260
+260008,oriental,260
+260009,septentrional,260
+261001,antananarivo,261
+261002,diego suárez,261
+261003,fianarantsoa,261
+261004,majunga,261
+261005,tamatave,261
+261006,tuléar,261
+263001,bulawayo,263
+263002,harare,263
+263003,manicaland,263
+263004,mashonaland central,263
+263005,mashonaland occidental,263
+263006,mashonaland oriental,263
+263007,masvingo,263
+263008,matabeleland meridional,263
+263009,matabeleland septentrional,263
+263010,midlands,263
+264001,erongo,264
+264002,hardap,264
+264003,karas,264
+264004,khomas,264
+264005,kunene,264
+264006,liambezi,264
+264007,ohamgwena,264
+264008,okavango,264
+264009,omaheke,264
+264010,omusati,264
+264011,oshana,264
+264012,oshikoto,264
+264013,otjozondjupa,264
+265001,chitipa,265
+265002,karonga,265
+265003,mzimba,265
+265004,nkhata bay,265
+265005,rumphi,265
+265006,septentrional,265
+265007,dedza,265
+265008,dowa,265
+265009,kasungu,265
+265010,lilongwe,265
+265011,mchinji,265
+265012,nkhota-kota,265
+265013,ntcheu,265
+265014,ntchisi,265
+265015,salima,265
+265016,central,265
+265017,blantyre,265
+265018,chikwawa,265
+265019,chiradzulu,265
+265020,machinga,265
+265021,mangochi,265
+265022,mulanje,265
+421031,trencin,421
+421032,trnava,421
+421033,vel´ky krtis,421
+421034,vranov nad topl´ou,421
+94025,mannar,94
+94026,mullaittivu,94
+94027,vavuniya,94
+94028,septentrional,94
+94029,kegalla,94
+94030,ratnapura,94
+46009,jönköping,46
+46010,kalmar,46
+46011,kopparberg,46
+46012,kristianstad,46
+46013,kronoberg,46
+46014,malmöhus,46
+46015,norrbotten,46
+46016,örebro,46
+46017,östergötland,46
+46018,skaraborg,46
+46019,södermanland,46
+46020,uppsala,46
+46021,värmland,46
+46022,västerbotten,46
+46023,västernorrland,46
+46024,västmanland,46
+47001,agder occidental,47
+47002,agder oriental,47
+47003,akershus,47
+47004,buskerud,47
+47005,finnmark,47
+47006,hedmark,47
+47007,hordaland,47
+47008,möre og romsdal,47
+47009,nordland,47
+47010,oppland,47
+47011,oslo,47
+47012,östfold,47
+47013,rogaland,47
+47014,sogn og fjordane,47
+47015,telemark,47
+47016,troms,47
+47017,tröndelag meridional,47
+47018,tröndelag septentrional,47
+47019,vestfold,47
+48001,biala podlaska,48
+48002,bialystok,48
+48003,bielsko-biala,48
+48004,bydgoszcz,48
+48005,chelm,48
+48006,ciechanów,48
+48007,cracovia,48
+48008,czestochova,48
+48009,elblag,48
+48010,gdansk,48
+48011,gorzów,48
+48012,jelenia góra,48
+48013,kalisz,48
+48014,katowice,48
+48015,kielce,48
+48016,konin,48
+48017,koszalin,48
+48018,krosno,48
+48019,legnica,48
+48020,leszno,48
+48021,lódz,48
+48022,lomza,48
+48023,lublín,48
+48024,nowy sacz,48
+48025,olsztyn,48
+48026,opole,48
+48027,ostroleka,48
+48028,pila,48
+48029,piotrków,48
+48030,plock,48
+48031,poznan,48
+48032,przemysl,48
+48033,radom,48
+48034,rzeszów,48
+48035,siedlce,48
+48036,sieradz,48
+48037,skierniewice,48
+48038,slupsk,48
+48039,suwalki,48
+48040,szczecin,48
+48041,tarnobrzeg,48
+48042,tarnów,48
+48043,torun,48
+48044,varsovia,48
+48045,walbrzych,48
+48046,wloclawek,48
+48047,wroclaw,48
+48048,zamosc,48
+48049,zielona góra,48
+49001,baden-würtemberg,49
+49002,baja sajonia,49
+49003,baviera,49
+49004,berlín,49
+49005,brandeburgo,49
+49006,bremen,49
+49007,hamburgo,49
+49008,hesse,49
+49009,mecklemburgo-antepomerania,49
+49010,renania septentrional-westfalia,49
+49011,renania-palatinado,49
+49012,sajonia,49
+49013,sajonia-anhalt,49
+49014,sarre,49
+49015,schleswing-holstein,49
+49016,turingia,49
+51001,ancash,51
+51002,cajamarca,51
+51003,lambayeque,51
+51004,"libertad, la",51
+51005,piura,51
+51006,tumbes,51
+51007,ayacucho,51
+51008,callao,51
+51009,huancavelica,51
+51010,huánuco,51
+51011,ica,51
+51012,junín,51
+51013,lima,51
+51014,pasco,51
+51015,amazonas,51
+51016,loreto,51
+51017,madre de dios,51
+51018,san martín,51
+51019,ucayali,51
+51020,apurímac,51
+51021,arequipa,51
+51022,cuzco,51
+51023,moquegua,51
+51024,puno,51
+51025,tacna,51
+52001,baja california norte,52
+52002,baja california sur,52
+52003,nayarit,52
+52004,sinaloa,52
+52005,sonora,52
+52006,chihuahua,52
+52007,coahuila,52
+52008,durango,52
+52009,nuevo león,52
+52010,san luis potosí,52
+52011,tamaulipas,52
+52012,zacatecas,52
+52013,aguascalientes,52
+52014,guanajuato,52
+234028,sokoto,234
+234029,taraba,234
+234030,yobe,234
+235001,batha,235
+235002,biltine,235
+235003,borkou-ennedi-tibesti,235
+235004,chari-baguirmi,235
+235005,guéra,235
+235006,kanem,235
+235007,lac,235
+235008,logone occidental,235
+235009,logone oriental,235
+235010,mayo-kébbi,235
+235011,moyen-chari,235
+235012,ouaddaï,235
+235013,salamat,235
+235014,tandjile,235
+236001,bamingui-bangoran,236
+236002,bangui (capital),236
+236003,basse-kotto,236
+236004,haut-m´bomou,236
+236005,haute-kotto,236
+236006,kemo,236
+236007,lobaye,236
+236008,m´bomou,236
+236009,nana-mambéré,236
+236010,ombella-mpoko,236
+236011,ouaka,236
+236012,ouham,236
+236013,ouham-pendé,236
+236014,sangha-mbaeré,236
+236015,vakaga,236
+237001,adamaoua,237
+237002,centro,237
+237003,este,237
+237004,extremo-norte,237
+237005,litoral,237
+237006,noroeste,237
+237007,norte,237
+237008,oeste,237
+237009,sur,237
+237010,suroeste,237
+238001,barlovento,238
+238002,buena vista,238
+238003,sal,238
+238004,san antonio,238
+238005,paúl,238
+238006,porto novo,238
+238007,ribeira grande,238
+238008,san nicolás,238
+238009,san vicente,238
+238010,sotavento,238
+238011,brava,238
+238012,fuego,238
+238013,mayo,238
+238014,santiago,238
+238015,praia,238
+238016,santa catarina,238
+238017,santa cruz,238
+238018,tarrafal,238
+239001,santo tomé,239
+239002,aqua grande,239
+239003,cantagalo,239
+239004,caué,239
+239005,lemba,239
+239006,lobata,239
+239007,mé-zóchi,239
+239008,príncipe,239
+240001,región continental (río muni),240
+240002,centro-sur,240
+240003,kie-ntem,240
+240004,litoral,240
+240005,uele-nzas,240
+240006,región insular,240
+240007,annobón,240
+240008,bioko norte,240
+240009,bioko sur,240
+241001,estuaire,241
+241002,ogooué marítimo,241
+241003,gabón marítimo,241
+241004,woleu-n´tem,241
+241005,alto-ogooué,241
+241006,medio-ogooué,241
+241007,ogooué-ivindo,241
+241008,ogooué-lolo,241
+241009,cuenca del ogooué,241
+241010,n´gounié,241
+241011,nyanga,241
+241012,n´gounié-nyanga,241
+242001,alto zaire,242
+242002,bajo zaire,242
+242003,bandundu,242
+242004,ecuador,242
+242005,kasai occidental,242
+242006,kasai oriental,242
+242007,kinshasa,242
+242008,kivu meridional,242
+242009,kivu septentional,242
+242010,maniema,242
+242011,shaba,242
+244001,bengo,244
+244002,benguela,244
+244003,bié,244
+244004,cabinda,244
+244005,cunene,244
+244006,huambo,244
+244007,huíla,244
+244008,kuando kubango,244
+244009,kuanza norte,244
+244010,kuanza sul,244
+244011,luanda,244
+244012,lunda norte,244
+244013,lunda sul,244
+244014,malanje,244
+244015,moxico,244
+244016,namibe,244
+244017,uíge,244
+244018,zaire,244
+245001,bafatá,245
+245002,biombo,245
+245003,bolama,245
+245004,cacheu,245
+245005,gabú,245
+245006,oío,245
+245007,quinara,245
+245008,tombali,245
+245009,bissau,245
+248001,central o granitic,248
+248002,"digue, la",248
+248003,mahé,248
+248004,praslin,248
+248005,silhouette,248
+248006,otras islas,248
+248007,outer o corallines,248
+249001,bahr el-ghazal,249
+249002,central,249
+249003,darfur,249
+249004,ecuatoria,249
+249005,jartum,249
+249006,kordofan,249
+249007,nilo superior,249
+249008,oriental,249
+249009,septentrional,249
+250001,butare,250
+250002,byumba,250
+250003,cyangugu,250
+250004,gikongoro,250
+250005,gisenyi,250
+250006,gitarama,250
+52015,hidalgo,52
+52016,jalisco,52
+52017,méxico,52
+52018,michoacán,52
+52019,morelos,52
+52020,puebla,52
+52021,querétaro,52
+52022,tlaxcala,52
+52023,distrito federal de méxico,52
+52024,centro,52
+52025,campeche,52
+52026,quintana roo,52
+52027,tabasco,52
+52028,veracruz,52
+52029,yucatán,52
+421035,ziar nad hronom,421
+421036,zilina,421
+421037,zvolen,421
+421038,bratislava,421
+501001,belice,501
+501002,cayo,501
+501003,corozal,501
+501004,orange walk,501
+501005,stann creek,501
+501006,toledo,501
+502001,alta verapaz,502
+502002,baja verapaz,502
+502003,chimaltenango,502
+502004,chiquimula,502
+502005,escuintla,502
+502006,guatemala,502
+502007,huehuetenango,502
+502008,izabal,502
+502009,jalapa,502
+502010,jutiapa,502
+502011,petén,502
+502012,"progreso, el",502
+502013,quetzaltenango,502
+502014,quiché,502
+502015,retalhuleu,502
+502016,sacatepéquez,502
+502017,san marcos,502
+502018,santa rosa,502
+502019,sololá,502
+502020,suchitepéquez,502
+502021,totonicapán,502
+502022,zacapa,502
+503001,cabañas,503
+503002,chalatenango,503
+503003,cuscatlán,503
+503004,"libertad, la",503
+503005,"paz, la",503
+503006,san salvador,503
+503007,san vicente,503
+503008,central,503
+503009,ahuachapán,503
+503010,santa ana,503
+503011,sonsonate,503
+503012,occidental,503
+503013,morazán,503
+503014,san miguel,503
+503015,"unión, la",503
+503016,usulután,503
+503017,oriental,503
+504001,atlántida,504
+504002,choluteca,504
+504003,colón,504
+504004,comayagua,504
+504005,copán,504
+504006,cortés,504
+504007,francisco morazán,504
+504008,gracias a dios,504
+504009,intibucá,504
+504010,islas de la bahía,504
+504011,lempira,504
+504012,ocotepeque,504
+504013,olancho,504
+504014,"paraíso, el",504
+504015,"paz, la",504
+504016,santa bárbara,504
+504017,valle,504
+504018,yoro,504
+505001,boaco,505
+505002,carazo,505
+505003,chinandega,505
+505004,chontales,505
+505005,estelí,505
+505006,granada,505
+505007,jinotega,505
+505008,león,505
+505009,madriz,505
+505010,managua,505
+505011,masaya,505
+505012,matagalpa,505
+505013,nueva segovia,505
+505014,río san juan,505
+505015,rivas,505
+505016,zelaya,505
+506001,alajuela,506
+506002,cartago,506
+506003,guanacaste,506
+506004,heredia,506
+506005,limón,506
+506006,puntarenas,506
+506007,san josé,506
+507001,bocas del toro,507
+507002,chiriquí,507
+507003,coclé,507
+507004,colón,507
+507005,comarca de san blas,507
+507006,darién,507
+507007,herrera,507
+507008,panamá,507
+507009,los santos,507
+507010,veraguas,507
+509001,artibonite,509
+509002,centre,509
+509003,grand´anse,509
+509004,nord,509
+509005,nord-est,509
+509006,nord-ouest,509
+509007,ouest,509
+509008,sud,509
+509009,sud-est,509
+591001,beni,591
+591002,cochabamba,591
+591003,chuquisaca,591
+591004,la paz,591
+591005,oruro,591
+591006,pando,591
+591007,potosí,591
+591008,santa cruz,591
+591009,tarija,591
+98012,isfahán,98
+98013,kermán,98
+98014,khorasán,98
+98015,khuzistán,98
+98016,kurdistán,98
+98017,lorestán,98
+98018,markazi,98
+98019,mazandarán,98
+98020,semnán,98
+98021,sistán-baluchistán,98
+98022,teherán,98
+98023,yazd,98
+98024,zanján,98
+123001,clarendon,123
+123002,hanover,123
+123003,kingston,123
+123004,manchester,123
+123005,portland,123
+123006,saint andrew,123
+123007,saint ann,123
+123008,saint catherine,123
+123009,saint elizabeth,123
+123010,saint james,123
+123011,saint mary,123
+123012,saint thomas,123
+123013,trelawny,123
+123014,westmoreland,123
+137001,balzers,137
+137002,eschen,137
+137003,gamprin,137
+137004,mauren,137
+137005,planken,137
+137006,ruggell,137
+137007,schaan,137
+137008,schellenberg,137
+137009,triesen,137
+137010,triesenberg,137
+137011,vaduz,137
+145001,balkan,145
+145002,dashovuz,145
+145003,leban,145
+145004,mary,145
+145005,asjabad,145
+147001,alabama,147
+147002,alaska,147
+147003,arizona,147
+147004,arkansas,147
+147005,california,147
+147006,carolina del norte,147
+147007,carolina del sur,147
+147008,colorado,147
+147009,connecticut,147
+147010,dakota del norte,147
+147011,dakota del sur,147
+147012,delaware,147
+147013,florida,147
+147014,georgia,147
+147015,hawai,147
+147016,idaho,147
+147017,illinois,147
+147018,indiana,147
+147019,iowa,147
+147020,kansas,147
+147021,kentucky,147
+147022,louisiana,147
+147023,maine,147
+147024,maryland,147
+147025,massachusetts,147
+147026,michigan,147
+147027,minnesota,147
+147028,mississippi,147
+147029,missouri,147
+147030,montana,147
+147031,nebraska,147
+147032,nevada,147
+147033,new hampshire,147
+147034,nueva jersey,147
+147035,nueva york,147
+147036,nuevo méxico,147
+147037,ohio,147
+147038,oklahoma,147
+147039,oregon,147
+147040,pennsylvania,147
+147041,rhode island,147
+147042,tennessee,147
+147043,texas,147
+147044,utah,147
+147045,vermont,147
+147046,virginia,147
+147047,virginia occidental,147
+147048,washington,147
+147049,wisconsin,147
+147050,wyoming,147
+147051,distrito federal columbia,147
+166001,anjouan (nzawani),166
+166002,mohéli (mwali),166
+166003,grand comore (njazidja),166
+174001,funafuti,174
+174002,nanumaga,174
+174003,nanumea,174
+174004,niulakita,174
+174005,niutao,174
+174006,nui,174
+174007,nukufetau,174
+174008,nukulaelae,174
+174009,vaitupu,174
+178001,adjuntas,178
+178002,aguada,178
+178003,aguadilla,178
+178004,aguas buenas,178
+178005,aibonito,178
+178006,añasco,178
+178007,arecibo,178
+178008,arroyo,178
+178009,barceloneta,178
+178010,barranquitas,178
+178011,bayamón,178
+178012,cabo rojo,178
+178013,caguas,178
+178014,camuy,178
+178015,canóvanas,178
+178016,carolina,178
+178017,cataño,178
+178018,cayey,178
+178019,ceiba,178
+178020,ciales,178
+178021,cidra,178
+178022,coamo,178
+178023,comerío,178
+178024,corozal,178
+178025,culebra,178
+178026,dorado,178
+178027,fajardo,178
+178028,florida,178
+178029,guánica,178
+178030,guayama,178
+178031,guayanilla,178
+178032,guaynabo,178
+178033,gurabo,178
+178034,hatillo,178
+178035,hormigueros,178
+178036,humacao,178
+178037,isabela,178
+178038,jayuya,178
+178039,juana díaz,178
+178040,juncos,178
+178041,lajas,178
+178042,lares,178
+178043,las marías,178
+178044,las piedras,178
+178045,loíza,178
+178046,luquillo,178
+178047,manatí,178
+178048,maricao,178
+178049,maunabo,178
+178050,mayagüez,178
+178051,moca,178
+178052,morovis,178
+178053,naguabo,178
+178054,naranjito,178
+178055,orocovis,178
+178056,patillas,178
+178057,peñuelas,178
+178058,ponce,178
+178059,quebradillas,178
+178060,rincón,178
+178061,río grande,178
+178062,sabana grande,178
+178063,salinas,178
+178064,san germán,178
+178065,san juan,178
+178066,san lorenzo,178
+178067,san sebastián,178
+178068,santa isabel,178
+178069,toa alta,178
+178070,toa baja,178
+178071,trujillo alto,178
+178072,utuado,178
+178073,vega alta,178
+178074,vega baja,178
+178075,vieques,178
+178076,villalba,178
+178077,yabucoa,178
+178078,yauco,178
+180001,escocia,180
+180002,borders,180
+180003,central,180
+180004,dumfries y galloway,180
+180005,fife,180
+180006,grampian,180
+180007,highland,180
+180008,islas occidentales,180
+180009,lothian,180
+180010,"orcadas, islas",180
+180011,shetland,180
+180012,strathclyde,180
+180013,tayside,180
+180014,gales,180
+180015,clwyd,180
+180016,dyfed,180
+180017,glamorgan central,180
+180018,glamorgan meridional,180
+180019,glamorgan occidental,180
+180020,gwent,180
+180021,gwynedd,180
+180022,powys,180
+180023,inglaterra,180
+180024,avon,180
+180025,bedfordshire,180
+180026,berkshire,180
+180027,buckinghamshire,180
+180028,cambridgeshire,180
+180029,cheshire,180
+180030,cleveland,180
+180031,cornwall,180
+180032,cumbria,180
+180033,derbyshire,180
+180034,devon,180
+180035,dorset,180
+180036,durham,180
+180037,essex,180
+180038,gloucestershire,180
+180039,gran londres,180
+180040,gran manchester,180
+180041,hampshire,180
+180042,hereford y worcester,180
+180043,hertfordshire,180
+180044,humberside,180
+180045,kent,180
+180046,lancashire,180
+180047,leicestershire,180
+180048,lincolnshire,180
+180049,norfolk,180
+180050,merseyside,180
+180051,midlands occidentales,180
+180052,northamptonshire,180
+180053,northumberland,180
+180054,nottinghamshire,180
+180055,oxfordshire,180
+180056,shropshire,180
+180057,somerset,180
+180058,staffordshire,180
+180059,suffolk,180
+180060,surrey,180
+180061,tyne y wear,180
+180062,sussex occidental,180
+180063,sussex oriental,180
+180064,warwickshire,180
+180065,"wight, isla de",180
+180066,wiltshire,180
+180067,yorkshire meridional,180
+180068,yorkshire occidental,180
+180069,yorkshire septentrional,180
+180070,irlanda del norte,180
+180071,antrim,180
+180072,ards,180
+180073,armagh,180
+180074,ballymena,180
+180075,ballymoney,180
+180076,banbridge,180
+180077,belfast,180
+180078,carrickfergus,180
+180079,castlereagh,180
+180080,coleraine,180
+180081,cookstown,180
+180082,craigavon,180
+180083,down,180
+180084,down septentrional,180
+180085,dungannon,180
+180086,fermanagh,180
+180087,larne,180
+377002,mónaco,377
+377003,montecarlo,377
+378001,acquaviva,378
+378002,borgo maggiore,378
+378003,chiesaunuova,378
+378004,città,378
+378005,domagnano,378
+378006,faetano,378
+378007,fiorentino,378
+378008,montegiardino,378
+378009,serravalle-dogano,378
+380001,cherkassy,380
+380002,chernigov,380
+380003,chernovtsy,380
+380004,dnipropetrovsk,380
+380005,donetz,380
+380006,ivano-frankovsk,380
+380007,kharkov,380
+380008,kherson,380
+380009,jito mir,380
+380010,jmelnitski,380
+380011,kyyiv (kiev),380
+380012,kirovograd,380
+380013,lugansk,380
+380014,lvov,380
+380015,nikolayev,380
+380016,odessa,380
+380017,poltava,380
+380018,rovno,380
+380019,sumy,380
+380020,ternopol,380
+380021,transcarpacia,380
+380022,vinnitsa,380
+380023,volhinia,380
+380024,zaporozhzye,380
+380025,crimea,380
+380026,kiev,380
+380027,sevastopol,380
+381001,montenegro,381
+381002,serbia,381
+381003,kosovo,381
+381004,vojvodina,381
+385001,bjelovar-bilogora,385
+385002,dubrovnik-neretva,385
+385003,istria,385
+385004,karlovac,385
+385005,koprivnica-kricevci,385
+385006,kaprina-zagorje,385
+385007,lika-senj,385
+385008,medimurje,385
+385009,osijek-baranja,385
+385010,pozega-slavonija,385
+385011,primorje-gorski kotar,385
+385012,sibenik,385
+385013,sisak-moslavina,385
+385014,slavonski brod-posavina,385
+385015,split-dalmatia,385
+385016,varazdin,385
+385017,virovitica-podravina,385
+385018,vukovar-srijem,385
+385019,zadar-knin,385
+385020,zagreb,385
+386001,ajdovscina,386
+386002,brezice,386
+386003,celje,386
+386004,cerknica,386
+386005,crnomelj,386
+386006,domzale,386
+386007,dravograd,386
+386008,gornja radgona,386
+386009,grosuplje,386
+386010,hrastnik,386
+386011,idrija,386
+386012,ilirska bistrica,386
+386013,izola,386
+386014,jesenice,386
+386015,kamnik,386
+386016,kocevje,386
+386017,koper,386
+386018,kranj,386
+386019,krsko,386
+386020,lasko,386
+386021,lenart,386
+386022,lendava,386
+386023,litija,386
+386024,ljubljana-bezigrad,386
+386025,ljubljana-centro,386
+386026,ljubljana-moste polje,386
+386027,ljubljana-siska,386
+386028,ljubljana-vic rudnik,386
+386029,ljutomer,386
+386030,logatec,386
+386031,maribor,386
+386032,metlika,386
+386033,mozirje,386
+386034,murska sobota,386
+386035,nova gorica,386
+386036,novo mesto,386
+386037,ormoz,386
+386038,pesnica,386
+386039,piran,386
+386040,postojna,386
+386041,ptuj,386
+386042,radlje ob dravi,386
+386043,radovljica,386
+386044,ravne na koroskem,386
+386045,ribnica,386
+386046,ruse,386
+386047,sentjur pri celju,386
+386048,sevnica,386
+386049,sezana,386
+386050,skofja loka,386
+386051,slovenj gradec,386
+386052,slovenska bistrica,386
+386053,slovenske konjice,386
+386054,smarje pri jelsah,386
+386055,tolmin,386
+386056,trbovlje,386
+386057,trebnje,386
+386058,trzic,386
+386059,velenje,386
+386060,vrhnika,386
+386061,zagorje ob savi,386
+386062,zalec,386
+387001,banja luka,387
+387002,banovici,387
+387003,bihac,387
+387004,bijeljina,387
+387005,bileca,387
+387006,bosanska dubica,387
+387007,bosanska gradiska,387
+387008,bosanska krupa,387
+387009,bosanski brod,387
+387010,bosanski novi,387
+387011,bosanski petrovac,387
+387012,bosanski samac,387
+387013,bosansko grahovo,387
+387014,bratunac,387
+387015,brcko,387
+387016,breza,387
+387017,bigojno,387
+387018,busovaca,387
+387019,cajnice,387
+387020,caplijina,387
+387021,cazin,387
+387022,celinac,387
+387023,citluk,387
+387024,derventa,387
+387025,doboj,387
+387026,donji vakuf,387
+387027,foca,387
+387028,fojnica,387
+387029,gacko,387
+387030,glamoc,387
+387031,gorazde,387
+387032,gornji vakuf,387
+387033,gracanica,387
+387034,gradacac,387
+387035,grude,387
+387036,han pijesak,387
+387037,jablanica,387
+387038,jajce,387
+387039,kakanj,387
+387040,kalesija,387
+387041,kalinovik,387
+387042,kiseljak,387
+387043,kladanj,387
+387044,kljuc,387
+387045,konjic,387
+387046,kotor varos,387
+387047,kresevo,387
+387048,kupres,387
+387049,laktasi,387
+387050,listica,387
+387051,livno,387
+387052,ljubinje,387
+387053,ljubuski,387
+387054,lopare,387
+387055,lukavac,387
+387056,maglaj,387
+387057,modrica,387
+387058,mostar,387
+387059,mrkonjic grad,387
+387060,neum,387
+387061,nevesinje,387
+387062,odzak,387
+387063,olovo,387
+387064,orasje,387
+387065,posusje,387
+387066,prijedor,387
+387067,prnjavor,387
+387068,prozor,387
+387069,pucarevo,387
+387070,rogatica,387
+387071,rudo,387
+387072,sanski most,387
+387073,sarajevo,387
+387074,sekovici,387
+387075,sipovo,387
+387076,skender vakuf,387
+387077,sokolac,387
+387078,srbac,387
+387079,srebrenica,387
+387080,srebrenik,387
+387081,stolac,387
+387082,tesanj,387
+387083,teslic,387
+387084,titov drvar,387
+387085,tomislavgrad,387
+387086,travnik,387
+387087,trebinje,387
+387088,tuzla,387
+387089,ugljevik,387
+387090,vares,387
+387091,velika kladusa,387
+387092,visegrad,387
+387093,visoko,387
+387094,vitez,387
+387095,vlasenica,387
+387096,zavidovici,387
+387097,zenica,387
+387098,zepce,387
+387099,zivinice,387
+387100,zvornik,387
+420001,bohemia central,420
+420002,bohemia meridional,420
+420003,bohemia occidental,420
+420004,bohemia oriental,420
+420005,bohemia septentrional,420
+420006,moravia meridional,420
+420007,moravia septentrional,420
+420008,praga (capital),420
+421001,banska bystrica,421
+421002,bardejov,421
+421003,bratislava-vidiek,421
+421004,cadca,421
+421005,dolny kubin,421
+421006,dunajska streda,421
+421007,galanta,421
+421008,hummane,421
+421009,komarno,421
+421010,kosice,421
+421011,kosice-vidiek,421
+421012,levice,421
+421013,liptovsky mikulas,421
+421014,lucenec,421
+421015,martin,421
+421016,michalovce,421
+421017,nitra,421
+421018,nove zamky,421
+421019,poprad,421
+421020,presov,421
+421021,prievidza,421
+421022,provazska bystrica,421
+421023,rimavska sobota,421
+421024,roznava,421
+421025,senica,421
+421026,spisska nova ves,421
+421027,stara l´ubovna,421
+421028,svidnik,421
+421029,topol´cany,421
+421030,trebisov,421
+94031,sabaragamuwa,94
+94032,badulla,94
+94033,monaragala,94
+94034,uva,94
+39121,verona,39
+39122,vicenza,39
+39123,véneto,39
+40001,alba,40
+40002,arad,40
+40003,arges,40
+40004,bacau,40
+40005,bihor,40
+40006,bistrita-nasaud,40
+40007,botosani,40
+40008,braila,40
+40009,brasov,40
+40010,buzau,40
+40011,calarasi,40
+40012,caras-severin,40
+40013,cluj,40
+40014,constanza,40
+40015,covasna,40
+40016,dambovita,40
+40017,dolj,40
+40018,galati,40
+40019,giurgiu,40
+40020,gorj,40
+40021,harghita,40
+40022,hunedoara,40
+40023,ialomita,40
+40024,iasi,40
+40025,maramures,40
+40026,mehedinti,40
+40027,mures,40
+40028,neamt,40
+40029,olt,40
+40030,prahova,40
+40031,salaj,40
+40032,satu mare,40
+40033,sibiu,40
+40034,suceava,40
+40035,teleorman,40
+40036,timis,40
+40037,tulcea,40
+40038,valcea,40
+40039,vaslui,40
+40040,vrancea,40
+40041,bucarest,40
+41001,argovia,41
+41002,berna,41
+41003,friburgo,41
+41004,ginebra,41
+41005,glarus o glaris,41
+41006,grisones,41
+41007,jura,41
+41008,lucerna,41
+41009,neuchâtel,41
+41010,sankt gallen,41
+41011,schaffhausen,41
+41012,schwyz,41
+41013,solothurn o soletta,41
+41014,tesino,41
+41015,turgovia,41
+41016,uri,41
+41017,valais,41
+41018,vaud,41
+41019,zug,41
+41020,zurich,41
+41021,appenzell rhodes exterior,41
+41022,appenzell rhodes interior,41
+41023,basilea campo,41
+41024,basilea ciudad,41
+41025,nidwalden,41
+41026,obwalden,41
+43001,austria inferior,43
+43002,austria superior,43
+43003,burgenland,43
+43004,carintia,43
+43005,estiria,43
+43006,salzburgo,43
+43007,tirol,43
+43008,viena,43
+43009,vorarlberg,43
+45001,bornholm,45
+45002,bornholm,45
+45003,fionia,45
+45004,fionia,45
+45005,aarhus,45
+45006,nordjylland,45
+45007,ribe,45
+45008,ringkøbing,45
+45009,sønderjylland,45
+45010,vejle,45
+45011,viborg,45
+45012,jutlandia,45
+45013,storstrøm,45
+45014,laaland-falster,45
+45015,copenhague,45
+45016,frederiksborg,45
+45017,roskilde,45
+45018,storstrøm,45
+45019,vestselland,45
+45020,frederiksberg,45
+45021,copenhague,45
+45022,seeland,45
+46001,älvsborg,46
+46002,blekinge,46
+46003,estocolmo,46
+356006,sudoriental,356
+357001,famagusta,357
+357002,kyrenia,357
+357003,lárnaca,357
+357004,limassol,357
+357005,nicosia,357
+357006,páfos,357
+358001,åland,358
+358002,hämeen,358
+358003,keski-suomen,358
+358004,kuopio,358
+358005,kymen,358
+358006,lapin,358
+358007,mikkeli,358
+358008,oulu,358
+358009,pohjois-karjalan,358
+358010,turun-pori,358
+358011,uudenmaan,358
+358012,vaasa,358
+359001,burgas,359
+359002,haskovo,359
+359003,lovec,359
+359004,montana,359
+359005,plovdiv,359
+359006,ruse,359
+359007,sofía,359
+359008,varna,359
+359009,sofía,359
+370001,alytus,370
+370002,birstonas,370
+370003,druskininkai,370
+370004,kaunas,370
+370005,klaipeda,370
+370006,marijampolè,370
+370007,neringa,370
+370008,palanga,370
+370009,panevèzys,370
+370010,siauliai,370
+370011,vilnius,370
+370012,akmene,370
+370013,alytus,370
+370014,anyksciai,370
+370015,birzai,370
+370016,ignalina,370
+370017,jonava,370
+370018,joniskis,370
+370019,jurbarkas,370
+370020,kaisiadorys,370
+370021,kaunas,370
+370022,kedainiai,370
+370023,kelme,370
+370024,klaipeda,370
+370025,kretinga,370
+370026,kupiskis,370
+370027,lazdijai,370
+370028,marijampolè,370
+370029,mazeikiai,370
+370030,molètai,370
+370031,pakruojis,370
+370032,panevèzys,370
+370033,pasvalys,370
+370034,plungè,370
+370035,prienai,370
+370036,radviliskis,370
+370037,raseiniai,370
+370038,rokiskis,370
+370039,sakiai,370
+370040,salcininkai,370
+370041,siauliai,370
+370042,silalè,370
+370043,silutè,370
+370044,sirvintos,370
+370045,skuodas,370
+370046,svencionys,370
+370047,tauragè,370
+370048,telsiai,370
+370049,trakai,370
+370050,ukmergè,370
+370051,utena,370
+370052,varèna,370
+370053,vikaviskis,370
+370054,vilnius,370
+370055,zarasai,370
+371001,daugavpils,371
+371002,jelgava,371
+371003,jurmala,371
+371004,liepaja,371
+371005,resekne,371
+371006,riga,371
+371007,ventspils,371
+371008,aizkraukle,371
+371009,aluksne,371
+371010,balvi,371
+371011,bauska,371
+371012,cesis,371
+371013,daugavpils,371
+371014,dobele,371
+371015,gulbene,371
+371016,jekabpils,371
+371017,jelgava,371
+371018,kraslava,371
+371019,kuldiga,371
+371020,liepaja,371
+371021,limbazi,371
+371022,ludza,371
+371023,madona,371
+371024,ogre,371
+371025,preili,371
+371026,rezekne,371
+371028,saldus,371
+371029,talsi,371
+371030,tukums,371
+371031,valka,371
+371032,valmiera,371
+371033,ventpils,371
+372001,harju,372
+372002,hiiu,372
+372003,ida-viru,372
+372004,järva,372
+372006,lääne,372
+372007,lääne-viru,372
+372008,pärnu,372
+372009,pölva,372
+372010,rapla,372
+372011,saare,372
+372012,tartu,372
+372013,valga,372
+372014,viljandi,372
+373001,aneni noi,373
+373002,basarabeasca,373
+373003,brinceni,373
+373004,cahul,373
+373005,cainari,373
+373006,calaras,373
+373007,camenca,373
+373008,cantemir,373
+373009,causeni,373
+373010,ciadar-lunga,373
+373011,cimislia,373
+373012,comrat,373
+373013,criuleni,373
+373014,donduseni,373
+373015,drochia,373
+373016,dubasari,373
+373017,edinet,373
+373018,falesti,373
+373019,floresti,373
+373020,glodeni,373
+373021,grigoriopol,373
+373022,hancesti (kotovsk),373
+373023,ialoveni,373
+373024,leova,373
+373025,nisporeni,373
+373026,ocnita,373
+373027,orhei,373
+373028,râbnita,373
+373029,rezina,373
+373030,riscani,373
+373031,sangerei,373
+373032,slobozia,373
+373033,soldanesti,373
+373034,soroca,373
+967010,san´a,967
+967011,ta´izz,967
+967012,abyan,967
+967013,adén,967
+967014,hadramaut,967
+967015,lahij,967
+967016,"mahrah, al-",967
+967017,shabwah,967
+968001,al-batinah,968
+968002,ad-dakhiliyah,968
+968003,al-janubiyah,968
+968004,musandam,968
+968005,muscat,968
+968006,ash-sharqiyah,968
+968007,az-zahirah,968
+971001,abu dhabi,971
+971002,ajman,971
+971003,dubai,971
+971004,fujairah,971
+971005,ras al-khaimah,971
+971006,sharjah,971
+971007,umm al-qaiwain,971
+972001,central (ha merkaz),972
+972002,haifa (hefa),972
+972003,jerusalén (yerushalayim),972
+972004,meridional (ha darom),972
+972005,septentrional (ha zafon),972
+972006,tel aviv,972
+973001,al-gharbiyah,973
+973002,al-hadd,973
+973003,jidd hafs,973
+973004,al-manamah,973
+973005,al-muharraq,973
+973006,ar-rifa,973
+973007,ash-shamaliyah,973
+973008,ash-sharqiyah,973
+973009,sitrah,973
+973010,al-wusta,973
+973011,hammad,973
+973012,madinat isa,973
+973013,hawar y otras,973
+974001,doha,974
+974002,al-ghuwayriyah,974
+974003,jarayan al batinah,974
+974004,al-jumayliyah,974
+974005,al-khawr,974
+974006,ar-rayyan,974
+974007,ash-shamal,974
+974008,umm salal,974
+974009,al-wakrah,974
+975001,blumthang,975
+975002,chhukha,975
+975003,chirang,975
+975004,dagana,975
+975005,gaylegphug,975
+975006,ha,975
+975007,lhuntshi,975
+975008,mongar,975
+975009,paro,975
+975010,pema gatsel,975
+975011,punakha,975
+975012,samchi,975
+975013,samdrup jongkhar,975
+975014,shemgang,975
+975015,tashigang,975
+975016,thimbu,975
+975017,tongsa,975
+975018,wangdi phodrang,975
+976001,bayan khongor,976
+976002,bayan ulegej,976
+976003,bulgan,976
+976004,central,976
+976005,dezabhan,976
+976006,dornod,976
+976007,gobi altai,976
+976008,gobi este,976
+976009,gobi medio,976
+976010,gobi sur,976
+976011,hangay meridional,976
+976012,hangay septentrional,976
+976013,hentey,976
+976014,hubsugul,976
+976015,kobdo,976
+976016,selenga,976
+976017,suhe bator,976
+976018,ubsa-nor,976
+976019,darhan,976
+976020,erdenet,976
+976021,ulan bator,976
+977001,bagmati,977
+977002,janakpur,977
+977003,narayani,977
+977004,central,977
+977005,mahakali,977
+977006,seti,977
+977007,extremoccidental,977
+977008,bheri,977
+977009,karnali,977
+977010,rapti,977
+977011,medioccidental,977
+977012,dhawalagiri,977
+977013,gandaki,977
+977014,lumbini,977
+977015,oriental,977
+977016,koshi,977
+977017,mechi,977
+977018,sagarmatha,977
+977019,occidental,977
+992001,kuljab,992
+992002,khodzhent,992
+992003,kurgan-tjube,992
+992004,gorno-badajshán,992
+995001,abjasia,995
+995002,adzharia,995
+995003,guria,995
+995004,imereti,995
+995005,kakheti,995
+995006,kvemo kartli,995
+995007,racha-lechkumi,995
+995008,samagrelo,995
+995009,samtskhe-javakheti,995
+995010,shida kartli,995
+995011,svaneti,995
+995012,tianeti,995
+995013,tbilisi,995
+996001,bishkek,996
+996002,cu,996
+996003,dzhalal-abad,996
+996004,issyk-kul,996
+996005,naryn,996
+996006,osh,996
+996007,talas,996
+998001,kara-kalpak,998
+998002,andizhan,998
+998003,bukhara,998
+998004,dzizak,998
+998005,fergana,998
+998006,jorezm,998
+998007,kaska-daria,998
+998008,namangan,998
+998009,samarkanda,998
+998010,surkhan-daria,998
+998011,syr-daria,998
+998012,tashkent,998
+265023,mwanza,265
+265024,nsanje,265
+265025,thyolo,265
+265026,zomba,265
+265027,meridional,265
+266001,berea,266
+266002,butha-buthe,266
+266003,leribe,266
+266004,mafeteng,266
+266005,maseru,266
+266006,mohale´s hoek,266
+266007,mokhotlong,266
+266008,qacha´s nek,266
+266009,quthing,266
+266010,thaba tseka,266
+267001,barolong,267
+267002,central,267
+267003,chobe,267
+267004,ghanzi,267
+267005,kgalagadi,267
+267006,kgatleng,267
+267007,kweneng,267
+267008,ngamiland,267
+267009,ngwaketse,267
+267010,nord-oriental,267
+267011,sud-oriental,267
+267012,francistown,267
+267013,gaborone,267
+267014,jwaneng,267
+267015,lobatse,267
+267016,orapa,267
+267017,selebi-pikwe,267
+267018,sowa,267
+268001,hhohho,268
+268002,lubombo,268
+268003,manzini,268
+268004,shiselweni,268
+351001,aveiro,351
+351002,beja,351
+351003,braga,351
+351004,braganza,351
+351005,castelo branco,351
+351006,coimbra,351
+351007,évora,351
+351008,faro,351
+351009,guarda,351
+351010,leiria,351
+351011,lisboa,351
+351012,oporto,351
+351013,portalegre,351
+351014,santarém,351
+351015,setúbal,351
+351016,viana do castelo,351
+351017,vila real,351
+351018,viseu,351
+351019,azores,351
+351020,madeira,351
+352001,capellen,352
+352002,clervaux,352
+352003,diekirch,352
+352004,echternach,352
+352005,esch,352
+352006,grevenmacher,352
+352007,luxemburgo,352
+352008,mersch,352
+352009,redange,352
+352010,remich,352
+352011,vianden,352
+352012,wiltz,352
+353001,connacht,353
+353002,galway,353
+353003,leitrim,353
+353004,mayo,353
+353005,roscommon,353
+353006,sligo,353
+353007,leinster,353
+353008,carlow,353
+353009,dublin,353
+353010,kildare,353
+353011,kilkenny,353
+353012,laoighis,353
+353013,longford,353
+353014,louth,353
+353015,meath,353
+353016,offaly,353
+353017,westmeath,353
+353018,wexford,353
+353019,wicklow,353
+353020,munster,353
+353021,clare,353
+353022,cork,353
+353023,kerry,353
+353024,limerick,353
+353025,tipperary (riding norte),353
+353026,tipperary (riding sur),353
+353027,waterford,353
+353028,ulster,353
+353029,cavan,353
+353030,donegal,353
+353031,monaghan,353
+354001,meridional,354
+354002,nordoccidental,354
+354003,nordoriental,354
+354004,occidental,354
+354005,oriental,354
+354006,península occidental,354
+354007,reykjanes,354
+354008,reykiavik,354
+355001,berat,355
+355002,elbasan,355
+355003,fier,355
+355004,gramsh,355
+355005,librazhd,355
+355006,lushnjë,355
+355007,skrapar,355
+355008,kolonjë,355
+355009,korcë,355
+355010,pogradec,355
+355011,kukës,355
+355012,lezhë,355
+355013,pukë,355
+355014,shkodër,355
+355015,tropojë,355
+355016,dibër,355
+355017,durrës,355
+355018,krujë,355
+355019,mat,355
+355020,mirditë,355
+355021,tirana,355
+355022,gjirokastër,355
+355023,përmet,355
+355024,sarandë,355
+355025,tepelenë,355
+355026,valona,355
+356001,gozo y comino,356
+356002,inner harbour,356
+356003,occidental,356
+356004,outer harbour,356
+356005,septentrional,356
+226013,kossi,226
+226014,kouritenga,226
+226015,mouhoun,226
+226016,nahouri,226
+226017,namentenga,226
+226018,oubritenga,226
+226019,oudalan,226
+226020,passoré,226
+226021,poni,226
+226022,sanguie,226
+226023,sanmatenga,226
+226024,seno,226
+226025,sissili,226
+226026,soum,226
+226027,sourou,226
+226028,tapoa,226
+226029,yatenga,226
+226030,zoundwéogo,226
+227001,agadès,227
+227002,diffa,227
+227003,dosso,227
+227004,maradi,227
+227005,tahoua,227
+227006,tillabéry,227
+227007,zinder,227
+228001,sotouboua,228
+228002,tchamba,228
+373035,stefan-voda (suvorovo),373
+373036,straseni,373
+373037,taraclia,373
+373038,telenesti,373
+373039,ungheni,373
+373040,vulcanesti,373
+374001,gyumri,374
+374002,karaklis,374
+374003,yerevan,374
+374004,akhuryan,374
+374005,amasia,374
+374006,anii,374
+374007,aparan,374
+374008,aragatsi,374
+228003,tchaoudjo,228
+228004,central,228
+228005,assoli,228
+228006,bassar,228
+228007,binah,228
+228008,doufelgou,228
+228009,kéran,228
+228010,kozah,228
+228011,kara,228
+228012,golfe,228
+228013,lacs,228
+228014,vo,228
+228015,yoto,228
+228016,zio,228
+228017,maritime,228
+228018,amou,228
+228019,haho,228
+228020,kloto,228
+228021,ogou,228
+228022,wawa,228
+228023,plateaux,228
+228024,oti,228
+228025,tône,228
+228026,savanes,228
+229001,atakora,229
+229002,atlantique,229
+229003,borgou,229
+229004,mono,229
+229005,oueme,229
+229006,zou,229
+230001,black river,230
+230002,flacq,230
+230003,grand-port,230
+230004,moka,230
+230005,pamplemousses,230
+230006,plaines wilhelms,230
+230007,port louis,230
+230008,rivière du rempart,230
+230009,savanne,230
+230010,agalega,230
+230011,cargados carajos,230
+230012,rodríguez,230
+231001,bong,231
+231002,grand bassa,231
+231003,grand cape mount,231
+231004,grand gedeh,231
+231005,grand kru,231
+231006,lofa,231
+231007,maryland,231
+231008,margibi,231
+231009,montserrado,231
+231010,nimba,231
+231011,sinoe,231
+231012,bomi,231
+231013,rivercess,231
+232001,provincia oriental,232
+232002,kailahun,232
+232003,kenema,232
+232004,kono,232
+232005,provincia meridional,232
+232006,bo,232
+232007,bonthe (incluye sherbro),232
+232008,moyamba,232
+232009,pujehun,232
+232010,provincia septentrional,232
+232011,bombali,232
+232012,kambia,232
+232013,koinaduga,232
+232014,port loko,232
+232015,tonkolili,232
+232016,área occidental,232
+233001,accra,233
+233002,ashanti,233
+233003,brong-ahafo,233
+233004,central,233
+233005,occidental,233
+233006,oriental,233
+233007,septentrional,233
+233008,superior occidental,233
+233009,superior oriental,233
+233010,volta,233
+234001,abia,234
+234002,adamawa,234
+234003,akwa ibom,234
+234004,anambra,234
+234005,bauchi,234
+234006,benue,234
+234007,borno,234
+234008,cross river,234
+234009,delta,234
+234010,edo,234
+234011,enugu,234
+234012,imo,234
+234013,jigawa,234
+234014,kaduna,234
+234015,kano,234
+234016,katsina,234
+234017,kebbi,234
+234018,kogi,234
+234019,kwara,234
+234020,lagos,234
+234021,níger,234
+234022,ogun,234
+234023,ondo,234
+234024,osun,234
+234025,oyo,234
+234026,plateau,234
+234027,rivers,234
+33106,bouches-du-rhône,33
+33107,var,33
+33108,vaucluse,33
+33109,provenza-alpes-costa-azul,33
+33110,alta saboya,33
+33111,ain,33
+33112,ardèche,33
+33113,drôme,33
+33114,isère,33
+33115,loira,33
+33116,rhône,33
+33117,saboya,33
+33118,rhône-alpes,33
+34001,almería,34
+34002,cádiz,34
+34003,córdoba,34
+34004,granada,34
+34005,huelva,34
+34006,jaén,34
+34007,málaga,34
+34008,sevilla,34
+34009,andalucía,34
+34010,huesca,34
+34011,teruel,34
+34012,zaragoza,34
+34013,aragón,34
+34014,asturias,34
+34015,principado de asturias,34
+34016,baleares,34
+34017,islas baleares,34
+34018,las palmas,34
+34019,santa cruz de tenerife,34
+34020,canarias,34
+34021,cantabria,34
+34022,albacete,34
+34023,ciudad real,34
+34024,cuenca,34
+34025,guadalajara,34
+34026,toledo,34
+34027,castilla-la mancha,34
+34028,ávila,34
+34029,burgos,34
+34030,león,34
+34031,palencia,34
+34032,salamanca,34
+34033,segovia,34
+34034,soria,34
+34035,valladolid,34
+34036,zamora,34
+34037,castilla y león,34
+34038,barcelona,34
+34039,girona,34
+34040,lleida,34
+34041,tarragona,34
+34042,cataluña,34
+34043,badajoz,34
+34044,cáceres,34
+34045,extremadura,34
+34046,a coruña,34
+34047,lugo,34
+34048,orense,34
+34049,pontevedra,34
+34050,galicia,34
+34051,madrid,34
+34052,murcia,34
+34053,región de murcia,34
+34054,navarra,34
+34055,álava,34
+34056,guipúzcoa,34
+34057,vizcaya,34
+34058,país vasco,34
+34059,la rioja,34
+34060,alicante,34
+34061,castellón,34
+34062,valencia,34
+34063,comunidad valenciana,34
+34064,ceuta,34
+34065,melilla,34
+36001,bács-kiskun,36
+36002,baranya,36
+36003,békés,36
+36004,borsod-abaúj-zemplén,36
+36005,csongrád,36
+36006,fejér,36
+36007,györ-moson-sopron,36
+36008,hajdú-bihar,36
+36009,heves,36
+36010,jász-nagyjun-szolnok,36
+36011,komárom-esztergom,36
+36012,nógrád,36
+36013,pest,36
+36014,somogy,36
+36015,szabolcs-szatmár-bereg,36
+36016,tolna,36
+36017,vas,36
+36018,veszprém,36
+36019,zala,36
+36020,budapest,36
+39001,aquila l´,39
+39002,chieti,39
+39003,pescara,39
+39004,teramo,39
+39005,abruzos,39
+39006,bari,39
+39007,brindisi,39
+39008,foggia,39
+39009,lecce,39
+39010,tarento,39
+39011,apulia,39
+39012,matera,39
+39013,potenza,39
+39014,basilicata,39
+39015,catanzaro,39
+39016,cosenza,39
+39017,crotona,39
+39018,reggio di calabria,39
+39019,vibo valentia,39
+39020,calabria,39
+39021,avellino,39
+39022,benevento,39
+39023,caserta,39
+39024,nápoles,39
+39025,salerno,39
+39026,campania,39
+39027,cagliari,39
+39028,nuoro,39
+39029,oristano,39
+39030,sassari,39
+39031,cerdeña,39
+39032,bolonia,39
+39033,ferrara,39
+39034,forli-cesena,39
+39035,módena,39
+39036,parma,39
+39037,piacenza,39
+39038,rávena,39
+39039,reggio emilia,39
+39040,rimini,39
+39041,emilia-romagna,39
+39042,gorizia,39
+39043,pordenone,39
+39044,trieste,39
+39045,udine,39
+39046,friul-venecia julia,39
+39047,frosinone,39
+39048,latina,39
+39049,rieti,39
+39050,roma,39
+39051,viterbo,39
+39052,lacio,39
+39053,génova,39
+39054,imperia,39
+39055,savona,39
+39056,"spezia, la",39
+39057,liguria,39
+39058,bérgamo,39
+39059,brescia,39
+39060,como,39
+39061,cremona,39
+39062,lecco,39
+39063,lodi,39
+39064,mantua,39
+39065,milán,39
+39066,pavía,39
+39067,sondrio,39
+39068,varese,39
+39069,lombardía,39
+39070,ancona,39
+39071,ascoli piceno,39
+39072,macerata,39
+39073,pésaro y urbino,39
+39074,"marcas, las",39
+39075,campobasso,39
+39076,isernia,39
+39077,molise,39
+39078,alessandria,39
+39079,asti,39
+39080,biella,39
+39081,cuneo,39
+39082,novara,39
+39083,turín,39
+39084,verbano-cusio-ossola,39
+39085,vercelli,39
+39086,piamonte,39
+39087,agrigento,39
+39088,caltanisseta,39
+39089,catania,39
+39090,enna,39
+39091,mesina,39
+39092,palermo,39
+39093,ragusa,39
+39094,siracusa,39
+39095,trapani,39
+39096,sicilia,39
+39097,arezzo,39
+213045,tipaza,213
+213046,tissemsilt,213
+213047,tizi-ouzou,213
+213048,tlemcen,213
+218001,bengasi,218
+218002,cufra,218
+218003,ez zauia,218
+218004,gebel el achdar,218
+218005,gebel el gharbi,218
+218006,golfo de sirte,218
+218007,margib,218
+218008,murzuch,218
+218009,nigat al homs,218
+218010,sebha,218
+218011,tobruch,218
+218012,trípoli,218
+218013,uadi al hait,218
+220001,kombo st. mary,220
+220002,lower river,220
+220003,maccarthy island,220
+220004,north bank,220
+220005,occidental,220
+220006,upper river,220
+220007,banjul,220
+221001,dakar,221
+221002,diourbel,221
+221003,fatick,221
+221004,kaolack,221
+221005,kolda,221
+221006,louga,221
+221007,saint-louis,221
+221008,tambacounda,221
+221009,thiès,221
+221010,ziguinchor,221
+222001,adrar,222
+222002,assaba,222
+222003,brakna,222
+222004,dakhlet nouadhibou,222
+222005,gorgol,222
+222006,guidimaka,222
+222007,hodh ech chargui,222
+222008,hodh el gharbi,222
+222009,inchiri,222
+222010,tagant,222
+222011,tiris zemmour,222
+222012,trarza,222
+222013,nouakchott,222
+223001,gao,223
+223002,kayes,223
+223003,koulikoro,223
+223004,mopti,223
+223005,ségou,223
+223006,sikasso,223
+223007,tombouctou,223
+223008,bamako,223
+224001,beyla,224
+224002,boffa,224
+224003,boké,224
+224004,conakry,224
+224005,coyab,224
+224006,dabola,224
+224007,dalaba,224
+224008,dinguiraye,224
+224009,faranah,224
+224010,forécariah,224
+224011,fria,224
+224012,gaoual,224
+224013,guéckédou,224
+224014,kankan,224
+224015,kérouané,224
+224016,kindia,224
+224017,kissidougou,224
+224018,koubia,224
+224019,koundara,224
+224020,kouroussa,224
+224021,labé,224
+224022,lélouma,224
+224023,lola,224
+224024,macenta,224
+224025,mali,224
+224026,mamou,224
+224027,mandiana,224
+224028,nzérékoré,224
+224029,pita,224
+224030,siguiri,224
+224031,télimélé,224
+224032,tougué,224
+224033,yomou,224
+225001,abengourou,225
+225002,abidjan,225
+225003,aboisso,225
+225004,adzopé,225
+225005,agboville,225
+225006,agnibilékrou,225
+225007,bangolo,225
+225008,béoumi,225
+225009,biankouma,225
+225010,bondoukou,225
+225011,bongouanou,225
+225012,bouaflé,225
+225013,bouaké,225
+225014,bouna,225
+225015,boundiali,225
+225016,dabakala,225
+225017,daloa,225
+225018,danané,225
+225019,daoukro,225
+225020,dimbokro,225
+225021,divo,225
+225022,duékoué,225
+225023,ferkéssédougou,225
+225024,gagnoa,225
+225025,grand-lahou,225
+225026,guiglo,225
+225027,issia,225
+225028,katiola,225
+225029,korhogo,225
+225030,lakota,225
+225031,man,225
+225032,mankono,225
+225033,m´bahiakro,225
+225034,odienné,225
+225035,oumé,225
+225036,sakassou,225
+225037,san-pédro,225
+225038,sassandra,225
+225039,séguéla,225
+225040,sinfra,225
+225041,soubré,225
+225042,tabou,225
+225043,tanda,225
+225044,tiassalé,225
+225045,tingréla,225
+225046,touba,225
+225047,toumodi,225
+225048,vavoua,225
+225049,yamoussoukro,225
+225050,zuénoula,225
+226001,bam,226
+226002,bazega,226
+226003,bougouriba,226
+226004,boulgou,226
+226005,boulkiemde,226
+226006,comoé,226
+226007,ganzourgou,226
+226008,gnagna,226
+226009,gourma,226
+226010,houet,226
+226011,kadiogo,226
+226012,kénédougou,226
+1011,territorio del noroeste,1
+1012,yukon,1
+7001,akmola,7
+7002,aktyubinsk,7
+7003,alma aty,7
+7004,aterau,7
+7005,dzhambul,7
+7006,dzhezkazgan,7
+7007,karaganda,7
+7008,kasajstán meridional,7
+7009,kasajstán occidental,7
+7010,kasajstán oriental,7
+7011,kasajstán septentrional,7
+7012,kokchetav,7
+7013,kustanay,7
+7014,kzyl-orda,7
+7015,mangistau,7
+7016,pavlodar,7
+7017,semipalatinsk,7
+7018,taldy-kurgan,7
+7019,turgaj,7
+8001,saint george,8
+8002,saint john´s,8
+8003,saint mary,8
+8004,saint paul,8
+8005,saint peter,8
+8006,saint phillip,8
+8007,barbuda,8
+8008,redonda,8
+11001,chang-hua,11
+11002,chia-i,11
+11003,hsin-chu,11
+11004,hua-lien,11
+11005,i-ian,11
+11006,kao-hsiung,11
+11007,miao-li,11
+11008,nan-tou,11
+11009,p´eng-hu,11
+11010,p´ing-tung,11
+11011,tai-chung,11
+11012,tai-nan,11
+11013,tai-tung,11
+11014,taipeh,11
+11015,t´ao-yuan,11
+11016,yun-lin,11
+11017,chia-i,11
+11018,hsin-chu,11
+11019,kao-hsiung,11
+11020,keelung,11
+11021,tai-chung,11
+11022,tai-nan,11
+11023,taipeh,11
+17001,najichevan,17
+17002,nagorno-karabaj,17
+17003,bakú,17
+18001,gran y pequeño abaco,18
+18002,acklins,18
+18003,andros,18
+18004,islas berry,18
+18005,islas bimini,18
+18006,gato,18
+18007,crooked y cayo largo,18
+18008,eleuthera,18
+18009,gran y pequeña exuma,18
+18010,gran bahama,18
+18011,harbour,18
+18012,gran y pequeña inagua,18
+18013,long island,18
+18014,mayaguana,18
+18015,new providence,18
+18016,ragged,18
+18017,cayo rum,18
+18018,san salvador,18
+18019,spanish wells,18
+18020,islas y cayos deshabitados,18
+20001,alejandría,20
+20002,assuan,20
+20003,asyut,20
+20004,beheira,20
+20005,bani suwaif,20
+20006,damietta,20
+20007,daqahliya,20
+20008,el cairo,20
+20009,fayum,20
+20010,gharbiya,20
+20011,giza,20
+20012,ismailía,20
+20013,kafr el-sheikh,20
+20014,mar rojo,20
+20015,matruh,20
+20016,minufiya,20
+20017,minya,20
+20018,new valley,20
+20019,port said,20
+20020,qaliubiya,20
+20021,qena,20
+20022,sharquiya,20
+20023,sinaí septentrional,20
+20024,sinaí meridional,20
+20025,sohag,20
+20026,suez,20
+21001,christ church,21
+21002,saint andrew,21
+21003,saint george,21
+21004,saint james,21
+21005,saint john,21
+21006,saint joseph,21
+21007,saint lucy,21
+21008,saint michael,21
+21009,saint peter,21
+21010,saint philip,21
+21011,saint thomas,21
+27001,brest,27
+27002,gomel,27
+27003,grodno,27
+27004,minsk,27
+27005,mogilev,27
+27006,vitebsk,27
+30001,ática,30
+30002,"canea, la",30
+30003,candía,30
+30004,lasithi,30
+30005,retimo,30
+30006,creta,30
+30007,cícladas,30
+30008,dodecaneso,30
+30009,egeo meridional,30
+30010,lesbos,30
+30011,quíos,30
+30012,samos,30
+30013,egeo septentrional,30
+30014,arta,30
+30015,janina,30
+30016,préveza,30
+30017,thesprotia,30
+30018,epiro,30
+30019,beocia,30
+30020,eubea,30
+30021,euritania,30
+30022,fócida,30
+30023,ftiótida,30
+30024,grecia central,30
+65013,bukit panjang,65
+65014,bukit timah,65
+65015,buona vista,65
+65016,cairnhill,65
+65017,changi,65
+65018,changkat,65
+65019,cheng san,65
+65020,chong boon,65
+65021,chong pang,65
+65022,chua chu kang,65
+65023,costa oeste,65
+65024,clementi,65
+65025,eunos,65
+65026,fengshan,65
+65027,geylang oeste,65
+65028,geylang serai,65
+65029,henderson,65
+65030,hong kah central,65
+65031,hong kah norte,65
+65032,hong kah sur,65
+65033,hougang,65
+65034,jalan besar,65
+65035,jalan kayu,65
+65036,joo chiat,65
+65037,jurong,65
+65038,kaki bukit,65
+65039,kallang,65
+65040,kampong chaichee,65
+65041,kampong glam,65
+65042,kampong kembangan,65
+65043,kampon ubi,65
+65044,kebun baru,65
+65045,kim keat,65
+65046,kim seng,65
+65047,kolam ayer,65
+65048,kreta ayer,65
+65049,kuo chuan,65
+65050,lenh kee,65
+65051,macpherson,65
+65052,marine parade,65
+65053,moulmein,65
+65054,mountbatten,65
+65055,nee soon central,65
+65056,nee soon este,65
+65057,nee soon sur,65
+65058,pasir panjang,65
+65059,paya lebar,65
+65060,potong pasir,65
+65061,punggol,65
+65062,queenstown,65
+65063,radin mas,65
+65064,sembawang,65
+65065,serangoon gardens,65
+65066,siglap,65
+65067,tampines este,65
+65068,tampines norte,65
+65069,tampines oeste,65
+65070,tanah merah,65
+65071,tanglin,65
+65072,tenjong pagar,65
+65073,teck ghee,65
+65074,telok blangah,65
+65075,thomson,65
+65076,tiong bahru,65
+65077,toa payoh,65
+65078,ulu pandan,65
+65079,whampoa,65
+65080,yio chu kang,65
+65081,yuhua,65
+66001,bangkok,66
+66002,nakhon pathom,66
+66003,nonthaburi,66
+66004,pathum thani,66
+66005,samut prakan,66
+66006,samut sakhon,66
+66007,ang thong,66
+66008,chai nat,66
+66009,lop buri,66
+66010,phra nakhon si ayutthaya,66
+66011,saraburi,66
+66012,sing buri,66
+66013,chanthaburi,66
+66014,chachoengsao,66
+66015,chon buri,66
+66016,nakhon nayok,66
+66017,prachin buri,66
+66018,rayong,66
+66019,sa kaeo,66
+66020,trat,66
+66021,kanchanaburi,66
+66022,phetchaburi,66
+66023,prachuap khiri khan,66
+66024,ratchaburi,66
+66025,samut songkhram,66
+66026,suphan buri,66
+66027,chumphon,66
+66028,krabi,66
+66029,nakhon si thammarat,66
+66030,narathiwat,66
+66031,pattani,66
+66032,phangnga,66
+66033,phatthalung,66
+66034,phuket,66
+66035,ranong,66
+66036,satun,66
+66037,songkhla,66
+66038,surat thani,66
+66039,trang,66
+66040,yala,66
+66041,amnat charoen,66
+66042,buri ram,66
+66043,chaiyaphum,66
+66044,kalasin,66
+66045,khon kaen,66
+66046,loei,66
+66047,maha sarakham,66
+66048,mukdaham,66
+66049,nakhon phanom,66
+66050,nakhon ratchasima,66
+66051,nong bua lam phu,66
+66052,nong khai,66
+66053,roi et,66
+66054,sakon nakhon,66
+66055,si sa ket,66
+66056,surin,66
+66057,yasothon,66
+66058,ubon ratchathani,66
+66059,udon thani,66
+66060,chiang mai,66
+66061,chiang rai,66
+66062,kamphaeng phet,66
+66063,lampang,66
+66064,lamphun,66
+66065,mae hong son,66
+66066,nakhon sawan,66
+66067,nan,66
+66068,phayao,66
+66069,phetchabun,66
+66070,phichit,66
+66071,phitsanulok,66
+66072,phrae,66
+66073,sukhothai,66
+66074,tak,66
+251003,choa,251
+251004,gamu-gofa,251
+251005,gonder,251
+251006,goyam,251
+251007,harar,251
+251008,ilubador,251
+251009,kefa,251
+251010,sidamo,251
+251011,tigre,251
+251012,uolegá,251
+251013,uoló,251
+252001,bakool,252
+252002,bajo juba,252
+252003,bajo scebeli,252
+252004,bari,252
+252005,bay,252
+252006,benadir,252
+252007,galguduud,252
+252008,gedo,252
+252009,hiran,252
+252010,medio juba,252
+252011,medio scebeli,252
+252012,mudug,252
+252013,nugaal,252
+252014,sanaag,252
+252015,togdheer,252
+252016,woqooyi galbeed,252
+254001,central,254
+254002,costa,254
+254003,nairobi,254
+254004,nordoriental,254
+254005,nyanza,254
+593001,morona-santiago,593
+593002,napo,593
+593003,pastaza,593
+593004,sucumbíos,593
+593005,zamora-chinchipe amazónica,593
+593006,el oro,593
+593007,esmeraldas,593
+593008,guayas,593
+593009,los ríos,593
+180088,limavady,180
+180089,lisburn,180
+180090,londonderry,180
+180091,magherafelt,180
+180092,moyle,180
+180093,newry y mourne,180
+180094,newtownabbey,180
+180095,omagh,180
+180096,strabane,180
+183001,cabo occidental,183
+183002,cabo septentrional,183
+183003,estado libre,183
+183004,gauteng,183
+183005,kwazulu/natal,183
+183006,mpumalanga,183
+183007,noroeste,183
+183008,oriental,183
+183009,septentrional,183
+184001,alto zaire,184
+184002,bajo zaire,184
+184003,bandundu,184
+184004,ecuador,184
+184005,kasai occidental,184
+184006,kasai oriental,184
+184007,kinshasa,184
+184008,kivu meridional,184
+184009,kivu septentional,184
+184010,maniema,184
+95001,arakan,95
+95002,chin,95
+95003,kachin,95
+95004,karen,95
+95005,kayah,95
+95006,mon,95
+95007,shan,95
+95008,irrawady,95
+95009,magwe,95
+95010,mandalay,95
+95011,pegu,95
+95012,rangún,95
+95013,sagaing,95
+95014,tenasserim,95
+96001,akele guzai,96
+96002,asmara,96
+96003,barka,96
+96004,dankalia,96
+96005,gash y setit,96
+96006,hamasien,96
+96007,sahel,96
+96008,semhar,96
+96009,senhit,96
+96010,seraye,96
+98001,azerbaiyán occidental,98
+98002,azerbaiyán central,98
+98003,azerbaiyán oriental,98
+98004,boyer ahmad-kohgiluyeh,98
+98005,bushehr,98
+98006,chacharmahal-bakhtiyari,98
+98007,fars,98
+98008,gilán,98
+98009,hamadán,98
+98010,hormozgán,98
+98011,ilam,98
+374009,ararati,374
+374010,artashat,374
+374011,art´ik,374
+374012,ashotski,374
+374013,ashtarak,374
+374014,baghramyan,374
+374015,ejmiastin,374
+374016,ghap´an,374
+374017,goris,374
+374018,gugark´,374
+374019,hoktemberyan,374
+374020,hrazdan,374
+374021,ijevan,374
+374022,kamo,374
+374023,kotayk,374
+374024,krasnoselsk,374
+374025,martuni,374
+374026,masis,374
+374027,meghri,374
+374028,nairii,374
+374029,noyemberyan,374
+374030,sevan,374
+374031,sisian,374
+374032,spitak,374
+374033,step´anavan,374
+374034,t´alin,374
+374035,tashir,374
+374036,taushi,374
+374037,t´umanyani,374
+374038,vardenis,374
+374039,vayk,374
+374040,yeghegnadzor,374
+376001,andorra la vella,376
+376002,canillo,376
+376003,encamp,376
+376004,la massana,376
+376005,les escaldes-engordany,376
+376006,ordino,376
+377001,la condamine,377
+39098,florencia,39
+39099,grosseto,39
+39100,livorno,39
+39101,luca,39
+39102,massa-carrara,39
+39103,pisa,39
+39104,pistoia,39
+39105,prato,39
+39106,siena,39
+39107,toscana,39
+39108,bolzano,39
+39109,trento,39
+39110,trentino-alto adigio,39
+39111,perugia,39
+39112,terni,39
+39113,umbría,39
+39114,aosta,39
+39115,valle de aosta,39
+39116,belluno,39
+39117,padua,39
+39118,rovigo,39
+39119,treviso,39
+39120,venecia,39
+297001,oranjestad,297
+58025,caracas,58
+599001,antillas holandesas,599

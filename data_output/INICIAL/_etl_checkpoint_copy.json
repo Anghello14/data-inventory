@@ -1,0 +1,495 @@
+{
+  "output_timestamp": "20260715_113318",
+  "tables": {
+    "AREA_DESEMPENO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AREA_INFLUENCIA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AUX_SOLICITUDES_MOD_HIDRO": {
+      "status": "completed",
+      "last_completed_chunk": 2,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTADO_CIVIL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTADO_OFERTA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTRATO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "JORNADA_TRABAJO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "NIVEL_CUALIFICACION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "PAIS": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "POSICION_FAMILIAR": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "PROGRAMA_ESPECIAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [
+        "PESO_H_VICTIMIZANTE"
+      ],
+      "dead_columns_checked": true
+    },
+    "SECCION_CIIU": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_USUARIO": {
+      "status": "completed",
+      "last_completed_chunk": 418,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SOLICITUDES_BUSQUEDA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SUELDO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TIPO_CONTRATO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TIPO_DOC_IDENT": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TIPO_EMPRESA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TIPO_SUELDO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "VARIABLE_CRUCE": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUENTE_SEG_OFERTA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "NIVEL_CUALIFICACION_NUM": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEPARTAMENTO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DIVISION_CIIU": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AREA_OCUPACIONAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "MUNICIPIO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "GRUPO_CIIU": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CAMPO_OCUPACIONAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "REGIONAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [
+        "REG_CORREO_E_ALT"
+      ],
+      "dead_columns_checked": true
+    },
+    "CIIU": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OCUPACION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CENTRO_SPE": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CNO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUNCIONARIO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "INDICE": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "EMPRESA": {
+      "status": "completed",
+      "last_completed_chunk": 16,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "EVENTOS": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "REMISION_HIDROCARBUROS": {
+      "status": "completed",
+      "last_completed_chunk": 3,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OFT_PREFERENCIA_OCUP": {
+      "status": "completed",
+      "last_completed_chunk": 700,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEMANDA": {
+      "status": "completed",
+      "last_completed_chunk": 66,
+      "dead_columns": [
+        "FUN_ID_VALIDA_DEM"
+      ],
+      "dead_columns_checked": true
+    },
+    "OFERTA": {
+      "status": "completed",
+      "last_completed_chunk": 397,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ACCION_SEGUIMIENTO_DEM": {
+      "status": "completed",
+      "last_completed_chunk": 12,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CZ_DEMANDA$REORG": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CZ_DEMXPES": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "CZ_DEM_ETD_FORM": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "CZ_DEM_ETD_NFORM": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "CZ_DEM_IDIOMA": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "CZ_DEM_LICENCIA": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "CZ_DEM_VARIABLE": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "CZ_DEM_VEHICULO": {
+      "status": "completed",
+      "last_completed_chunk": 0,
+      "dead_columns": [],
+      "dead_columns_checked": false
+    },
+    "DEMANDA_FUNCION_CPL": {
+      "status": "completed",
+      "last_completed_chunk": 267,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEMANDA_INDICE": {
+      "status": "completed",
+      "last_completed_chunk": 9,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEMXFUNCIONREL1": {
+      "status": "completed",
+      "last_completed_chunk": 4,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEMXFUNCIONREL2": {
+      "status": "completed",
+      "last_completed_chunk": 3,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEMXPES": {
+      "status": "completed",
+      "last_completed_chunk": 4,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_COMP_LABORAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_ETD_FORMAL": {
+      "status": "completed",
+      "last_completed_chunk": 40,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_ETD_NO_FORMAL": {
+      "status": "completed",
+      "last_completed_chunk": 7,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_EVENTO": {
+      "status": "completed",
+      "last_completed_chunk": 3,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_IDIOMA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_LICENCIA": {
+      "status": "completed",
+      "last_completed_chunk": 4,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_MUN_HID": {
+      "status": "completed",
+      "last_completed_chunk": 6,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_VARIABLE_CRUCE": {
+      "status": "completed",
+      "last_completed_chunk": 209,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_VEHICULO": {
+      "status": "completed",
+      "last_completed_chunk": 3,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "HIS_DEM_NUMVACANTES": {
+      "status": "completed",
+      "last_completed_chunk": 2,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "LOG_DEM_ETD_FORMAL": {
+      "status": "completed",
+      "last_completed_chunk": 53,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "LOG_DEM_ETD_NO_FORMAL": {
+      "status": "completed",
+      "last_completed_chunk": 11,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "LOG_DEM_IDIOMA": {
+      "status": "completed",
+      "last_completed_chunk": 2,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "MC_BANIN_PROG_DEMANDA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [
+        "FUN_ID"
+      ],
+      "dead_columns_checked": true
+    },
+    "MC_BANIN_PROG_DEMANDA_2022": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CORREO_OFT_EMP": {
+      "status": "completed",
+      "last_completed_chunk": 233,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ENVIO": {
+      "status": "completed",
+      "last_completed_chunk": 860,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ENVIO_SENSIBILIZACION": {
+      "status": "completed",
+      "last_completed_chunk": 6,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "INVITACION": {
+      "status": "completed",
+      "last_completed_chunk": 3,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OFTXPES": {
+      "status": "completed",
+      "last_completed_chunk": 224,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OFT_CORREO_DEM": {
+      "status": "completed",
+      "last_completed_chunk": 57,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OFT_CTL_CONSULTA_DEM": {
+      "status": "completed",
+      "last_completed_chunk": 526,
+      "dead_columns": [
+        "ECN_ID"
+      ],
+      "dead_columns_checked": true
+    },
+    "OFT_CTL_SOCIAL_QUEJA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "REMISION_CARGUE_HIDROCARBUROS": {
+      "status": "completed",
+      "last_completed_chunk": 71,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "CONVENIO_GESTION": {
+      "status": "completed",
+      "last_completed_chunk": 2,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    }
+  }
+}

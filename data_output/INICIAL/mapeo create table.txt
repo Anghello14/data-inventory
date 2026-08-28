@@ -1,0 +1,18 @@
+-- public.nombre_tabla definition
+
+-- Drop table
+
+-- DROP TABLE public.nombre_tabla;
+
+CREATE TABLE public.nombre_tabla (
+	id uuid DEFAULT gen_random_uuid() NOT NULL,
+	nombre_campo int2 NULL,
+	nombre_campo int4 NULL,
+	nombre_campo varchar(400) NULL,
+	nombre_campo timestamptz NULL,
+	actualizado_en timestamptz NULL,
+	eliminado_en timestamptz NULL,
+	CONSTRAINT pk_nombre_tabla PRIMARY KEY (id)
+);
+CREATE INDEX idx_nombre_tabla_creado_en ON public.nombre_tabla USING btree (creado_en DESC);
+CREATE INDEX idx_nombre_tabla_eliminado_en ON public.nombre_tabla USING btree (eliminado_en);

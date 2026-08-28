@@ -1,0 +1,54 @@
+esquema_origen: SPE
+tablas:
+  EMPRESA:
+    descripcion: Inventario tecnico de la tabla EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: true
+  CONTROL_EMPRESA:
+    descripcion: Inventario tecnico de la tabla CONTROL_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  ESTADO_EMPRESA:
+    descripcion: Inventario tecnico de la tabla ESTADO_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: true
+  TIPO_EMPRESA:
+    descripcion: Inventario tecnico de la tabla TIPO_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: true
+  EMPRESA_ESPECIAL:
+    descripcion: Inventario tecnico de la tabla EMPRESA_ESPECIAL
+    destino_sugerido: POSTGRESQL
+    sensible: true
+  EMPXEES:
+    descripcion: Inventario tecnico de la tabla EMPXEES
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  EMPRESA_ANULADA:
+    descripcion: Inventario tecnico de la tabla EMPRESA_ANULADA
+    destino_sugerido: POSTGRESQL
+    sensible: true
+  EMP_TALLER:
+    descripcion: Inventario tecnico de la tabla EMP_TALLER
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  FUENTE_SEG_EMPRESA:
+    descripcion: Inventario tecnico de la tabla FUENTE_SEG_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: true
+  HIS_SEG_EMPRESA:
+    descripcion: Inventario tecnico de la tabla HIS_SEG_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  HIS_ESTADO_EMPRESA:
+    descripcion: Inventario tecnico de la tabla HIS_ESTADO_EMPRESA
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  HIS_ORIENTACION_EMP:
+    descripcion: Inventario tecnico de la tabla HIS_ORIENTACION_EMP
+    destino_sugerido: POSTGRESQL
+    sensible: false
+  VERIFICAR_EMPRESA_ORI:
+    descripcion: Inventario tecnico de la tabla VERIFICAR_EMPRESA_ORI
+    destino_sugerido: POSTGRESQL
+    sensible: false

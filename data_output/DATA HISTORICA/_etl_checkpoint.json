@@ -1,0 +1,253 @@
+{
+  "output_timestamp": "20260723_100903",
+  "tables": {
+    "ESTADO_OFERTA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUENTE_SEG_OFERTA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "INSCRIPCION_CURSO": {
+      "status": "completed",
+      "last_completed_chunk": 36,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DURACION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTUDIO_NO_FORMAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESPECIALIDAD_ARD": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TIPO_ESTUDIO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ORIENTACION_PROFESIONAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTACION_CONSULTA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTADO_EMPRESA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTADO_DEMANDA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ESTADO_CURSO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_JASPERTOKEN": {
+      "status": "completed",
+      "last_completed_chunk": 10,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_MENU": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_MENU_RECURSO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_MENU_ROL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_RECURSO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_RECURSO_ROL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_ROL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SEC_USUARIO_ROL": {
+      "status": "completed",
+      "last_completed_chunk": 418,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "ROL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AAAACNO_DENOMINACIONES_ACT": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AAAACNO_CNO_ACT": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AAAACNO_FUNCIONES_ACT": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "AAAACNO_OCUPACIONES_ACT": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUNCION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "SITUACION_OCUPACIONAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "NIVEL_ACADEMICO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "NIVEL_ESCOLAR": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TITULO_AGRUPACION": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TITULO_GRUPO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "COMPETENCIA_LABORAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DIA_NO_LABORABLE": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [
+        "CSPE_ID"
+      ],
+      "dead_columns_checked": true
+    },
+    "AREA_CONOCIMIENTO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUNCION_COMPETENCIA_LABORAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "DEM_COMP_LABORAL": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "OFT_COMP_LABORAL": {
+      "status": "completed",
+      "last_completed_chunk": 28,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "TITULO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUENTE_SEG_DEMANDA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUENTE_SEG_CURSO": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    },
+    "FUENTE_SEG_EMPRESA": {
+      "status": "completed",
+      "last_completed_chunk": 1,
+      "dead_columns": [],
+      "dead_columns_checked": true
+    }
+  }
+}

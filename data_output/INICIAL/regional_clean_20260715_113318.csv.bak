@@ -1,0 +1,41 @@
+codigo,nombre,direccion,telefono,correo,municipio_id
+5,regional antioquia,calle 51 no. 57-70,094-5760000,eoliveram@sena.edu.co,57005001
+8,regional atlántico,carrera 43 no. 42-40,095-3510799,fayepesd@sena.edu.co,57008001
+11,regional bogotá d.c.,carrera 13 no. 65-10,091-5461600,mpasmara@sena.edu.co,57011001
+13,regional bolívar,carretera turbaco - vía ternera,095-6537740,jalandete@sena.edu.co,57013001
+15,regional boyacá,carrera 12 no. 55a-51,098-7703230,direccionboyaca@sena.edu.co,57015001
+17,regional caldas,kiómetro 10 vía al magdalena la enea,096-8748444,fjjaramillo17@sena.edu.co,57017001
+18,regional caquetá,kilómetro 3 vía al aeropuerto,098-4344612,ecerquerag@sena.edu.co,57018001
+19,regional cauca,calle 4 no. 2-80,092-8244372,jarboleda@sena.edu.co,57019001
+20,regional cesar,carrera 19 entre calles 14 y 15,095-5703106,ccortes@sena.edu.co,57020001
+23,regional córdoba,calle 24 y 27 avenida circunvalar,094-7838049,sllacombev@sena.edu.co,57023001
+25,regional cundinamarca,carrera 13 no. 65-10,091-5461600,maparra@sena.edu.co,57025307
+27,regional chocó,carrera 1a no. 28-71,094-6712007,bemoreno@sena.edu.co,57027001
+41,regional huila,carrera 5 avenida la toma,098-8757005,ccastrillon@sena.edu.co,57041001
+44,regional guajira,calle 21 carrera 15 avenida aeropuerto,095-7283008,ltromp@sena.edu.co,57044001
+47,regional magdalena,avenida el ferrocarril no. 27-97,095-4234556,jbayonaf@sena.edu.co,57047001
+50,regional meta,kilómetro 1 vía acacias,098-6635729,reescalanten@sena.edu.co,57050001
+52,regional nariño,calle 22 no. 11e-05 vía oriente,092-7303324,gecuenca@sena.edu.co,57052001
+54,regional norte de santander,calle 2n avenidas 4 y 5 barrio pescadero,097-5780684,jalizaraz@sena.edu.co,57054001
+63,regional quindío,carrera 19 no. 7-75 barrio galán,096-7461417,gchacon@sena.edu.co,57063001
+66,regional risaralda,carrera 8 no. 26-79,096-3261666,rlopezg@sena.edu.co,57066001
+68,regional santander,calle 16 no. 27-37,097-6800600,hrangel@sena.edu.co,57068001
+70,regional sucre,calle 25b no. 31-260,095-2801809,megomez@sena.edu.co,57070001
+73,regional tolima,calle 44 avenida el ferrocarril,098-2642477,frtrianag@sena.edu.co,57073001
+76,regional valle,calle 52 no. 2bis-15,092-4315800,earamos@sena.edu.co,57076001
+81,regional arauca,carrera 20 no. 28-163,097-8856339,hrmartinez@sena.edu.co,57081001
+85,regional casanare,carrera 19 no. 36-68 barrio 20 de julio,098-6356017,fcruz@sena.edu.co,57085001
+86,regional putumayo,carrera 23 no. 19a-06 barrio 20 de julio,098-4227376,aescobarq@sena.edu.co,57086001
+88,regional san andrés,avenida francisco newball,098-5121752,elizabeth@sena.edu.co,57088001
+91,regional amazonas,calle 12 no. 10-60,098-5927626,senacmleticia@hotmail.com,57091001
+94,regional guainía,antigua sede fer,098-5656271,bilialdotello@hotmail.com,57094001
+95,regional guaviare,carrera 24 no. 7-10,098-5840010,senaguaviare@hotmail.com,57095001
+97,regional vaupés,avenida 15 no. 6-176 barrio san josé,098-5642223,vnovoa@sena.edu.co,57097001
+99,regional vichada,carrera 10 no. 18-185,098-5655053,jnospina@sena.edu.co,57099001
+3,regional valencia españa,universidad politecnica de valencia,091-5461500,carlosfernandothomasbenavides@gmail.com,34063001
+1,ape transnacional,"calle 57 no. 8-69, plazoleta la previsora",091-5461500,spe@sena.edu.co,57011001
+2,conv. nacionales,servicio nacional de aprendizaje,091-5461500,carlosfernandothomasbenavides@gmail.com,57011001
+7,vacantes otro país,"calle 57 no. 8-69, plazoleta la previsora",091-5461500,spe@sena.edu.co,57011001
+32,vacantes otro país,"calle 57 no. 8-69, plazoleta la previsora",091-5461500,spe@sena.edu.co,57011001
+51,vacantes otro país,"calle 57 no. 8-69, plazoleta la previsora",091-5461500,spe@sena.edu.co,57011001
+4,oficina virtual,no aplica,091-5461500,ape@sena.edu.co,57011001
